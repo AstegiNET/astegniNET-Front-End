@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ActionAlerts from "../components/ActionAlerts";
 
 const Register = () => {
+  const isRegisterSuccessful = false;
   return (
     <div className="isolate bg-white py-24 px-6 sm:py-32 lg:px-8 ">
       <div className="  absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
@@ -207,10 +209,22 @@ const Register = () => {
         <div className="mt-5">
           <button
             type="submit"
-            className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            className="mb-5 block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Register
           </button>
+
+          {isRegisterSuccessful ? (
+            <ActionAlerts
+              isSuccess={true}
+              message={"successfully registered"}
+            />
+          ) : (
+            <ActionAlerts
+              isSuccess={false}
+              message={"registration is not succesfull"}
+            />
+          )}
         </div>
       </form>
     </div>

@@ -1,5 +1,4 @@
 import landImg from "../images/6491439-removebg-preview.png";
-
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
