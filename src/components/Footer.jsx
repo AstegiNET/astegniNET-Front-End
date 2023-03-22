@@ -14,7 +14,7 @@ const Footer = () => {
                 <img src={logo} alt="logo" class="max-w-full" />
               </a>
               <p class="text-body-color mb-7 text-base">
-                AstegniNet is you best choose for online tutorial app
+                AstegniNet is your best choose for online tutorial app
               </p>
               <p class="text-dark flex items-center text-sm font-medium">
                 <span className="px-3">
@@ -113,7 +113,7 @@ const Footer = () => {
                   <LinkedInIcon />
                 </a>
               </div>
-              <p class="text-body-color text-base">&copy; 2025 TailGrids</p>
+              <p class="text-body-color text-base">&copy; 2023 AstegniNET</p>
             </div>
           </div>
         </div>

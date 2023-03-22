@@ -2,12 +2,12 @@ import React from "react";
 
 const links = [
   { name: "Tutees", href: "#" },
-  { name: "Tutors", href: "#" },
   { name: "parents", href: "#" },
-  { name: "Meet our leadership", href: "#" },
+  { name: "Tutors", href: "#" },
+  { name: "AstegniNET", href: "#" },
 ];
 const stats = [
-  { name: "get you tutor", value: "12" },
+  { name: "get your tutor", value: "12" },
   { name: "Full-time study", value: "300+" },
   { name: "Hours per week", value: "40" },
   { name: "easy pay", value: "$" },

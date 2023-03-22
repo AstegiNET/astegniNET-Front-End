@@ -2,6 +2,7 @@ import landImg from "../images/6491439-removebg-preview.png";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import AboutUs from "../components/AboutUs";
+import ContactUS from "../components/ContactUS";
 export default function Home() {
   return (
     <>
@@ -41,7 +42,7 @@ export default function Home() {
               <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
                 <a
                   href="#"
-                  className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                  className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Get started
                 </a>
@@ -152,6 +153,7 @@ export default function Home() {
       </div>
 
       <AboutUs />
+      <ContactUS />
       <Footer />
     </>
   );
