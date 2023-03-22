@@ -1,5 +1,5 @@
 import React from "react";
-import Img from "../images/6491439-removebg-preview.png";
+
 const links = [
   { name: "Tutees", href: "#" },
   { name: "Tutors", href: "#" },
