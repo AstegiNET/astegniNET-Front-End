@@ -5,7 +5,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 const Footer = () => {
   return (
-    <footer class="relative z-10 bg-white pt-20 pb-10 lg:pt-[70px] lg:pb-20">
+    <footer className="relative isolate overflow-hidden  py-24 sm:py-32 mx-10">
       <div class="container mx-auto">
         <div class="-mx-4 flex flex-wrap">
           <div class="w-full px-4 sm:w-2/3 lg:w-3/12">

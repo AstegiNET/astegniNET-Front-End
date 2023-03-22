@@ -14,7 +14,7 @@ const profiles = [
 ];
 
 const navigation = [
-  { name: "about us", href: "#" },
+  { name: "about us", href: "#about" },
   { name: "constact us", href: "#" },
   { name: "For tutees and parents", href: "#" },
   { name: "Tutors", href: "#" },
