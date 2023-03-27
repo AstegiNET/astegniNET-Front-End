@@ -1,15 +1,17 @@
-import landImg from "../images/6491439-removebg-preview.png";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import AboutUs from "../components/AboutUs";
-import ContactUS from "../components/ContactUS";
+import landImg from "../assets/images/6491439-removebg-preview.png";
+import Header from "../components/commonComponent/Header";
+import Footer from "../components/commonComponent/Footer";
+import AboutUs from "../components/landing/AboutUs";
+import ContactUS from "../components/landing/ContactUS";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 export default function Home() {
+  useEffect(() => {});
   return (
     <>
       <Header />
 
-      <div className="bg-white">
+      <div id="home" className="bg-white">
         <div className="mx-auto  py-2 sm:px-6  mt-32 lg:mt-32   lg:px-8">
           <div className="relative isolate overflow-hidden bg-gray-100 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
             <svg
@@ -96,7 +98,13 @@ export default function Home() {
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
             <div className="relative rounded-full py-1 px-3 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
               Announcing our online tutoral cross platform
-              <Link href="#" className="font-semibold text-indigo-600">
+              <Link
+                to="/"
+                onClick={() => {
+                  window.scrollTo(0);
+                }}
+                className="font-semibold text-indigo-600"
+              >
                 <span className="absolute inset-0" aria-hidden="true" />
                 Read more <span aria-hidden="true">&rarr;</span>
               </Link>
@@ -107,7 +115,7 @@ export default function Home() {
               Oline tutorial cross platform
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              save you time
+              save your time
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link
@@ -117,7 +125,10 @@ export default function Home() {
                 Get started
               </Link>
               <Link
-                to="/to"
+                to="/"
+                onClick={() => {
+                  window.scrollTo(0);
+                }}
                 className="text-sm font-semibold leading-6 text-gray-900"
               >
                 Learn more <span aria-hidden="true">→</span>

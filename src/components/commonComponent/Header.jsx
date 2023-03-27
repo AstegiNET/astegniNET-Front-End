@@ -3,13 +3,13 @@ import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import logo from "../images/graduate-svgrepo-com.svg";
+import logo from "../../assets/images/graduate-svgrepo-com.svg";
 
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { logout, reset } from "../features/auth/authSlice";
+import { logout, reset } from "../../features/auth/authSlice";
 
 const navigation = [
   { name: "about us", href: "#about" },

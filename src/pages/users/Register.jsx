@@ -1,16 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import ActionAlerts from "../components/ActionAlerts";
-import Header from "../components/Header";
+import Header from "../../components/commonComponent/Header";
 
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { register, reset } from "../features/auth/authSlice";
-import Spinner from "../components/Spinner";
-
-// import Spinner from "../components/Spinner";
+import { register, reset } from "../../features/auth/authSlice";
+import Spinner from "../../components/commonComponent/Spinner";
 
 const Register = () => {
   const [formData, setFormData] = useState({

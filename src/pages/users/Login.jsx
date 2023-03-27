@@ -1,14 +1,14 @@
 import React from "react";
-import Header from "../components/Header";
+import Header from "../../components/commonComponent/Header";
 import { Link } from "react-router-dom";
 
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { login, reset } from "../features/auth/authSlice";
-import Spinner from "../components/Spinner";
-import ActionAlerts from "../components/ActionAlerts";
+import { login, reset } from "../../features/auth/authSlice";
+import Spinner from "../../components/commonComponent/Spinner";
+import ActionAlerts from "../../components/alerts/ActionAlerts";
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",

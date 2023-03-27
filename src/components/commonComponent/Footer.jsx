@@ -1,6 +1,6 @@
 import React from "react";
 import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
-import logo from "../images/graduate-svgrepo-com.svg";
+import logo from "../../assets/images/graduate-svgrepo-com.svg";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { Link } from "react-router-dom";
 

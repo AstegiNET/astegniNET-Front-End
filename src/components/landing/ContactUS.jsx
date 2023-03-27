@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 const ContactUS = () => {
   return (
     <div className="bg-white" id="contact">
-      <div className="mx-auto  py-2 sm:px-6 sm:pt-5 lg:px-8">
-        <div className="relative isolate overflow-hidden bg-gray-100 px-6 pt-16  sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
+      <div className=" mx-15  py-2 sm:px-6 sm:pt-5 lg:px-8">
+        <div className="relative isolate overflow-hidden bg-gray-100 px-6 pt-16 pb-10 rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
           <svg
             viewBox="0 0 1024 1024"
             className="absolute top-1/2 left-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:translate-y-0 lg:-translate-x-1/2"
@@ -27,17 +27,17 @@ const ContactUS = () => {
               </radialGradient>
             </defs>
           </svg>
-          <div className=" text-gray-900 mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
+          <div className=" text-gray-900 mx-auto max-w-md items-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
             <h2 className="text-2xl font-bold sm:text-2xl">Get In Touch</h2>
             <p className="mt-6 text-lg leading-8">
               We'd love to hear from you! If you have any questions, feedback,
               or suggestions, please contact us.
             </p>
-            <div className="mt-5 flex items-center justify-center gap-x-6 lg:justify-start ">
+            <div className="mt-5 flex  items-center gap-x-6 lg:justify-start ">
               <MailIcon />
               <p>astegniNET@gmail.com</p>
             </div>
-            <div className="mt-5 flex items-center justify-center gap-x-6 lg:justify-start">
+            <div className="mt-5 flex items-center  gap-x-6 lg:justify-start">
               <ContactPhoneIcon />
               <p>+251 900 000 00</p>
             </div>
