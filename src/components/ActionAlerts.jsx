@@ -1,13 +1,10 @@
 import * as React from "react";
 import Alert from "@mui/material/Alert";
 
-export default function ActionAlerts({ isSuccess, message }) {
+export default function ActionAlerts({ message }) {
   return (
     <>
-      <Alert
-        variant={isSuccess ? "filled" : "outlined"}
-        severity={isSuccess ? "success" : "error"}
-      >
+      <Alert variant="outlined" severity="error">
         {message}
       </Alert>
     </>

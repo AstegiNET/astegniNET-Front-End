@@ -2,21 +2,22 @@ import React from "react";
 import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
 import logo from "../images/graduate-svgrepo-com.svg";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <footer className="relative isolate overflow-hidden  py-24 sm:py-32 mx-10">
-      <div class="container mx-auto">
-        <div class="-mx-4 flex flex-wrap">
-          <div class="w-full px-4 sm:w-2/3 lg:w-3/12">
-            <div class="mb-10 w-full">
-              <a href="#" class="mb-6 inline-block max-w-[70px]">
-                <img src={logo} alt="logo" class="max-w-full" />
-              </a>
-              <p class="text-body-color mb-7 text-base">
+      <div className="container mx-auto">
+        <div className="-mx-4 flex flex-wrap">
+          <div className="w-full px-4 sm:w-2/3 lg:w-3/12">
+            <div className="mb-10 w-full">
+              <Link to="/" className="mb-6 inline-block max-w-[70px]">
+                <img src={logo} alt="logo" className="max-w-full" />
+              </Link>
+              <p className="text-body-color mb-7 text-base">
                 AstegniNet is your best choose for online tutorial app
               </p>
-              <p class="text-dark flex items-center text-sm font-medium">
+              <p className="text-dark flex items-center text-sm font-medium">
                 <span className="px-3">
                   <PhoneInTalkIcon />
                 </span>
@@ -24,103 +25,111 @@ const Footer = () => {
               </p>
             </div>
           </div>
-          <div class="w-full px-4 sm:w-1/2 lg:w-2/12">
-            <div class="mb-10 w-full">
-              <h4 class="text-dark mb-9 text-lg font-semibold">Tutors</h4>
+          <div className="w-full px-4 sm:w-1/2 lg:w-2/12">
+            <div className="mb-10 w-full">
+              <h4 className="text-dark mb-9 text-lg font-semibold">Tutors</h4>
               <ul>
                 <li>
-                  <a
-                    href="#"
-                    class="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
+                  <Link
+                    to="/"
+                    className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
                   >
                     Tutors
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
           </div>
-          <div class="w-full px-4 sm:w-1/2 lg:w-2/12">
-            <div class="mb-10 w-full">
-              <h4 class="text-dark mb-9 text-lg font-semibold">AstegniNET</h4>
+          <div className="w-full px-4 sm:w-1/2 lg:w-2/12">
+            <div className="mb-10 w-full">
+              <h4 className="text-dark mb-9 text-lg font-semibold">
+                AstegniNET
+              </h4>
               <ul>
                 <li>
-                  <a
-                    href="#"
-                    class="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
+                  <Link
+                    to="/"
+                    className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
                   >
                     About AstegniNet
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    class="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
+                  <Link
+                    to="/"
+                    className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
                   >
                     Contact & Support
-                  </a>
+                  </Link>
                 </li>
 
                 <li>
-                  <a
-                    href="#"
-                    class="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
+                  <Link
+                    to="/"
+                    className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
                   >
                     Setting & Privacy
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
           </div>
-          <div class="w-full px-4 sm:w-1/2 lg:w-2/12">
-            <div class="mb-10 w-full">
-              <h4 class="text-dark mb-9 text-lg font-semibold">Quick Links</h4>
+          <div className="w-full px-4 sm:w-1/2 lg:w-2/12">
+            <div className="mb-10 w-full">
+              <h4 className="text-dark mb-9 text-lg font-semibold">
+                Quick Links
+              </h4>
               <ul>
                 <li>
-                  <a
-                    href="#"
-                    class="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
+                  <Link
+                    to="/"
+                    className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
                   >
                     Support
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    class="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
+                  <Link
+                    to="/"
+                    className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
                   >
                     Our Services
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    class="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
+                  <Link
+                    to="/"
+                    className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
                   >
                     Know Our Team
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
           </div>
-          <div class="w-full px-4 sm:w-1/2 lg:w-3/12">
-            <div class="mb-10 w-full">
-              <h4 class="text-dark mb-9 text-lg font-semibold">Follow Us On</h4>
-              <div class="mb-6 flex items-center">
-                <a
-                  href="#"
-                  class="text-dark hover:bg-primary hover:border-primary mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5] hover:text-white sm:mr-4 lg:mr-3 xl:mr-4"
+          <div className="w-full px-4 sm:w-1/2 lg:w-3/12">
+            <div className="mb-10 w-full">
+              <h4 className="text-dark mb-9 text-lg font-semibold">
+                Follow Us On
+              </h4>
+              <div className="mb-6 flex items-center">
+                <Link
+                  to="/"
+                  className="text-dark hover:bg-primary hover:border-primary mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5] hover:text-white sm:mr-4 lg:mr-3 xl:mr-4"
                 >
                   <LinkedInIcon />
-                </a>
+                </Link>
               </div>
-              <p class="text-body-color text-base">&copy; 2023 AstegniNET</p>
+              <p className="text-body-color text-base">
+                &copy; 2023 AstegniNET
+              </p>
             </div>
           </div>
         </div>
       </div>
 
       <div>
-        <span class="absolute left-0 bottom-0 z-[-1]">
+        <span className="absolute left-0 bottom-0 z-[-1]">
           <svg
             width="217"
             height="229"
@@ -141,13 +150,13 @@ const Footer = () => {
                 y2="1.22829e-05"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop stop-color="#3056D3" stop-opacity="0.08" />
-                <stop offset="1" stop-color="#C4C4C4" stop-opacity="0" />
+                <stop stopColor="#3056D3" stopOpacity="0.08" />
+                <stop offset="1" stopColor="#C4C4C4" stopOpacity="0" />
               </linearGradient>
             </defs>
           </svg>
         </span>
-        <span class="absolute top-10 right-10 z-[-1]">
+        <span className="absolute top-10 right-10 z-[-1]">
           <svg
             width="75"
             height="75"
@@ -168,8 +177,8 @@ const Footer = () => {
                 y2="37.5"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop stop-color="#13C296" stop-opacity="0.31" />
-                <stop offset="1" stop-color="#C4C4C4" stop-opacity="0" />
+                <stop stopColor="#13C296" stopOpacity="0.31" />
+                <stop offset="1" stopColor="#C4C4C4" stopOpacity="0" />
               </linearGradient>
             </defs>
           </svg>

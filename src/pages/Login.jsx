@@ -1,7 +1,63 @@
 import React from "react";
 import Header from "../components/Header";
+import { Link } from "react-router-dom";
 
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { login, reset } from "../features/auth/authSlice";
+import Spinner from "../components/Spinner";
+import ActionAlerts from "../components/ActionAlerts";
 const Login = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const { email, password } = formData;
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    if (isError) {
+      console.log(message);
+    }
+
+    if (isSuccess || user) {
+      navigate("/");
+    }
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
+
+  const onChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const userData = {
+      email,
+      password,
+    };
+
+    dispatch(login(userData));
+  };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   return (
     <>
       <Header />
@@ -40,6 +96,7 @@ const Login = () => {
           action="#"
           method="POST"
           className=" mx-auto mt-10 max-w-xl sm:mt-20"
+          onSubmit={onSubmit}
         >
           <div className="grid grid-cols-1 gap-y-6 gap-x-8 sm:grid-cols-2">
             <div className="sm:col-span-2">
@@ -54,8 +111,12 @@ const Login = () => {
                   type="email"
                   name="email"
                   id="email"
+                  value={email}
+                  onChange={onChange}
+                  placeholder="enter email"
                   autoComplete="email"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  required
                 />
               </div>
             </div>
@@ -71,17 +132,21 @@ const Login = () => {
                   type="password"
                   name="password"
                   id="password"
+                  value={password}
+                  onChange={onChange}
+                  placeholder="enter password"
                   autoComplete="password"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  required
                 />
               </div>
             </div>
 
             <div className="text-sm leading-6 text-gray-600">
-              no account registered
-              <a href="#" className="font-semibold text-indigo-600">
+              no account registered?
+              <Link to="/register" className="font-semibold text-indigo-600">
                 &nbsp;register
-              </a>
+              </Link>
             </div>
           </div>
           <div className="mt-5">
@@ -92,6 +157,9 @@ const Login = () => {
               Login
             </button>
           </div>
+          {/* {user ? null : (
+            <ActionAlerts message="email or password isn't correct" />
+          )} */}
         </form>
       </div>
     </>

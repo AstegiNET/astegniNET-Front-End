@@ -1,10 +1,78 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ActionAlerts from "../components/ActionAlerts";
+// import ActionAlerts from "../components/ActionAlerts";
 import Header from "../components/Header";
 
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { register, reset } from "../features/auth/authSlice";
+import Spinner from "../components/Spinner";
+
+// import Spinner from "../components/Spinner";
+
 const Register = () => {
-  const isRegisterSuccessful = false;
+  const [formData, setFormData] = useState({
+    fname: "",
+    lname: "",
+    email: "",
+    phone: "",
+    role: "",
+    password: "",
+    password2: "",
+  });
+
+  const { fname, lname, email, phone, role, password, password2 } = formData;
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess || user) {
+      navigate("/");
+    }
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
+
+  const onChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    if (password !== password2) {
+      toast.error("Passwords do not match");
+    } else {
+      const userData = {
+        fname,
+        lname,
+        email,
+        phone,
+        role,
+        password,
+      };
+
+      dispatch(register(userData));
+    }
+  };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>
@@ -43,15 +111,11 @@ const Register = () => {
             register here if you havent any account
           </p>
         </div>
-        <form
-          action="#"
-          method="POST"
-          className=" mx-auto mt-16 max-w-xl sm:mt-20"
-        >
+        <form onSubmit={onSubmit} className=" mx-auto mt-16 max-w-xl sm:mt-20">
           <div className="grid grid-cols-1 gap-y-6 gap-x-8 sm:grid-cols-2">
             <div>
               <label
-                htmlFor="first-name"
+                htmlFor="fname"
                 className="block text-sm font-semibold leading-6 text-gray-900"
               >
                 First name
@@ -59,8 +123,11 @@ const Register = () => {
               <div className="mt-2.5">
                 <input
                   type="text"
-                  name="first-name"
-                  id="first-name"
+                  name="fname"
+                  id="fname"
+                  value={fname}
+                  onChange={onChange}
+                  placeholder="enter first name"
                   autoComplete="given-name"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -68,7 +135,7 @@ const Register = () => {
             </div>
             <div>
               <label
-                htmlFor="last-name"
+                htmlFor="lname"
                 className="block text-sm font-semibold leading-6 text-gray-900"
               >
                 Last name
@@ -76,8 +143,11 @@ const Register = () => {
               <div className="mt-2.5">
                 <input
                   type="text"
-                  name="last-name"
-                  id="last-name"
+                  name="lname"
+                  id="lname"
+                  value={lname}
+                  onChange={onChange}
+                  placeholder="enter last name"
                   autoComplete="family-name"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -96,6 +166,9 @@ const Register = () => {
                   type="email"
                   name="email"
                   id="email"
+                  value={email}
+                  onChange={onChange}
+                  placeholder="enter email"
                   autoComplete="email"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -103,7 +176,7 @@ const Register = () => {
             </div>
             <div className="sm:col-span-2">
               <label
-                htmlFor="phone-number"
+                htmlFor="phone"
                 className="block text-sm font-semibold leading-6 text-gray-900"
               >
                 Phone number
@@ -111,8 +184,11 @@ const Register = () => {
               <div className="relative mt-2.5">
                 <input
                   type="tel"
-                  name="phone-number"
-                  id="phone-number"
+                  name="phone"
+                  id="phone"
+                  value={phone}
+                  onChange={onChange}
+                  placeholder="enter phone number"
                   autoComplete="tel"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -121,31 +197,21 @@ const Register = () => {
 
             <div className="sm:col-span-2">
               <label
-                htmlFor="phone-number"
+                htmlFor="role"
                 className="block text-sm font-semibold leading-6 text-gray-900"
               >
                 Role
               </label>
               <div className="relative mt-2.5">
-                <div className="absolute inset-y-0 left-0 flex items-center">
-                  <label htmlFor="role" className="sr-only">
-                    Role
-                  </label>
-                  <select
-                    id="role"
-                    name="role"
-                    className="h-full rounded-md border-0 bg-transparent bg-none py-0 pl-4 pr-9 text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
-                  >
-                    <option>Tutor</option>
-                    <option>Tutee</option>
-                  </select>
-                </div>
                 <input
-                  type="tel"
+                  type="text"
                   name="role"
                   id="role"
+                  value={role}
+                  onChange={onChange}
                   autoComplete="role"
-                  className="block w-full rounded-md border-0 py-2 px-3.5 pl-20 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  placeholder="enter tutor or tutee"
+                  className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -161,6 +227,9 @@ const Register = () => {
                   type="password"
                   name="password"
                   id="password"
+                  value={password}
+                  onChange={onChange}
+                  placeholder="enter password"
                   autoComplete="password"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -169,7 +238,7 @@ const Register = () => {
 
             <div className="sm:col-span-2">
               <label
-                htmlFor="Password"
+                htmlFor="password2"
                 className="block text-sm font-semibold leading-6 text-gray-900"
               >
                 Confirm Password
@@ -177,9 +246,12 @@ const Register = () => {
               <div className="relative mt-2.5">
                 <input
                   type="password"
-                  name="password"
-                  id="password"
-                  autoComplete="password"
+                  name="password2"
+                  id="password2"
+                  value={password2}
+                  autoComplete="password2"
+                  onChange={onChange}
+                  placeholder="enter password"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -187,9 +259,9 @@ const Register = () => {
 
             <div className="text-sm leading-6 text-gray-600">
               already have an account
-              <a href="#" className="font-semibold text-indigo-600">
+              <Link to="/login" className="font-semibold text-indigo-600">
                 &nbsp;login
-              </a>
+              </Link>
             </div>
           </div>
           <div className="mt-5">
@@ -199,18 +271,6 @@ const Register = () => {
             >
               Register
             </button>
-
-            {isRegisterSuccessful ? (
-              <ActionAlerts
-                isSuccess={true}
-                message={"successfully registered"}
-              />
-            ) : (
-              <ActionAlerts
-                isSuccess={false}
-                message={"registration is not succesfull"}
-              />
-            )}
           </div>
         </form>
       </div>
