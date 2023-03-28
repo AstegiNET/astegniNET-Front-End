@@ -4,12 +4,10 @@ import {
   Avatar,
   Box,
   Button,
-  Grid,
   ListItem,
   ListItemAvatar,
   ListItemText,
   Paper,
-  Typography,
 } from "@mui/material";
 
 function CourseItem({ course }) {
@@ -17,17 +15,6 @@ function CourseItem({ course }) {
 
   return (
     <>
-      {/* <div className="course">
-        <div>{new Date(course.createdAt).toLocaleString("en-US")}</div>
-        <h2>{course.text}</h2>
-        <button
-          onClick={() => dispatch(deleteCourse(course._id))}
-          className="close"
-        >
-          X
-        </button>
-      </div> */}
-
       <Box m={1}>
         <Paper elevation={2} minWidth={300}>
           <ListItem>

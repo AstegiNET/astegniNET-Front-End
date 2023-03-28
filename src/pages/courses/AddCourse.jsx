@@ -3,64 +3,9 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import CourseForm from "../../components/courses/CourseForm";
-import CourseItem from "../../components/courses/CourseItem";
 import Spinner from "../../components/commonComponent/Spinner";
 import { getCourses, reset } from "../../features/courses/courseSlice";
-
-// function AddCourse() {
-//   const navigate = useNavigate();
-//   const dispatch = useDispatch();
-
-//   const { user } = useSelector((state) => state.auth);
-//   const { courses, isLoading, isError, message } = useSelector(
-//     (state) => state.course
-//   );
-
-//   useEffect(() => {
-//     if (isError) {
-//       console.log(message);
-//     }
-
-//     if (!user) {
-//       navigate("/login");
-//     }
-
-//     dispatch(getCourses());
-//     return () => {
-//       dispatch(reset());
-//     };
-//   }, [user, navigate, isError, message, dispatch]);
-
-//   if (isLoading) {
-//     return <Spinner />;
-//   }
-
-//   return (
-//     <>
-//       <section className="heading item-center justify-center">
-//         <h1>
-//           Welcome {user && user.fname} {user && user.lname}
-//         </h1>
-//       </section>
-
-//       <CourseForm />
-
-//       <section className="content">
-//         {courses.length ? (
-//           <div className="courses">
-//             {courses.map((course) => (
-//               <CourseItem key={course} course={course} />
-//             ))}
-//           </div>
-//         ) : (
-//           <h3>You have not set any courses</h3>
-//         )}
-//       </section>
-//     </>
-//   );
-// }
-
-// export default AddCourse;
+import { deleteCourse } from "../../features/courses/courseSlice";
 
 import {
   Avatar,
@@ -70,9 +15,11 @@ import {
   ListItemAvatar,
   ListItemText,
   Paper,
+  Box,
+  Container,
   Typography,
 } from "@mui/material";
-import { Box, Container } from "@mui/system";
+
 import React from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Header from "../../components/commonComponent/Header";
@@ -89,72 +36,6 @@ const THEME = createTheme({
     },
   },
 });
-
-// const courses = [
-//   {
-//     id: 1,
-//     title: "Complete django tutorial",
-//     logo: "/images/courses/djangodev.png",
-//     rating: 4.5,
-//     about: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-//   },
-//   {
-//     id: 2,
-//     title: "Flutter in action",
-//     logo: "/images/courses/flutter.png",
-//     rating: 4.5,
-//     about: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-//   },
-//   {
-//     id: 3,
-//     title: "React Js",
-//     logo: "/images/courses/reactdev.jpeg",
-//     rating: 4.5,
-//     about: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-//   },
-//   {
-//     id: 4,
-//     title: "Node js tutorial",
-//     logo: "/images/courses/nodejsdev.png",
-//     rating: 4.5,
-//     about: "Java Masterclass sit amet consectetur adipisicing elit.",
-//   },
-//   {
-//     id: 5,
-//     title: "Java Masterclass",
-//     logo: "/images/courses/javaDev.jpeg",
-//     rating: 4.5,
-//     about: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-//   },
-//   {
-//     id: 6,
-//     title: "JS for begginers",
-//     logo: "/images/courses/js.jpeg",
-//     rating: 4.5,
-//     about: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-//   },
-//   {
-//     id: 7,
-//     title: "Laravel zero to hero",
-//     logo: "/images/courses/laravel-refresh-share.png",
-//     rating: 4.5,
-//     about: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-//   },
-//   {
-//     id: 8,
-//     title: "Neural Networks",
-//     logo: "/images/courses/neuralnet.jpeg",
-//     rating: 4.5,
-//     about: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-//   },
-//   {
-//     id: 9,
-//     title: "Advanced Photoshop Tutorial",
-//     logo: "/images/courses/photoshop.jpeg",
-//     rating: 4.5,
-//     about: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-//   },
-// ];
 
 const AddCourse = () => {
   const navigate = useNavigate();
@@ -223,7 +104,7 @@ const AddCourse = () => {
           </defs>
         </svg>
 
-        <svg
+        {/* <svg
           viewBox="0"
           aria-hidden="true"
           className="absolute left-1/2 -top-52 -z-10 w-[68.5625rem] -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem] sm:ml-16 sm:translate-x-0 sm:transform-gpu"
@@ -246,7 +127,7 @@ const AddCourse = () => {
               <stop offset={1} stopColor="#FF4694" />
             </linearGradient>
           </defs>
-        </svg>
+        </svg> */}
 
         <Container maxWidth="lg">
           <Box py={2}>
@@ -273,6 +154,7 @@ const AddCourse = () => {
                 sx={{
                   borderRadius: "4%",
                   m: 2,
+                  p: 2,
                   boxShadow: "0 0 3px 1px #bcbcbc",
                 }}
               >
@@ -291,9 +173,9 @@ const AddCourse = () => {
                 {courses.length ? (
                   <>
                     {courses.map((course, index) => (
-                      <Box m={1}>
-                        <Paper elevation={2} minWidth={300}>
-                          <ListItem key={index}>
+                      <Box m={1} key={course._id}>
+                        <Paper elevation={2}>
+                          <ListItem>
                             <ListItemAvatar>
                               <Avatar
                                 variant="rounded"
@@ -306,6 +188,11 @@ const AddCourse = () => {
                               secondary={course.text}
                             />
                           </ListItem>
+                          <Button
+                            onClick={() => dispatch(deleteCourse(course._id))}
+                          >
+                            Delete
+                          </Button>
                         </Paper>
                       </Box>
                     ))}
@@ -313,16 +200,6 @@ const AddCourse = () => {
                 ) : (
                   <h3>You have not set any courses</h3>
                 )}
-
-                {/* {courses.length ? (
-                  <>
-                    {courses.map((course) => (
-                      <CourseItem key={course} course={course} />
-                    ))}
-                  </>
-                ) : (
-                  <h3>You have not set any courses</h3>
-                )} */}
               </Box>
             </Grid>
           </Grid>

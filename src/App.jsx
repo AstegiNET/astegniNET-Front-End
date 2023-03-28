@@ -1,8 +1,5 @@
-// import Register from "./pages/Register";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import Login from "./pages/Login";
 import Home from "./pages/Home";
-// import AboutUs from "./components/AboutUs";
 import AddCourse from "./pages/courses/AddCourse";
 import AboutUs from "./components/landing/AboutUs";
 import Login from "./pages/users/Login";

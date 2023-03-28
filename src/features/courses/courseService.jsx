@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "/api/courses/";
+const API_URL = "http://localhost:5000/api/courses/";
 
 // Create new course
 const createCourse = async (courseData, token) => {
