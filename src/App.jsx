@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import AddCourse from "./pages/courses/AddCourse";
-import AboutUs from "./components/landing/AboutUs";
-import Login from "./pages/users/Login";
-import Register from "./pages/users/Register";
+import Home from "./tutee/pages/Home";
+import AddCourse from "./tutee/pages/courses/AddCourse";
+import AboutUs from "./tutee/components/landing/AboutUs";
+import Login from "./tutee/pages/users/Login";
+import Register from "./tutee/pages/users/Register";
 
 export default function App() {
   return (
