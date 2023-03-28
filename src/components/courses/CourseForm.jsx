@@ -1,3 +1,12 @@
+import {
+  Button,
+  FormControl,
+  FormHelperText,
+  Grid,
+  Input,
+  InputLabel,
+  TextField,
+} from "@mui/material";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createCourse } from "../../features/courses/courseSlice";
@@ -16,7 +25,7 @@ function CourseForm() {
 
   return (
     <section className="form">
-      <form onSubmit={onSubmit}>
+      {/* <form onSubmit={onSubmit}>
         <div className="form-group">
           <label htmlFor="text">Course</label>
           <input
@@ -28,10 +37,31 @@ function CourseForm() {
           />
         </div>
         <div className="form-group">
-          <button className="btn btn-block" type="submit">
-            Add Course
-          </button>
+          <button type="submit">Add Course</button>
         </div>
+      </form> */}
+      <form onSubmit={onSubmit}>
+        <Grid container spacing={2} sx={{ flexGrow: 1 }}>
+          <Grid item xs={12}>
+            <TextField
+              type="text"
+              name="text"
+              id="text"
+              value={text}
+              label="add course"
+              multiline
+              maxRows={4}
+              onChange={(e) => setText(e.target.value)}
+            />
+          </Grid>
+        </Grid>
+        <Grid container spacing={2} sx={{ flexGrow: 1 }}>
+          <Grid item xs={12}>
+            <Button variant="contained" type="submit">
+              Add Course
+            </Button>
+          </Grid>
+        </Grid>
       </form>
     </section>
   );

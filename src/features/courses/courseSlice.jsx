@@ -14,8 +14,10 @@ export const createCourse = createAsyncThunk(
   "courses/create",
   async (courseData, thunkAPI) => {
     try {
-      const token = thunkAPI.getState().auth.user.token;
-      return await courseService.createCourse(courseData, token);
+      if (thunkAPI.getState().auth.user) {
+        const token = thunkAPI.getState().auth.user.token;
+        return await courseService.createCourse(courseData, token);
+      }
     } catch (error) {
       const message =
         (error.response &&
@@ -33,8 +35,10 @@ export const getCourses = createAsyncThunk(
   "courses/getAll",
   async (_, thunkAPI) => {
     try {
-      const token = thunkAPI.getState().auth.user.token;
-      return await courseService.getCourses(token);
+      if (thunkAPI.getState().auth.user) {
+        const token = thunkAPI.getState().auth.user.token;
+        return await courseService.getCourses(token);
+      }
     } catch (error) {
       const message =
         (error.response &&
@@ -52,8 +56,10 @@ export const deleteCourse = createAsyncThunk(
   "courses/delete",
   async (id, thunkAPI) => {
     try {
-      const token = thunkAPI.getState().auth.user.token;
-      return await courseService.deleteCourse(id, token);
+      if (thunkAPI.getState().auth.user) {
+        const token = thunkAPI.getState().auth.user.token;
+        return await courseService.deleteCourse(id, token);
+      }
     } catch (error) {
       const message =
         (error.response &&
