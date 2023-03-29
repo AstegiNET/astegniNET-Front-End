@@ -14,8 +14,8 @@ export const createCourse = createAsyncThunk(
   "courses/create",
   async (courseData, thunkAPI) => {
     try {
-      if (thunkAPI.getState().auth.user) {
-        const token = thunkAPI.getState().auth.user.token;
+      if (thunkAPI.getState().tuteeAuth.user) {
+        const token = thunkAPI.getState().tuteeAuth.user.token;
         return await courseService.createCourse(courseData, token);
       }
     } catch (error) {
@@ -35,8 +35,8 @@ export const getCourses = createAsyncThunk(
   "courses/getAll",
   async (_, thunkAPI) => {
     try {
-      if (thunkAPI.getState().auth.user) {
-        const token = thunkAPI.getState().auth.user.token;
+      if (thunkAPI.getState().tuteeAuth.user) {
+        const token = thunkAPI.getState().tuteeAuth.user.token;
         return await courseService.getCourses(token);
       }
     } catch (error) {
@@ -56,8 +56,8 @@ export const deleteCourse = createAsyncThunk(
   "courses/delete",
   async (id, thunkAPI) => {
     try {
-      if (thunkAPI.getState().auth.user) {
-        const token = thunkAPI.getState().auth.user.token;
+      if (thunkAPI.getState().tuteeAuth.user) {
+        const token = thunkAPI.getState().tuteeAuth.user.token;
         return await courseService.deleteCourse(id, token);
       }
     } catch (error) {

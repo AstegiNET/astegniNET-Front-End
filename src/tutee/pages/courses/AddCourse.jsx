@@ -47,19 +47,21 @@ const AddCourse = () => {
   );
 
   useEffect(() => {
+    console.log(user);
+    console.log(courses);
+
     if (isError) {
       console.log(message);
     }
-
     if (!user) {
       navigate("/login");
     }
-
     dispatch(getCourses());
     return () => {
       dispatch(reset());
     };
-  }, [user, navigate, isError, message, dispatch]);
+  }, [user]);
+  //user, navigate, isError, message, dispatch
 
   if (isLoading) {
     return <Spinner />;
