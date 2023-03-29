@@ -41,7 +41,7 @@ const AddCourse = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.tuteeAuth);
   const { courses, isLoading, isError, message } = useSelector(
     (state) => state.course
   );

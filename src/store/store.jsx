@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authReducer from "../tutee/features/auth/authSlice";
+import tuteeAuthReducer from "../tutee/features/auth/tuteeAuthSlice";
 import courseReducer from "../tutee/features/courses/courseSlice";
 
 export const store = configureStore({
   reducer: {
-    auth: authReducer,
+    tuteeAuth: tuteeAuthReducer,
     course: courseReducer,
   },
 });

@@ -9,7 +9,7 @@ import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { logout, reset } from "../../features/auth/authSlice";
+import { logout, reset } from "../../features/auth/tuteeAuthSlice";
 
 const navigation = [
   { name: "about us", href: "#about" },
@@ -22,7 +22,7 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.tuteeAuth);
 
   const onLogout = () => {
     dispatch(logout());
