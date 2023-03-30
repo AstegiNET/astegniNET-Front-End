@@ -47,8 +47,8 @@ const AddCourse = () => {
   );
 
   useEffect(() => {
-    console.log(user);
-    console.log(courses);
+    // console.log(user);
+    // console.log(courses);
 
     if (isError) {
       console.log(message);
@@ -60,7 +60,7 @@ const AddCourse = () => {
     return () => {
       dispatch(reset());
     };
-  }, [user]);
+  }, [user, navigate, dispatch, message, isError]);
   //user, navigate, isError, message, dispatch
 
   if (isLoading) {
