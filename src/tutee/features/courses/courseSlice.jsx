@@ -51,6 +51,25 @@ export const getCourses = createAsyncThunk(
   }
 );
 
+// Get user courses
+export const getAllCourses = createAsyncThunk(
+  "courses/getAllCourses",
+  async (_, thunkAPI) => {
+    try {
+      if (thunkAPI.getState().tuteeAuth.user) {
+        return await courseService.getAllCourses();
+      }
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 // Delete user course
 export const deleteCourse = createAsyncThunk(
   "courses/delete",
@@ -117,6 +136,19 @@ export const courseSlice = createSlice({
         );
       })
       .addCase(deleteCourse.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(getAllCourses.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getAllCourses.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.courses = action.payload;
+      })
+      .addCase(getAllCourses.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

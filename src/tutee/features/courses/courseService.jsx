@@ -28,6 +28,15 @@ const getCourses = async (token) => {
   return response.data;
 };
 
+// Get user courses
+const getAllCourses = async () => {
+  const response = await axios.get(API_URL + "getAllCourses");
+
+  return response.data;
+};
+
+//getAllCourses
+
 // Delete user course
 const deleteCourse = async (courseId, token) => {
   const config = {
@@ -44,6 +53,7 @@ const deleteCourse = async (courseId, token) => {
 const courseService = {
   createCourse,
   getCourses,
+  getAllCourses,
   deleteCourse,
 };
 

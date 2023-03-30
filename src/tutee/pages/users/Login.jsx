@@ -157,9 +157,6 @@ const Login = () => {
               Login
             </button>
           </div>
-          {/* {user ? null : (
-            <ActionAlerts message="email or password isn't correct" />
-          )} */}
         </form>
       </div>
     </>

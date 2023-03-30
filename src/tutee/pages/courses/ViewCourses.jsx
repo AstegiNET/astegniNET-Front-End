@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import CourseForm from "../../components/courses/CourseForm";
 import Spinner from "../../components/commonComponent/Spinner";
-import { getCourses, reset } from "../../features/courses/courseSlice";
-import { deleteCourse } from "../../features/courses/courseSlice";
+import { getAllCourses, reset } from "../../features/courses/courseSlice";
+// import { deleteCourse } from "../../features/courses/courseSlice";
 
 import {
   Avatar,
@@ -37,7 +37,7 @@ const THEME = createTheme({
   },
 });
 
-const AddCourse = () => {
+const ViewAllCourses = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -51,7 +51,7 @@ const AddCourse = () => {
       console.log(message);
     }
 
-    dispatch(getCourses());
+    dispatch(getAllCourses());
     return () => {
       dispatch(reset());
     };
@@ -119,60 +119,41 @@ const AddCourse = () => {
           </Box>
         </Container>
         <Container maxWidth="xl">
-          <Grid mt={2} direction="row" container spacing={2}>
-            <Grid mt={-5} item xs={12} md={6} lg={3}>
-              <Box
-                sx={{
-                  borderRadius: "4%",
-                  m: 2,
-                  p: 2,
-                  boxShadow: "0 0 3px 1px #bcbcbc",
-                }}
-              >
-                <CourseForm />
-              </Box>
-            </Grid>
-            <Grid mb={2} item xs={0} md={6} lg={9}>
-              <Typography variant="h5" compontent="h5">
-                courses enrolled by {user && user.fname} {user && user.lname}
-              </Typography>
-              <Box
-                display="flex"
-                flexWrap="wrap"
-                sx={{ boxShadow: 1, p: 3, borderRadius: "4%" }}
-              >
-                {courses?.length ? (
-                  <>
-                    {courses.map((course, index) => (
-                      <Box m={1} key={course._id}>
-                        <Paper elevation={2}>
-                          <ListItem>
-                            <ListItemAvatar>
-                              <Avatar
-                                variant="rounded"
-                                alt="Course logo"
-                                src={"logo"}
-                              />
-                            </ListItemAvatar>
-                            <ListItemText
-                              primary={course.text}
-                              secondary={course.text}
+          <Grid mb={2} item xs={0} md={6} lg={9}>
+            <Typography variant="h5" compontent="h5">
+              welcome {user && user.fname} {user && user.lname}
+            </Typography>
+            <Box
+              display="flex"
+              flexWrap="wrap"
+              sx={{ boxShadow: 1, p: 3, borderRadius: "4%" }}
+            >
+              {courses?.length ? (
+                <>
+                  {courses.map((course, index) => (
+                    <Box m={1} key={course._id}>
+                      <Paper elevation={2}>
+                        <ListItem>
+                          <ListItemAvatar>
+                            <Avatar
+                              variant="rounded"
+                              alt="Course logo"
+                              src={"logo"}
                             />
-                          </ListItem>
-                          <Button
-                            onClick={() => dispatch(deleteCourse(course._id))}
-                          >
-                            Delete
-                          </Button>
-                        </Paper>
-                      </Box>
-                    ))}
-                  </>
-                ) : (
-                  <h3>You have not set any courses</h3>
-                )}
-              </Box>
-            </Grid>
+                          </ListItemAvatar>
+                          <ListItemText
+                            primary={course.text}
+                            secondary={course.text}
+                          />
+                        </ListItem>
+                      </Paper>
+                    </Box>
+                  ))}
+                </>
+              ) : (
+                <h3>You have not set any courses</h3>
+              )}
+            </Box>
           </Grid>
         </Container>
       </Box>
@@ -181,4 +162,4 @@ const AddCourse = () => {
   );
 };
 
-export default AddCourse;
+export default ViewAllCourses;
