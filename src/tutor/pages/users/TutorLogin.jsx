@@ -6,10 +6,10 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { login, reset } from "../../features/auth/tuteeAuthSlice";
+import { tutorLogin, tutorReset } from "../../features/auth/tutorAuthSlice";
 import Spinner from "../../components/commonComponent/Spinner";
 
-const Login = () => {
+const TutorLogin = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -20,8 +20,8 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.tuteeAuth
+  const { tutor, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.tutorAuth
   );
 
   useEffect(() => {
@@ -29,12 +29,12 @@ const Login = () => {
       console.log(message);
     }
 
-    if (isSuccess || user) {
+    if (isSuccess || tutor) {
       navigate("/");
     }
 
-    dispatch(reset());
-  }, [user, isError, isSuccess, message, navigate, dispatch]);
+    dispatch(tutorReset());
+  }, [tutor, isError, isSuccess, message, navigate, dispatch]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -46,12 +46,12 @@ const Login = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const userData = {
+    const tutorData = {
       email,
       password,
     };
 
-    dispatch(login(userData));
+    dispatch(tutorLogin(tutorData));
   };
 
   if (isLoading) {
@@ -89,7 +89,7 @@ const Login = () => {
         </div>
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Tutee Login
+            Tutor Login
           </h2>
         </div>
         <form
@@ -145,7 +145,7 @@ const Login = () => {
             <div className="text-sm leading-6 text-gray-600">
               no account registered?
               <Link
-                to="/tutee/register"
+                to="/tutor/register"
                 className="font-semibold text-indigo-600"
               >
                 &nbsp;register
@@ -157,7 +157,7 @@ const Login = () => {
               type="submit"
               className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Login
+              login
             </button>
           </div>
         </form>
@@ -166,4 +166,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default TutorLogin;

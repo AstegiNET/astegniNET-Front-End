@@ -6,10 +6,10 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { register, reset } from "../../features/auth/tuteeAuthSlice";
+import { tutorRegister, tutorReset } from "../../features/auth/tutorAuthSlice";
 import Spinner from "../../components/commonComponent/Spinner";
 
-const Register = () => {
+const TutorRegister = () => {
   const [formData, setFormData] = useState({
     fname: "",
     lname: "",
@@ -25,8 +25,8 @@ const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.tuteeAuth
+  const { tutor, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.tutorAuth
   );
 
   useEffect(() => {
@@ -34,12 +34,12 @@ const Register = () => {
       toast.error(message);
     }
 
-    if (isSuccess || user) {
+    if (isSuccess || tutor) {
       navigate("/");
     }
 
-    dispatch(reset());
-  }, [user, isError, isSuccess, message, navigate, dispatch]);
+    dispatch(tutorReset());
+  }, [tutor, isError, isSuccess, message, navigate, dispatch]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -54,7 +54,7 @@ const Register = () => {
     if (password !== password2) {
       toast.error("Passwords do not match");
     } else {
-      const userData = {
+      const tutorData = {
         fname,
         lname,
         email,
@@ -63,7 +63,7 @@ const Register = () => {
         password,
       };
 
-      dispatch(register(userData));
+      dispatch(tutorRegister(tutorData));
     }
   };
 
@@ -102,7 +102,7 @@ const Register = () => {
         </div>
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Tutee Register
+            Tutor Register
           </h2>
           <p className="mt-2 text-lg leading-8 text-gray-600">
             register here if you havent any account
@@ -207,7 +207,7 @@ const Register = () => {
                   value={role}
                   onChange={onChange}
                   autoComplete="role"
-                  placeholder="enter tutee"
+                  placeholder="enter tutor"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -256,7 +256,7 @@ const Register = () => {
 
             <div className="text-sm leading-6 text-gray-600">
               already have an account
-              <Link to="/tutee/login" className="font-semibold text-indigo-600">
+              <Link to="/login" className="font-semibold text-indigo-600">
                 &nbsp;login
               </Link>
             </div>
@@ -275,4 +275,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default TutorRegister;

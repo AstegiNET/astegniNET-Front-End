@@ -9,11 +9,8 @@ import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { logout, reset } from "../../features/auth/tuteeAuthSlice";
-import {
-  tutorLogout,
-  tutorReset,
-} from "../../../tutor/features/auth/tutorAuthSlice";
+import { tutorLogout, tutorReset } from "../../features/auth/tutorAuthSlice";
+import { logout, reset } from "../../../tutee/features/auth/tuteeAuthSlice";
 
 const navigation = [
   { name: "about us", href: "#about" },
@@ -26,8 +23,8 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.tuteeAuth);
-  const { tutor } = useSelector((state) => state.tutorAuth);
+  const tutee = useSelector((state) => state.tuteeAuth).user;
+  const tutor = useSelector((state) => state.tutorAuth).tutor;
 
   const onLogout = () => {
     dispatch(logout());
@@ -90,7 +87,7 @@ const Header = () => {
           >
             <Menu.Items className="absolute right-0 z-10 lg:mt-10 sm:mt-8 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <div className="py-1">
-                {user || tutor ? (
+                {tutee || tutor ? (
                   <div>
                     <Menu.Item>
                       <Link

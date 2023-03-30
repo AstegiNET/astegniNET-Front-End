@@ -5,7 +5,11 @@ import { useSelector } from "react-redux";
 const TuteeProtectedRoutes = () => {
   const { user } = useSelector((state) => state.tuteeAuth);
 
-  return user && user.role === "tutee" ? <Outlet /> : <Navigate to="/login" />;
+  return user && user.role === "tutee" ? (
+    <Outlet />
+  ) : (
+    <Navigate to="/tutee/login" />
+  );
 };
 
 export default TuteeProtectedRoutes;
