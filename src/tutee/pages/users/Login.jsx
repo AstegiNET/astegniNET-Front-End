@@ -20,7 +20,7 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
+  const { tutee, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.tuteeAuth
   );
 
@@ -29,12 +29,12 @@ const Login = () => {
       console.log(message);
     }
 
-    if (isSuccess || user) {
+    if (isSuccess || tutee) {
       navigate("/");
     }
 
     dispatch(reset());
-  }, [user, isError, isSuccess, message, navigate, dispatch]);
+  }, [tutee, isError, isSuccess, message, navigate, dispatch]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -46,12 +46,12 @@ const Login = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const userData = {
+    const tuteeData = {
       email,
       password,
     };
 
-    dispatch(login(userData));
+    dispatch(login(tuteeData));
   };
 
   if (isLoading) {
@@ -79,7 +79,7 @@ const Login = () => {
                 x2="-78.208"
                 y1=".177"
                 y2="474.645"
-                gradientUnits="userSpaceOnUse"
+                gradientUnits="tuteeSpaceOnUse"
               >
                 <stop stopColor="#9089FC" />
                 <stop offset={1} stopColor="#FF80B5" />

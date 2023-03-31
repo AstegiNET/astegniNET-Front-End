@@ -23,8 +23,8 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const tutee = useSelector((state) => state.tuteeAuth).user;
-  const tutor = useSelector((state) => state.tutorAuth).tutor;
+  const { tutee } = useSelector((state) => state.tuteeAuth);
+  const { tutor } = useSelector((state) => state.tutorAuth);
 
   const onLogout = () => {
     dispatch(logout());

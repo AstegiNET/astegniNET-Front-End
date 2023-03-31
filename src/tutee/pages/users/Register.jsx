@@ -25,7 +25,7 @@ const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
+  const { tutee, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.tuteeAuth
   );
 
@@ -34,12 +34,12 @@ const Register = () => {
       toast.error(message);
     }
 
-    if (isSuccess || user) {
+    if (isSuccess || tutee) {
       navigate("/");
     }
 
     dispatch(reset());
-  }, [user, isError, isSuccess, message, navigate, dispatch]);
+  }, [tutee, isError, isSuccess, message, navigate, dispatch]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -54,7 +54,7 @@ const Register = () => {
     if (password !== password2) {
       toast.error("Passwords do not match");
     } else {
-      const userData = {
+      const tuteeData = {
         fname,
         lname,
         email,
@@ -63,7 +63,7 @@ const Register = () => {
         password,
       };
 
-      dispatch(register(userData));
+      dispatch(register(tuteeData));
     }
   };
 
@@ -92,7 +92,7 @@ const Register = () => {
                 x2="-78.208"
                 y1=".177"
                 y2="474.645"
-                gradientUnits="userSpaceOnUse"
+                gradientUnits="tuteeSpaceOnUse"
               >
                 <stop stopColor="#9089FC" />
                 <stop offset={1} stopColor="#FF80B5" />

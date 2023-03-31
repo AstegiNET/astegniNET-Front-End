@@ -4,7 +4,6 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import logo from "../../assets/images/graduate-svgrepo-com.svg";
-
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 
 import { Link, useNavigate } from "react-router-dom";
@@ -26,7 +25,7 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.tuteeAuth);
+  const { tutee } = useSelector((state) => state.tuteeAuth);
   const { tutor } = useSelector((state) => state.tutorAuth);
 
   const onLogout = () => {
@@ -90,7 +89,7 @@ const Header = () => {
           >
             <Menu.Items className="absolute right-0 z-10 lg:mt-10 sm:mt-8 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <div className="py-1">
-                {user || tutor ? (
+                {tutee || tutor ? (
                   <div>
                     <Menu.Item>
                       <Link
