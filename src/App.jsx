@@ -14,6 +14,8 @@ import TutorRegister from "./tutor/pages/users/TutorRegister";
 import TutorViewAllCourses from "./tutor/pages/courses/TutorViewAllCourses";
 import TutorProtectedRoutes from "./tutor/utils/TutorProtectedRoutes";
 
+import VideoCall from "./videoCall/VideoCall";
+
 export default function App() {
   return (
     <Router>
@@ -22,6 +24,11 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
         </Route>
+
+        <Route path="/tutee/register" element={<Register />} />
+        <Route path="/tutee/login" element={<Login />} />
+        <Route path="/tutor/register" element={<TutorRegister />} />
+        <Route path="/tutor/login" element={<TutorLogin />} />
 
         {/* pages that tutee only have acces */}
         <Route element={<TuteeProtectedRoutes />}>
@@ -34,10 +41,7 @@ export default function App() {
           <Route path="/tutor/addcourses" element={<AddCourse />} />
         </Route>
 
-        <Route path="/tutee/register" element={<Register />} />
-        <Route path="/tutee/login" element={<Login />} />
-        <Route path="/tutor/register" element={<TutorRegister />} />
-        <Route path="/tutor/login" element={<TutorLogin />} />
+        <Route path="/astegninet/videocall" element={<VideoCall />} />
       </Routes>
     </Router>
   );
