@@ -9,6 +9,7 @@ import Spinner from "./commonComponent/Spinner";
 
 import axios from "axios";
 // import { ZoomMtg } from "@zoomus/websdk";
+// const { ZoomMtg } = require("@zoomus/websdk");
 // ZoomMtg.setZoomJSLib("https://source.zoom.us/2.10.1/lib", "/av");
 // ZoomMtg.preLoadWasm();
 // ZoomMtg.prepareWebSDK();
@@ -19,7 +20,7 @@ import axios from "axios";
 const VideoCall = () => {
   // var authEndpoint = "http://localhost:5000/videocall";
 
-  // var sdkKey = "DlMfAd3QR4WCALb6OhCGQ";
+  // var sdkKey = "eBycNjbwQauq2VrMtOosfw";
   // // DlMfAd3QR4WCALb6OhCGQ
   // var meetingNumber = "83441337932";
   // var passWord = "2qsZw8";
@@ -102,7 +103,7 @@ const VideoCall = () => {
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Link
               href="#"
-              className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-4xl font-semibold text-white shadow-lg hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               start
             </Link>
@@ -113,6 +114,36 @@ const VideoCall = () => {
           </div>
         </div>
       </main>
+      <div class="grid grid-rows-3 grid-flow-col gap-4">
+        <div class="    bg-indigo-600 rounded text-white text-center my-3 p-5">
+          adin register
+        </div>
+        <div class="  bg-indigo-400 rounded text-white text-center my-3 p-5">
+          customer register
+        </div>
+        <div class=" col-span-2  bg-indigo-600 rounded text-white text-center my-3 p-5">
+          user register
+        </div>
+        <div class="    bg-indigo-600 rounded text-white text-center my-3 p-5">
+          adin register
+        </div>
+        <div class="  bg-indigo-400 rounded text-white text-center my-3 p-5">
+          customer register
+        </div>
+        <div class="   bg-indigo-600 rounded text-white text-center my-3 p-5">
+          user register
+        </div>
+        <div class="    bg-indigo-600 rounded text-white text-center my-3 p-5">
+          adin register
+        </div>
+        <div class="  bg-indigo-400 rounded text-white text-center my-3 p-5">
+          customer register
+        </div>
+        <div class="   bg-indigo-600 rounded text-white text-center my-3 p-5">
+          user register
+        </div>
+      </div>
+
       <Footer />
     </>
   );
