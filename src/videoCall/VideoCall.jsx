@@ -114,35 +114,6 @@ const VideoCall = () => {
           </div>
         </div>
       </main>
-      <div class="grid grid-rows-3 grid-flow-col gap-4">
-        <div class="    bg-indigo-600 rounded text-white text-center my-3 p-5">
-          adin register
-        </div>
-        <div class="  bg-indigo-400 rounded text-white text-center my-3 p-5">
-          customer register
-        </div>
-        <div class=" col-span-2  bg-indigo-600 rounded text-white text-center my-3 p-5">
-          user register
-        </div>
-        <div class="    bg-indigo-600 rounded text-white text-center my-3 p-5">
-          adin register
-        </div>
-        <div class="  bg-indigo-400 rounded text-white text-center my-3 p-5">
-          customer register
-        </div>
-        <div class="   bg-indigo-600 rounded text-white text-center my-3 p-5">
-          user register
-        </div>
-        <div class="    bg-indigo-600 rounded text-white text-center my-3 p-5">
-          adin register
-        </div>
-        <div class="  bg-indigo-400 rounded text-white text-center my-3 p-5">
-          customer register
-        </div>
-        <div class="   bg-indigo-600 rounded text-white text-center my-3 p-5">
-          user register
-        </div>
-      </div>
 
       <Footer />
     </>
