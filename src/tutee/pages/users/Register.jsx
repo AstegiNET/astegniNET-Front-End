@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { register, reset } from "../../features/auth/tuteeAuthSlice";
 import Spinner from "../../components/commonComponent/Spinner";
+import Footer from "../../components/commonComponent/Footer";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -92,7 +93,7 @@ const Register = () => {
                 x2="-78.208"
                 y1=".177"
                 y2="474.645"
-                gradientUnits="tuteeSpaceOnUse"
+                gradientUnits="userSpaceOnUse"
               >
                 <stop stopColor="#9089FC" />
                 <stop offset={1} stopColor="#FF80B5" />
@@ -271,6 +272,7 @@ const Register = () => {
           </div>
         </form>
       </div>
+      <Footer />
     </>
   );
 };

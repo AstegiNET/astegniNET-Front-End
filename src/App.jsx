@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "./tutee/pages/Home";
 import AddCourse from "./tutor/pages/courses/AddCourse";
-import AboutUs from "./tutee/components/landing/AboutUs";
 
 import Login from "./tutee/pages/users/Login";
 import Register from "./tutee/pages/users/Register";
@@ -31,8 +30,13 @@ export default function App() {
         {/* pages that tutee only have acces */}
         <Route element={<TuteeProtectedRoutes />}>
           <Route path="/tutee/allcourses" element={<ViewAllCourses />} />
-          <Route path="/tutee/profile" element={<TuteeProfile />} />
+          <Route path="/tutee/profile/viewprofile" element={<TuteeProfile />} />
         </Route>
+
+        <Route
+          path="/tutee/profile/updateprofile"
+          element={<UpdateProfile />}
+        />
 
         <Route path="/tutor/register" element={<TutorRegister />} />
         <Route path="/tutor/login" element={<TutorLogin />} />
@@ -43,7 +47,7 @@ export default function App() {
           <Route path="/tutor/allcourses" element={<TutorViewAllCourses />} />
           <Route path="/tutor/addcourses" element={<AddCourse />} />
         </Route>
-        <Route path="/tutee/updateprofile" element={<UpdateProfile />} />
+
         <Route path="/astegninet/videocall" element={<VideoCall />} />
       </Routes>
     </Router>

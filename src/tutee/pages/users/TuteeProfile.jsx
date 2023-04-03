@@ -2,13 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Header from "../../components/commonComponent/Header";
 import Footer from "../../components/commonComponent/Footer";
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import Spinner from "../../components/commonComponent/Spinner";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+// import { useNavigate,Link } from "react-router-dom";
+// import Spinner from "../../components/commonComponent/Spinner";
 import logo from "../../assets/images/graduate-svgrepo-com.svg";
 
 const TuteeProfile = () => {
+  const { tutee } = useSelector((state) => state.tuteeAuth);
+
+  useEffect(() => {});
+
   return (
     <>
       <Header />
@@ -35,24 +39,24 @@ const TuteeProfile = () => {
               to="#"
               className="text-gray-200 block rounded-lg text-center font-medium leading-6 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 hover:text-white"
             >
-              welcome kaleab
+              welcome {tutee.fname} {tutee.lname}
             </Link>
           </div>
           <div className="flex justify-between items-center my-5 px-6">
             <Link
-              to=""
+              to="/tutee/profile/viewprofile"
               className="text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded transition duration-150 ease-in font-medium text-sm text-center w-full py-3"
             >
               activites
             </Link>
             <Link
-              href=""
+              to="/tutee/profile/updateprofile"
               className="text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded transition duration-150 ease-in font-medium text-sm text-center w-full py-3"
             >
               update profile
             </Link>
             <Link
-              href=""
+              to=""
               className="text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded transition duration-150 ease-in font-medium text-sm text-center w-full py-3"
             >
               delete profile
