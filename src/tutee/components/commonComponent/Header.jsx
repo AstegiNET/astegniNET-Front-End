@@ -104,7 +104,13 @@ const Header = () => {
                     <div>
                       <Menu.Item>
                         <Link
-                          to="/tutee/profile/viewprofile"
+                          to={
+                            tutor
+                              ? "/tutor/profile/viewprofile"
+                              : tutee
+                              ? "/tutee/profile/viewprofile"
+                              : ""
+                          }
                           className=" text-gray-900 block px-4 py-2 text-sm"
                         >
                           profile

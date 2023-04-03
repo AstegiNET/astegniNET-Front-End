@@ -88,16 +88,35 @@ const Header = () => {
             <Menu.Items className="absolute right-0 z-10 lg:mt-10 sm:mt-8 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <div className="py-1">
                 {tutee || tutor ? (
-                  <div>
-                    <Menu.Item>
-                      <Link
-                        onClick={onLogout}
-                        className=" text-gray-900 block px-4 py-2 text-sm"
-                      >
-                        logout
-                      </Link>
-                    </Menu.Item>
-                  </div>
+                  <>
+                    <div>
+                      <Menu.Item>
+                        <Link
+                          onClick={onLogout}
+                          className=" text-gray-900 block px-4 py-2 text-sm"
+                        >
+                          logout
+                        </Link>
+                      </Menu.Item>
+                    </div>
+
+                    <div>
+                      <Menu.Item>
+                        <Link
+                          to={
+                            tutor
+                              ? "/tutor/profile/viewprofile"
+                              : tutee
+                              ? "/tutee/profile/viewprofile"
+                              : ""
+                          }
+                          className=" text-gray-900 block px-4 py-2 text-sm"
+                        >
+                          profile
+                        </Link>
+                      </Menu.Item>
+                    </div>
+                  </>
                 ) : (
                   <>
                     <div>

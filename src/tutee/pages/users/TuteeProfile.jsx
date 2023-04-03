@@ -19,11 +19,13 @@ const TuteeProfile = () => {
 
       <div className="bg-white shadow rounded-lg w-5/6 md:w-5/6  lg:w-4/6 xl:w-3/6 mx-auto">
         <div className="mt-32 flex justify-center">
-          <img
-            src={logo}
-            alt="logo"
-            className="rounded-full   w-32 h-32 shadow-md border-4 border-white transition duration-200 transform hover:scale-110"
-          />
+          <Link to="/">
+            <img
+              src={logo}
+              alt="logo"
+              className="rounded-full   w-32 h-32 shadow-md border-4 border-white transition duration-200 transform hover:scale-110"
+            />
+          </Link>
         </div>
 
         <div className="mt-10">

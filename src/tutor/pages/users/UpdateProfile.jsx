@@ -5,41 +5,42 @@ import Footer from "../../components/commonComponent/Footer";
 
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../../assets/images/graduate-svgrepo-com.svg";
-import { register, reset } from "../../features/auth/tuteeAuthSlice";
+import { tutorRegister, tutorReset } from "../../features/auth/tutorAuthSlice";
 import Spinner from "../../components/commonComponent/Spinner";
 import { toast } from "react-toastify";
 
-const UpdateProfile = () => {
+const UpdateTutorProfile = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { tutee, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.tuteeAuth
+  const { tutor, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.tutorAuth
   );
 
   const [formData, setFormData] = useState({
-    fname: tutee.fname,
-    lname: tutee.lname,
-    email: tutee.email,
-    phone: tutee.phone,
-    role: tutee.role,
-    password: tutee.password,
+    fname: tutor.fname,
+    lname: tutor.lname,
+    email: tutor.email,
+    phone: tutor.phone,
+    role: tutor.role,
+    password: "",
     password2: "",
   });
 
   const { fname, lname, email, phone, role, password, password2 } = formData;
 
   useEffect(() => {
+    console.log(tutor.fname);
     if (isError) {
       console.log(message);
     }
 
-    // if (isSuccess || tutee) {
+    // if (isSuccess || tutor) {
     //   navigate("/");
     // }
 
-    dispatch(reset());
-  }, [tutee, isError, isSuccess, message, navigate, dispatch]);
+    dispatch(tutorReset());
+  }, [tutor, isError, isSuccess, message, navigate, dispatch]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -54,7 +55,7 @@ const UpdateProfile = () => {
     if (password !== password2) {
       toast.error("Passwords do not match");
     } else {
-      const tuteeData = {
+      const tutorData = {
         fname,
         lname,
         email,
@@ -63,7 +64,7 @@ const UpdateProfile = () => {
         password,
       };
 
-      dispatch(register(tuteeData));
+      dispatch(tutorRegister(tutorData));
     }
   };
 
@@ -96,21 +97,21 @@ const UpdateProfile = () => {
 
           <div className="my-5 px-6">
             <Link
-              to="/tutee/profile/viewprofile"
+              to="/tutor/profile/viewprofile"
               className="text-gray-200 block rounded-lg text-center font-medium leading-6 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 hover:text-white"
             >
-              welcome {tutee.fname} {tutee.lname}
+              welcome {tutor.fname} {tutor.lname}
             </Link>
           </div>
           <div className="flex justify-between items-center my-5 px-6">
             <Link
-              to="/tutee/profile/viewprofile"
+              to="/tutor/profile/viewprofile"
               className="text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded transition duration-150 ease-in font-medium text-sm text-center w-full py-3"
             >
               activites
             </Link>
             <Link
-              to="/tutee/profile/updateprofile"
+              to="/tutor/profile/updateprofile"
               className="text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded transition duration-150 ease-in font-medium text-sm text-center w-full py-3"
             >
               update profile
@@ -132,7 +133,7 @@ const UpdateProfile = () => {
           <div className="w-full mt-10">
             <div className=" w-full flex flex-col items-center overflow-hidden text-sm">
               <h3 className="font-bold text-center text-2xl text-indigo-600">
-                update profile
+                update tutor profile
               </h3>
 
               {/* onSubmit={onSubmit} */}
@@ -235,7 +236,7 @@ const UpdateProfile = () => {
                         value={role}
                         onChange={onChange}
                         autoComplete="role"
-                        placeholder="enter tutee"
+                        placeholder="enter tutor"
                         className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                       />
                     </div>
@@ -300,4 +301,4 @@ const UpdateProfile = () => {
     </>
   );
 };
-export default UpdateProfile;
+export default UpdateTutorProfile;

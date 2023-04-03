@@ -17,6 +17,7 @@ import VideoCall from "./videoCall/VideoCall";
 import TuteeProfile from "./tutee/pages/users/TuteeProfile";
 import TutorProfile from "./tutor/pages/users/TutorProfile";
 import UpdateProfile from "./tutee/pages/users/UpdateProfile";
+import UpdateTutorProfile from "./tutor/pages/users/UpdateProfile";
 
 export default function App() {
   return (
@@ -31,19 +32,22 @@ export default function App() {
         <Route element={<TuteeProtectedRoutes />}>
           <Route path="/tutee/allcourses" element={<ViewAllCourses />} />
           <Route path="/tutee/profile/viewprofile" element={<TuteeProfile />} />
+          <Route
+            path="/tutee/profile/updateprofile"
+            element={<UpdateProfile />}
+          />
         </Route>
-
-        <Route
-          path="/tutee/profile/updateprofile"
-          element={<UpdateProfile />}
-        />
 
         <Route path="/tutor/register" element={<TutorRegister />} />
         <Route path="/tutor/login" element={<TutorLogin />} />
 
         {/* routes that tutor can only acess */}
         <Route element={<TutorProtectedRoutes />}>
-          <Route path="/tutor/profile" element={<TutorProfile />} />
+          <Route path="/tutor/profile/viewprofile" element={<TutorProfile />} />
+          <Route
+            path="/tutor/profile/UpdateProfile"
+            element={<UpdateTutorProfile />}
+          />
           <Route path="/tutor/allcourses" element={<TutorViewAllCourses />} />
           <Route path="/tutor/addcourses" element={<AddCourse />} />
         </Route>
