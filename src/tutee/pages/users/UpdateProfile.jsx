@@ -23,7 +23,7 @@ const UpdateProfile = () => {
     email: tutee.email,
     phone: tutee.phone,
     role: tutee.role,
-    password: "",
+    password: tutee.password,
     password2: "",
   });
 
