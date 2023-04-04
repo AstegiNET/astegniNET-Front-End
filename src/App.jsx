@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Home from "./tutee/pages/Home";
+import LandingPage from "./landingPage/LandingPage";
 import AddCourse from "./tutor/pages/courses/AddCourse";
 
 import Login from "./tutee/pages/users/Login";
@@ -23,7 +23,7 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<LandingPage />} />
 
         <Route path="/tutee/register" element={<Register />} />
         <Route path="/tutee/login" element={<Login />} />

@@ -1,12 +1,11 @@
-import landImg from "../assets/images/6491439-removebg-preview.png";
-import Header from "../components/commonComponent/Header";
-import Footer from "../components/commonComponent/Footer";
-import AboutUs from "../components/home/AboutUs";
-import ContactUS from "../components/home/ContactUS";
+import landImg from "./assets/images/6491439-removebg-preview.png";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import AboutUs from "./components/AboutUs";
+import ContactUS from "./components/ContactUS";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
-export default function Home() {
-  useEffect(() => {});
+
+export default function LandingPage() {
   return (
     <>
       <Header />

@@ -1,8 +1,8 @@
 import landImg from "../assets/images/6491439-removebg-preview.png";
 import Header from "../components/commonComponent/Header";
 import Footer from "../components/commonComponent/Footer";
-import AboutUs from "../components/landing/AboutUs";
-import ContactUS from "../components/landing/ContactUS";
+import AboutUs from "../components/home/AboutUs";
+import ContactUS from "../components/home/ContactUS";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 export default function Home() {
@@ -64,7 +64,7 @@ export default function Home() {
               <img
                 className="absolute top-0 left-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10"
                 src={landImg}
-                alt="landing img"
+                alt="home img"
                 width={1824}
                 height={1080}
               />
