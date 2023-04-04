@@ -48,6 +48,7 @@ export default function App() {
             path="/tutor/profile/UpdateProfile"
             element={<UpdateTutorProfile />}
           />
+
           <Route path="/tutor/allcourses" element={<TutorViewAllCourses />} />
           <Route path="/tutor/addcourses" element={<AddCourse />} />
         </Route>
