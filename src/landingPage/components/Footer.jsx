@@ -11,7 +11,11 @@ const Footer = () => {
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4 sm:w-2/3 lg:w-3/12">
             <div className="mb-10 w-full">
-              <Link to="/" className="mb-6 inline-block max-w-[70px]">
+              <Link
+                to="/"
+                onClick={window.scrollTo(0, 0)}
+                className="mb-6 inline-block max-w-[70px]"
+              >
                 <img src={logo} alt="logo" className="max-w-full" />
               </Link>
               <p className="text-body-color mb-7 text-base">
