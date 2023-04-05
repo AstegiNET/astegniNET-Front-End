@@ -18,75 +18,75 @@ ZoomMtg.i18n.load("en-US");
 ZoomMtg.i18n.reload("en-US");
 
 const VideoCall = () => {
-  // var authEndpoint = "http://localhost:5000/videocall";
+  var authEndpoint = "http://localhost:5000/videocall";
 
-  // var sdkKey = "eBycNjbwQauq2VrMtOosfw";
-  // // DlMfAd3QR4WCALb6OhCGQ
-  // var meetingNumber = "83441337932";
-  // var passWord = "2qsZw8";
-  // var role = 1;
-  // var userName = "Tutor";
-  // var userEmail = "";
+  var sdkKey = "eBycNjbwQauq2VrMtOosfw";
+  // DlMfAd3QR4WCALb6OhCGQ
+  var meetingNumber = "83441337932";
+  var passWord = "2qsZw8";
+  var role = 1;
+  var userName = "Tutor";
+  var userEmail = "";
 
-  // var registrantToken = "";
-  // var zakToken = "";
-  // var leaveUrl = "http://localhost:3000/login";
+  var registrantToken = "";
+  var zakToken = "";
+  var leaveUrl = "http://localhost:3000/login";
 
-  // function getSignature(e) {
-  //   e.preventDefault();
+  function getSignature(e) {
+    e.preventDefault();
 
-  //   axios
-  //     .post(
-  //       authEndpoint,
-  //       {
-  //         meetingNumber: meetingNumber,
-  //         role: role,
-  //       },
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     )
-  //     // .then((res) => res.json())
-  //     .then((response) => {
-  //       startMeeting(response.data.signature);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }
+    axios
+      .post(
+        authEndpoint,
+        {
+          meetingNumber: meetingNumber,
+          role: role,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      // .then((res) => res.json())
+      .then((response) => {
+        startMeeting(response.data.signature);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
-  // function startMeeting(signature) {
-  //   document.getElementById("zmmtg-root").style.display = "block";
+  function startMeeting(signature) {
+    document.getElementById("zmmtg-root").style.display = "block";
 
-  //   ZoomMtg.init({
-  //     leaveUrl: leaveUrl,
-  //     success: (success) => {
-  //       console.log(success);
+    ZoomMtg.init({
+      leaveUrl: leaveUrl,
+      success: (success) => {
+        console.log(success);
 
-  //       ZoomMtg.join({
-  //         signature: signature,
-  //         sdkKey: sdkKey,
-  //         meetingNumber: meetingNumber,
-  //         passWord: passWord,
-  //         userName: userName,
-  //         userEmail: userEmail,
-  //         tk: registrantToken,
-  //         zak: zakToken,
-  //         success: (success) => {
-  //           console.log(success);
-  //         },
-  //         error: (error) => {
-  //           console.log(error);
-  //         },
-  //       });
-  //     },
-  //     error: (error) => {
-  //       console.log(error);
-  //     },
-  //   });
-  // }
+        ZoomMtg.join({
+          signature: signature,
+          sdkKey: sdkKey,
+          meetingNumber: meetingNumber,
+          passWord: passWord,
+          userName: userName,
+          userEmail: userEmail,
+          tk: registrantToken,
+          zak: zakToken,
+          success: (success) => {
+            console.log(success);
+          },
+          error: (error) => {
+            console.log(error);
+          },
+        });
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
 
   return (
     <>
