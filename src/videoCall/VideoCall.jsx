@@ -8,14 +8,14 @@ import { useNavigate } from "react-router-dom";
 import Spinner from "./commonComponent/Spinner";
 
 import axios from "axios";
-// import { ZoomMtg } from "@zoomus/websdk";
+import { ZoomMtg } from "@zoomus/websdk";
 // const { ZoomMtg } = require("@zoomus/websdk");
-// ZoomMtg.setZoomJSLib("https://source.zoom.us/2.10.1/lib", "/av");
-// ZoomMtg.preLoadWasm();
-// ZoomMtg.prepareWebSDK();
-// // loads language files, also passes any error messages to the ui
-// ZoomMtg.i18n.load("en-US");
-// ZoomMtg.i18n.reload("en-US");
+ZoomMtg.setZoomJSLib("https://source.zoom.us/2.10.1/lib", "/av");
+ZoomMtg.preLoadWasm();
+ZoomMtg.prepareWebSDK();
+// loads language files, also passes any error messages to the ui
+ZoomMtg.i18n.load("en-US");
+ZoomMtg.i18n.reload("en-US");
 
 const VideoCall = () => {
   // var authEndpoint = "http://localhost:5000/videocall";
