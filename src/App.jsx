@@ -1,23 +1,24 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import LandingPage from "./landingPage/LandingPage";
-import AddCourse from "./tutor/pages/courses/AddCourse";
 
+import TuteeProtectedRoutes from "./tutee/utils/TuteeProtectedRoutes";
 import Login from "./tutee/pages/users/Login";
 import Register from "./tutee/pages/users/Register";
-import TuteeProtectedRoutes from "./tutee/utils/TuteeProtectedRoutes";
+import TuteeProfile from "./tutee/pages/users/TuteeProfile";
+import UpdateProfile from "./tutee/pages/users/UpdateProfile";
 import ViewAllCourses from "./tutee/pages/courses/ViewCourses";
+import Pay from "./tutee/pages/payment/Pay";
 
+import TutorProtectedRoutes from "./tutor/utils/TutorProtectedRoutes";
 import TutorLogin from "./tutor/pages/users/TutorLogin";
 import TutorRegister from "./tutor/pages/users/TutorRegister";
+import TutorProfile from "./tutor/pages/users/TutorProfile";
+import UpdateTutorProfile from "./tutor/pages/users/UpdateProfile";
+import AddCourse from "./tutor/pages/courses/AddCourse";
 import TutorViewAllCourses from "./tutor/pages/courses/TutorViewAllCourses";
-import TutorProtectedRoutes from "./tutor/utils/TutorProtectedRoutes";
 
 import VideoCall from "./videoCall/VideoCall";
-import TuteeProfile from "./tutee/pages/users/TuteeProfile";
-import TutorProfile from "./tutor/pages/users/TutorProfile";
-import UpdateProfile from "./tutee/pages/users/UpdateProfile";
-import UpdateTutorProfile from "./tutor/pages/users/UpdateProfile";
 
 export default function App() {
   return (
@@ -32,6 +33,7 @@ export default function App() {
         <Route element={<TuteeProtectedRoutes />}>
           <Route path="/tutee/allcourses" element={<ViewAllCourses />} />
           <Route path="/tutee/profile/viewprofile" element={<TuteeProfile />} />
+          <Route path="/tutee/pay" element={<Pay />} />
           <Route
             path="/tutee/profile/updateprofile"
             element={<UpdateProfile />}
@@ -48,12 +50,13 @@ export default function App() {
             path="/tutor/profile/UpdateProfile"
             element={<UpdateTutorProfile />}
           />
-
           <Route path="/tutor/allcourses" element={<TutorViewAllCourses />} />
           <Route path="/tutor/addcourses" element={<AddCourse />} />
         </Route>
 
-        <Route path="/astegninet/videocall" element={<VideoCall />} />
+        {/* testing payment and video call */}
+        <Route path="/videocall" element={<VideoCall />} />
+        <Route path="/pay" element={<Pay />} />
       </Routes>
     </Router>
   );

@@ -1,6 +1,10 @@
 import "../../assets/styles/custom.css";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import React from "react";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import Header from "../../components/commonComponent/Header";
+import Footer from "../../components/commonComponent/Footer";
 import { useSelector, useDispatch } from "react-redux";
 import CourseForm from "../../components/courses/CourseForm";
 import Spinner from "../../components/commonComponent/Spinner";
@@ -19,11 +23,6 @@ import {
   Container,
   Typography,
 } from "@mui/material";
-
-import React from "react";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import Header from "../../components/commonComponent/Header";
-import Footer from "../../components/commonComponent/Footer";
 
 const THEME = createTheme({
   typography: {
