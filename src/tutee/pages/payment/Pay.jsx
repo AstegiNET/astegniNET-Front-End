@@ -13,7 +13,6 @@ const Pay = () => {
 
   const sendData = async () => {
     const TX_REF = uuid4();
-
     const initializeInfo = {
       first_name: "kaleab",
       last_name: "kalab",
@@ -21,8 +20,8 @@ const Pay = () => {
       amount: "200",
       currency: "ETB",
       tx_ref: TX_REF,
-      callback_url: "http://localhost:3000",
-      return_url: "http://localhost:3000",
+      callback_url: `http://localhost:3000/tutee/verifypay/${TX_REF}`,
+      return_url: `http://localhost:3000/tutee/verifypay/${TX_REF}`,
     };
 
     const token = tutee.token;

@@ -9,6 +9,7 @@ import TuteeProfile from "./tutee/pages/users/TuteeProfile";
 import UpdateProfile from "./tutee/pages/users/UpdateProfile";
 import ViewAllCourses from "./tutee/pages/courses/ViewCourses";
 import Pay from "./tutee/pages/payment/Pay";
+import VerifyPay from "./tutee/pages/payment/VerifyPay";
 
 import TutorProtectedRoutes from "./tutor/utils/TutorProtectedRoutes";
 import TutorLogin from "./tutor/pages/users/TutorLogin";
@@ -34,6 +35,7 @@ export default function App() {
           <Route path="/tutee/allcourses" element={<ViewAllCourses />} />
           <Route path="/tutee/profile/viewprofile" element={<TuteeProfile />} />
           <Route path="/tutee/pay" element={<Pay />} />
+          <Route path="/tutee/verifypay/:id" element={<VerifyPay />} />
           <Route
             path="/tutee/profile/updateprofile"
             element={<UpdateProfile />}
@@ -56,7 +58,6 @@ export default function App() {
 
         {/* testing payment and video call */}
         <Route path="/videocall" element={<VideoCall />} />
-        <Route path="/pay" element={<Pay />} />
       </Routes>
     </Router>
   );
