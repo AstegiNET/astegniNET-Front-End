@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import AboutUs from "./components/AboutUs";
 import ContactUS from "./components/ContactUS";
 import { Link } from "react-router-dom";
+import Testimonial from "./components/Testimonial";
 
 export default function LandingPage() {
   return (
@@ -11,7 +12,7 @@ export default function LandingPage() {
       <Header />
 
       <div id="home" className="bg-white">
-        <div className="mx-auto  py-2 sm:px-6  mt-32 lg:mt-32   lg:px-8">
+        <div className="mx-auto  py-4 sm:px-6  mt-16 lg:px-8">
           <div className="relative isolate overflow-hidden bg-gray-100 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
             <svg
               viewBox="0 0 1024 1024"
@@ -170,6 +171,7 @@ export default function LandingPage() {
       </div>
 
       <AboutUs />
+      <Testimonial/>
       <ContactUS />
       <Footer />
     </>

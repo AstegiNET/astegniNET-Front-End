@@ -35,7 +35,7 @@ const ContactUS = () => {
             </p>
             <div className="mt-5 flex  items-center gap-x-6 lg:justify-start ">
               <MailIcon />
-              <p>astegniNET@gmail.com</p>
+              <p>info@astegninet.com</p>
             </div>
             <div className="mt-5 flex items-center  gap-x-6 lg:justify-start">
               <ContactPhoneIcon />
