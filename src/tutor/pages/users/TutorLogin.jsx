@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../../components/commonComponent/Header";
+import Header from "../../../landingPage/components/Header";
 import { Link } from "react-router-dom";
 
 import { useState, useEffect } from "react";

@@ -56,7 +56,7 @@ export default function App() {
 
         {/* testing payment and video call */}
         <Route path="/videocall" element={<VideoCall />} />
-        <Route path="/pay" element={<Pay />} />
+        {/* <Route path="/pay" element={<Pay />} /> */}
       </Routes>
     </Router>
   );

@@ -41,7 +41,7 @@ const Header = () => {
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-white shadow-md ">
       <nav
-        className="flex items-center justify-between p-6 lg:px-8"
+        className="flex items-center justify-between p-3 lg:px-8"
         aria-label="Global"
       >
         <div className="flex lg:hidden">
@@ -67,7 +67,7 @@ const Header = () => {
             <a
               key={item.name}
               href={item.href}
-              className="text-sm font-semibold leading-6 text-gray-900"
+              className="text-md font-semibold leading-6 text-gray-900"
             >
               {item.name}
             </a>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Header from "../../components/commonComponent/Header";
+import Header from "../../../landingPage/components/Header";
 import Footer from "../../components/commonComponent/Footer";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
