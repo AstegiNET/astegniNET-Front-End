@@ -5,9 +5,9 @@ import Footer from "../../components/commonComponent/Footer";
 
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../../assets/images/graduate-svgrepo-com.svg";
-import { tutorRegister, tutorReset } from "../../features/auth/tutorAuthSlice";
+import { tutorReset } from "../../features/auth/tutorAuthSlice";
 import Spinner from "../../components/commonComponent/Spinner";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 
 const UpdateTutorProfile = () => {
   const navigate = useNavigate();
@@ -49,24 +49,24 @@ const UpdateTutorProfile = () => {
     }));
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  // const onSubmit = (e) => {
+  //   e.preventDefault();
 
-    if (password !== password2) {
-      toast.error("Passwords do not match");
-    } else {
-      const tutorData = {
-        fname,
-        lname,
-        email,
-        phone,
-        role,
-        password,
-      };
+  //   if (password !== password2) {
+  //     toast.error("Passwords do not match");
+  //   } else {
+  //     const tutorData = {
+  //       fname,
+  //       lname,
+  //       email,
+  //       phone,
+  //       role,
+  //       password,
+  //     };
 
-      dispatch(tutorRegister(tutorData));
-    }
-  };
+  //     dispatch(tutorRegister(tutorData));
+  //   }
+  // };
 
   if (isLoading) {
     return <Spinner />;

@@ -2,7 +2,7 @@ import "../../assets/styles/custom.css";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import CourseForm from "../../components/courses/CourseForm";
+// import CourseForm from "../../components/courses/CourseForm";
 import Spinner from "../../components/commonComponent/Spinner";
 import { getAllCourses, reset } from "../../features/courses/courseSlice";
 // import { deleteCourse } from "../../features/courses/courseSlice";

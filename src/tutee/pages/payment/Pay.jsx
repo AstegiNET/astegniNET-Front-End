@@ -4,6 +4,8 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import uuid4 from "uuid4";
 const payUrl = "http://localhost:5000/api/payment/pay";
+const callback_url = "http://localhost:3000/tutee/verifypay";
+const return_url = "http://localhost:3000/tutee/verifypay";
 
 const Pay = () => {
   const { tutee } = useSelector((state) => state.tuteeAuth);
@@ -17,11 +19,12 @@ const Pay = () => {
       first_name: "kaleab",
       last_name: "kalab",
       email: "kaleabbyh@gmail.com",
+      phone_number: "0900000000",
       amount: "200",
       currency: "ETB",
       tx_ref: TX_REF,
-      callback_url: `http://localhost:3000/tutee/verifypay/${TX_REF}`,
-      return_url: `http://localhost:3000/tutee/verifypay/${TX_REF}`,
+      callback_url: `${callback_url}/${TX_REF}`,
+      return_url: `${return_url}/${TX_REF}`,
     };
 
     const token = tutee.token;

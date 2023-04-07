@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Header from "./commonComponent/Header";
 import Footer from "./commonComponent/Footer";
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import Spinner from "./commonComponent/Spinner";
+// import { useState, useEffect } from "react";
+// import { useSelector, useDispatch } from "react-redux";
+// import { useNavigate } from "react-router-dom";
+// import Spinner from "./commonComponent/Spinner";
 
 // import axios from "axios";
 // import { ZoomMtg } from "@zoomus/websdk";
