@@ -13,12 +13,12 @@ const Pay = () => {
 
   useEffect(() => {}, []);
 
-  const sendData = async () => {
+  const sendPayData = async () => {
     const TX_REF = uuid4();
     const initializeInfo = {
       first_name: "kaleab",
-      last_name: "kalab",
-      email: "kaleabbyh@gmail.com",
+      last_name: "kal",
+      email: "email@gmail.com",
       phone_number: "0900000000",
       amount: "200",
       currency: "ETB",
@@ -47,7 +47,7 @@ const Pay = () => {
     <div>
       <div className="mt-10 flex items-center justify-center gap-x-6">
         <button
-          onClick={() => sendData()}
+          onClick={() => sendPayData()}
           className="rounded-md bg-indigo-600 px-7 py-1.5 text-2xl font-semibold text-white shadow-lg hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
           pay
