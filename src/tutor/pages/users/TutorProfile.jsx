@@ -4,8 +4,6 @@ import Header from "../../../landingPage/components/Header";
 import Footer from "../../components/commonComponent/Footer";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-// import { useNavigate,Link } from "react-router-dom";
-// import Spinner from "../../components/commonComponent/Spinner";
 import logo from "../../assets/images/graduate-svgrepo-com.svg";
 
 const TutorProfile = () => {

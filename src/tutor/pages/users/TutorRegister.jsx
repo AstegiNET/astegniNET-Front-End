@@ -7,34 +7,23 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { tutorRegister, tutorReset } from "../../features/auth/tutorAuthSlice";
-import { getAllCourses, reset } from "../../features/courses/courseSlice";
+import { getAllCourses } from "../../features/courses/courseSlice";
 import Spinner from "../../components/commonComponent/Spinner";
 
 const TutorRegister = () => {
-  // const [course,setCourse]=useState("")
   const [formData, setFormData] = useState({
     fname: "",
     lname: "",
     email: "",
     phone: "",
-    // role: "",
     salary: "",
     course: "",
     password: "",
     password2: "",
   });
 
-  const {
-    fname,
-    lname,
-    email,
-    phone,
-    // role,
-    salary,
-    course,
-    password,
-    password2,
-  } = formData;
+  const { fname, lname, email, phone, salary, course, password, password2 } =
+    formData;
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -54,11 +43,7 @@ const TutorRegister = () => {
       navigate("/");
     }
     dispatch(getAllCourses());
-
     dispatch(tutorReset());
-    // return () => {
-    //   dispatch(reset());
-    // };
   }, [tutor, isError, isSuccess, message, navigate, dispatch]);
 
   const onChange = (e) => {
@@ -80,7 +65,6 @@ const TutorRegister = () => {
         lname,
         email,
         phone,
-        // role,
         salary,
         course,
         password,
