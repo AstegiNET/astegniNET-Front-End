@@ -56,12 +56,12 @@ export const getAllCourses = createAsyncThunk(
   "courses/getAllCourses",
   async (_, thunkAPI) => {
     try {
-      if (
-        thunkAPI.getState().tutorAuth.tutor ||
-        thunkAPI.getState().tuteeAuth.user
-      ) {
-        return await courseService.getAllCourses();
-      }
+      // if (
+      //   thunkAPI.getState().tutorAuth.tutor ||
+      //   thunkAPI.getState().tuteeAuth.user
+      // ) {
+      return await courseService.getAllCourses();
+      // }
     } catch (error) {
       const message =
         (error.response &&
