@@ -51,7 +51,7 @@ const TutorRegister = () => {
       ...prevState,
       [e.target.name]: e.target.value,
     }));
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
 
   const onSubmit = (e) => {
@@ -238,7 +238,9 @@ const TutorRegister = () => {
                 {courses?.length ? (
                   <>
                     {courses.map((course) => (
-                      <option key={course._id}>{course._id}</option>
+                      <option value={course._id} key={course._id}>
+                        {course.text}
+                      </option>
                     ))}
                   </>
                 ) : (
