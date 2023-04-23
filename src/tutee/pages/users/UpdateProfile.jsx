@@ -75,8 +75,8 @@ const UpdateProfile = () => {
     <>
       <Header />
 
-      <div className="bg-white shadow rounded-lg w-5/6 md:w-5/6  lg:w-4/6 xl:w-3/6 mx-auto">
-        <div className="mt-32 flex justify-center">
+      <div className=" mt-32 border border-indigo-200 bg-white shadow rounded-lg w-5/6 md:w-5/6  lg:w-4/6 xl:w-3/6 mx-auto">
+        <div className="mt-5 flex justify-center">
           <Link to="/">
             <img
               src={logo}

@@ -6,124 +6,67 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="relative isolate overflow-hidden  py-24 sm:py-32 mx-10">
-      <div className="container mx-auto">
-        <div className="-mx-4 flex flex-wrap">
-          <div className="w-full px-4 sm:w-2/3 lg:w-3/12">
-            <div className="mb-10 w-full">
-              <Link to="/" className="mb-6 inline-block max-w-[70px]">
-                <img src={logo} alt="logo" className="max-w-full" />
-              </Link>
-              <p className="text-body-color mb-7 text-base">
-                AstegniNet is your best choose for online tutorial app
-              </p>
-              <p className="text-dark flex items-center text-sm font-medium">
-                <span className="px-3">
-                  <PhoneInTalkIcon />
-                </span>
-                <span>+251 900 000 000</span>
-              </p>
-            </div>
+    <footer className=" grid grid-cols-2  py-24 sm:py-32 px-20">
+      <div className="grid md:grid-cols-2 px-2 ">
+        <div className="px-2 py-5">
+          <Link to="/" className="mb-6 p-2">
+            <img src={logo} alt="logo" className="w-10" />
+          </Link>
+          <p className="p-2">
+            AstegniNet is your best choose for online tutorial app
+          </p>
+          <p className="p-2">
+            <span className="pr-3">
+              <PhoneInTalkIcon />
+            </span>
+            <span>+251 900 000 000</span>
+          </p>
+        </div>
+        <div className="px-2 py-5">
+          <h4 className="text-dark my-2 text-lg font-semibold">Tutors</h4>
+          <div>
+            <Link
+              to="/"
+              className="text-body-color hover:text-primary leading-loose"
+            >
+              Tutors
+            </Link>
           </div>
-          <div className="w-full px-4 sm:w-1/2 lg:w-2/12">
-            <div className="mb-10 w-full">
-              <h4 className="text-dark mb-9 text-lg font-semibold">Tutors</h4>
-              <ul>
-                <li>
-                  <Link
-                    to="/"
-                    className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
-                  >
-                    Tutors
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="w-full px-4 sm:w-1/2 lg:w-2/12">
-            <div className="mb-10 w-full">
-              <h4 className="text-dark mb-9 text-lg font-semibold">
-                AstegniNET
-              </h4>
-              <ul>
-                <li>
-                  <Link
-                    to="/"
-                    className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
-                  >
-                    About AstegniNet
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/"
-                    className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
-                  >
-                    Contact & Support
-                  </Link>
-                </li>
+        </div>
+      </div>
+      <div className="grid md:grid-cols-2 px-2  ">
+        <div className="px-2 py-5">
+          <div className=" p-2 text-lg font-semibold">AstegniNET</div>
 
-                <li>
-                  <Link
-                    to="/"
-                    className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
-                  >
-                    Setting & Privacy
-                  </Link>
-                </li>
-              </ul>
-            </div>
+          <div className="py-2">
+            <Link to="/" className="">
+              About AstegniNet
+            </Link>
           </div>
-          <div className="w-full px-4 sm:w-1/2 lg:w-2/12">
-            <div className="mb-10 w-full">
-              <h4 className="text-dark mb-9 text-lg font-semibold">
-                Quick Links
-              </h4>
-              <ul>
-                <li>
-                  <Link
-                    to="/"
-                    className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
-                  >
-                    Support
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/"
-                    className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
-                  >
-                    Our Services
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/"
-                    className="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
-                  >
-                    Know Our Team
-                  </Link>
-                </li>
-              </ul>
-            </div>
+          <div className="py-2">
+            <Link to="/" className="">
+              Contact & Support
+            </Link>
           </div>
-          <div className="w-full px-4 sm:w-1/2 lg:w-3/12">
-            <div className="mb-10 w-full">
-              <h4 className="text-dark mb-9 text-lg font-semibold">
-                Follow Us On
-              </h4>
-              <div className="mb-6 flex items-center">
-                <Link
-                  to="/"
-                  className="text-dark hover:bg-primary hover:border-primary mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5] hover:text-white sm:mr-4 lg:mr-3 xl:mr-4"
-                >
-                  <LinkedInIcon />
-                </Link>
-              </div>
-              <p className="text-body-color text-base">
-                &copy; 2023 AstegniNET
-              </p>
-            </div>
+          <div className="py-2">
+            <Link to="/" className="">
+              Setting & Privacy
+            </Link>
+          </div>
+        </div>
+
+        <div className="px-2 py-5">
+          <div className=" p-2 text-lg font-semibold">Quick links</div>
+
+          <div className="py-2">
+            <Link to="/" className="">
+              support
+            </Link>
+          </div>
+          <div className="py-2">
+            <Link to="/" className="">
+              our services
+            </Link>
           </div>
         </div>
       </div>
