@@ -34,10 +34,6 @@ const UpdateProfile = () => {
       console.log(message);
     }
 
-    // if (isSuccess || tutee) {
-    //   navigate("/");
-    // }
-
     dispatch(reset());
   }, [tutee, isError, isSuccess, message, navigate, dispatch]);
 
