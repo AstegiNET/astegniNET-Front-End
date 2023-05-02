@@ -20,6 +20,7 @@ import AddCourse from "./tutor/pages/courses/AddCourse";
 import TutorViewAllCourses from "./tutor/pages/courses/TutorViewAllCourses";
 
 import VideoCall from "./videoCall/VideoCall";
+import TutorsList from "./tutee/components/tutorList/TutorsList";
 
 export default function App() {
   return (
@@ -33,6 +34,7 @@ export default function App() {
         {/* pages that tutee only have acces */}
         <Route element={<TuteeProtectedRoutes />}>
           <Route path="/tutee/allcourses" element={<ViewAllCourses />} />
+          <Route path="/tutee/tutors/" element={<TutorsList />} />
           <Route path="/tutee/profile/viewprofile" element={<TuteeProfile />} />
           <Route path="/tutee/pay" element={<Pay />} />
           <Route path="/tutee/verifypay/:id" element={<VerifyPay />} />
