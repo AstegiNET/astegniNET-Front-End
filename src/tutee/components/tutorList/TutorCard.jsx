@@ -5,29 +5,31 @@ const UserCard = ({ tutor }) => {
 
 
 function RatingBar() {
+  
   let rating = tutor.rating;
   const stars = [];
 
   for (let i = 1; i <= 5; i++) {
     if (i <= rating) {
       stars.push(
-        <FaStar key={i} size={24} className="text-yellow-400" />
+        <FaStar key={i} size={16} className="text-yellow-400" />
       );
     } else if (i - 0.5 === rating) {
       stars.push(
-        <FaStarHalfAlt key={i} size={24} className="text-yellow-400" />
+        <FaStarHalfAlt key={i} size={16} className="text-yellow-400" />
       );
     } else {
       stars.push(
-        <FaRegStar key={i} size={24} className="text-gray-400" />
+        <FaRegStar key={i} size={16} className="text-gray-400" />
       );
     }
   }
 
   return <div className="flex">{stars}</div>;
 }
+// console.log(tutor.id)
   return (
-    <Link to={"/tutee/tutors/tutor"}>
+    <Link to={`/tutee/tutors/${tutor.id}`}>
       <div className=" rounded-lg overflow-hidden shadow-lg p-6 bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg flex">
         <div className="flex-none">
           <img

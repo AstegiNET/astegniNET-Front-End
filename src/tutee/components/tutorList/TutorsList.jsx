@@ -27,7 +27,7 @@ const TutorsList = () => {
   useEffect(() => {
     getTutors();
   },[]);
-  console.log(tutors);
+  // console.log(tutors);
   return (
     <>
       <Header />
