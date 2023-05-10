@@ -19,7 +19,7 @@ const UserProfile = () => {
   useEffect(() => {
     getTutor();
     getCourse();
-  }, []);
+  }, [tutor, course]);
   const getCourse = async () => {
     // const response = await axios.get(`http://localhost:5000/api/courses/getCourse/64539e07e30e5e90588899b2`);
     const response = await axios.get(
