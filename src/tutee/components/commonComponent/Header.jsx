@@ -18,7 +18,7 @@ const navigation = [
   { name: "about us", href: "#about" },
   { name: "constact us", href: "#contact" },
   { name: "For tutees and parents", href: "#" },
-  { name: "Tutors", href: "#" },
+  { name: "Tutors", href: "/tutee/tutors/" },
 ];
 
 const Header = () => {
@@ -35,12 +35,11 @@ const Header = () => {
     dispatch(reset());
     navigate("/");
   };
-
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-white shadow-md ">
       <nav
-        className="flex items-center justify-between p-6 lg:px-8"
-        aria-label="Global"
+        className="flex items-center justify-between p-4 lg:px-6"
+        aria-label="Tutee Navigation Menu"
       >
         <div className="flex lg:hidden">
           <button
@@ -65,7 +64,7 @@ const Header = () => {
             <a
               key={item.name}
               href={item.href}
-              className="text-sm font-semibold leading-6 text-gray-900"
+              className="text-md font-semibold leading-6 text-gray-900"
             >
               {item.name}
             </a>
