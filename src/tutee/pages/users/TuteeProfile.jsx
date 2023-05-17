@@ -7,11 +7,26 @@ import { useSelector } from "react-redux";
 // import { useNavigate,Link } from "react-router-dom";
 // import Spinner from "../../components/commonComponent/Spinner";
 import logo from "../../assets/images/graduate-svgrepo-com.svg";
+import axios from "axios";
 
 const TuteeProfile = () => {
   const { tutee } = useSelector((state) => state.tuteeAuth);
 
-  useEffect(() => {});
+  // Get user Requests {{url}}/request/getRequests
+  const getRequests = async () => {
+    const API_URL = "http://localhost:5000/api/request/getRequests";
+    const config = {
+      headers: {
+        Authorization: `Bearer ${tutee.token}`,
+      },
+    };
+    const response = await axios.get(API_URL, config);
+    return response.data;
+  };
+
+  useEffect(() => {
+    console.log(getRequests());
+  });
 
   return (
     <>
@@ -48,8 +63,9 @@ const TuteeProfile = () => {
             <Link
               to="/tutee/profile/viewprofile"
               className="text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded transition duration-150 ease-in font-medium text-sm text-center w-full py-3"
+              onClick={() => console.log(getRequests())}
             >
-              activites
+              Requests
             </Link>
             <Link
               to="/tutee/profile/updateprofile"
@@ -78,7 +94,7 @@ const TuteeProfile = () => {
             <div className="mt-5 w-full flex flex-col items-center overflow-hidden text-sm">
               <Link
                 to="#"
-                className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-100 transition duration-150"
+                className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 block hover:bg-gray-100 transition duration-150"
               >
                 Updated his status
                 <span className="text-gray-500 text-xs">24 min ago</span>
@@ -86,7 +102,7 @@ const TuteeProfile = () => {
 
               <Link
                 to="#"
-                className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-100 transition duration-150"
+                className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 block hover:bg-gray-100 transition duration-150"
               >
                 Added new profile picture
                 <span className="text-gray-500 text-xs">42 min ago</span>
@@ -94,14 +110,14 @@ const TuteeProfile = () => {
 
               <Link
                 to="#"
-                className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-100 transition duration-150"
+                className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 block hover:bg-gray-100 transition duration-150"
               >
                 <span className="text-gray-500 text-xs">49 min ago</span>
               </Link>
 
               <Link
                 to="#"
-                className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-100 transition duration-150"
+                className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 block hover:bg-gray-100 transition duration-150"
               >
                 Editedpreference
                 <span className="text-gray-500 text-xs">1 day ago</span>
@@ -109,7 +125,7 @@ const TuteeProfile = () => {
 
               <Link
                 to="#"
-                className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-100 transition duration-150 overflow-hidden"
+                className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3  block hover:bg-gray-100 transition duration-150 overflow-hidden"
               >
                 perform payment
                 <span className="text-gray-500 text-xs">5 days ago</span>
