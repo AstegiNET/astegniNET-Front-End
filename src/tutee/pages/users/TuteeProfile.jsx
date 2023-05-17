@@ -7,10 +7,22 @@ import { useSelector } from "react-redux";
 // import { useNavigate,Link } from "react-router-dom";
 // import Spinner from "../../components/commonComponent/Spinner";
 import logo from "../../assets/images/graduate-svgrepo-com.svg";
+import axios from "axios";
 
 const TuteeProfile = () => {
   const { tutee } = useSelector((state) => state.tuteeAuth);
 
+  // Get user Requests {{url}}/request/getRequests
+  const getRequests = async () => {
+    const API_URL = "http://localhost:5000/api/request/getRequests";
+    const config = {
+      headers: {
+        Authorization: `Bearer ${tutee.token}`,
+      },
+    };
+    const response = await axios.get(API_URL, config);
+    return response.data;
+  };
   useEffect(() => {});
 
   return (
