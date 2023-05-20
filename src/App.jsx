@@ -36,7 +36,7 @@ export default function App() {
         <Route element={<TuteeProtectedRoutes />}>
           <Route path="/tutee/allcourses" element={<ViewAllCourses />} />
           <Route path="/tutee/tutors" element={<TutorsList />} />
-          <Route path="tutee/tutors/:id" element={<TutorProfileView/>}/>
+          <Route path="tutee/tutors/:id" element={<TutorProfileView />} />
           <Route path="/tutee/profile/viewprofile" element={<TuteeProfile />} />
           <Route path="/tutee/pay" element={<Pay />} />
           <Route path="/tutee/verifypay/:id" element={<VerifyPay />} />
