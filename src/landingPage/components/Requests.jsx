@@ -82,7 +82,7 @@ export default function Requests() {
     };
     getRequests();
   }, [tutor]);
-  
+
   console.log(requests);
   return (
     <>
@@ -104,7 +104,7 @@ export default function Requests() {
                   <div className="flex items-center gap-x-6">
                     <img
                       className="h-16 w-16 rounded-full"
-                      src={request.imageUrl}
+                      src={request.tutee_avatar}
                       alt=""
                     />
                     <div>

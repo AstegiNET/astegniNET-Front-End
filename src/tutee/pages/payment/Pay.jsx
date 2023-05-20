@@ -20,6 +20,8 @@ const Pay = () => {
       last_name: "kal",
       email: "email@gmail.com",
       phone_number: "0900000000",
+      tutor: "tutor",
+      course: "course",
       amount: "200",
       currency: "ETB",
       tx_ref: TX_REF,

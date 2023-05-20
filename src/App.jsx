@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import LandingPage from "./landingPage/LandingPage";
-import Requests from "./landingPage/components/Requests";
+// import Requests from "./landingPage/components/Requests";
 import TuteeProtectedRoutes from "./tutee/utils/TuteeProtectedRoutes";
 import Login from "./tutee/pages/users/Login";
 import Register from "./tutee/pages/users/Register";
@@ -25,6 +25,8 @@ import TutorProfileView from "./tutee/pages/tutor/TutorProfileView";
 import Header from "./landingPage/components/Header";
 import Footer from "./landingPage/components/Footer";
 import CommonProtectedRoutes from "./landingPage/utils/CommonUtils";
+import Requests from "./tutor/pages/requests/Requests";
+import TuteeRequests from "./tutee/pages/requests/Requests";
 
 export default function App() {
   return (
@@ -44,6 +46,8 @@ export default function App() {
           <Route path="/tutee/tutors" element={<TutorsList />} />
           <Route path="tutee/tutors/:id" element={<TutorProfileView />} />
           <Route path="/tutee/profile/viewprofile" element={<TuteeProfile />} />
+          <Route path="/tuteerequests" element={<TuteeRequests />} />
+
           <Route path="/tutee/pay" element={<Pay />} />
           <Route path="/tutee/verifypay/:id" element={<VerifyPay />} />
           <Route
@@ -70,10 +74,12 @@ export default function App() {
         <Route element={<CommonProtectedRoutes />}>
           <Route path="/requests" element={<Requests />} />
         </Route>
+
         {/* testing payment and video call */}
         <Route path="/videocall" element={<VideoCall />} />
       </Routes>
-      <Footer />
+
+      {/* <Footer /> */}
     </Router>
   );
 }
