@@ -29,7 +29,7 @@ function RatingBar() {
 }
 // console.log(tutor.id)
   return (
-    <Link to={`/tutee/tutors/${tutor.id}`}>
+    <Link to={`/tutors/${tutor.id}`}>
       <div className=" rounded-lg overflow-hidden shadow-lg p-6 bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg flex">
         <div className="flex-none">
           <img

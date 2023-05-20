@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Header from "../../../landingPage/components/Header";
 
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { register, reset } from "../../features/auth/tuteeAuthSlice";
 import Spinner from "../../components/commonComponent/Spinner";
-import Footer from "../../components/commonComponent/Footer";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -74,7 +72,6 @@ const Register = () => {
 
   return (
     <>
-      <Header />
       <div className="isolate bg-white py-24 px-6 sm:py-32 lg:px-8 ">
         <div className="  absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
           <svg
@@ -272,7 +269,6 @@ const Register = () => {
           </div>
         </form>
       </div>
-      <Footer />
     </>
   );
 };

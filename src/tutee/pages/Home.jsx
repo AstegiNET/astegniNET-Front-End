@@ -1,6 +1,4 @@
 import landImg from "../assets/images/6491439-removebg-preview.png";
-import Header from "../../../landingPage/components/Header";
-import Footer from "../components/commonComponent/Footer";
 import AboutUs from "../components/home/AboutUs";
 import ContactUS from "../components/home/ContactUS";
 import { Link } from "react-router-dom";
@@ -9,8 +7,6 @@ export default function Home() {
   useEffect(() => {});
   return (
     <>
-      <Header />
-
       <div id="home" className="bg-white">
         <div className="mx-auto  py-2 sm:px-6  mt-32 lg:mt-32   lg:px-8">
           <div className="relative isolate overflow-hidden bg-gray-100 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
@@ -172,7 +168,6 @@ export default function Home() {
 
       <AboutUs />
       <ContactUS />
-      <Footer />
     </>
   );
 }

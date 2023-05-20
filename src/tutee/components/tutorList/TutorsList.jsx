@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import UserCard from "./TutorCard";
-import Header from "../commonComponent/Header";
 import axios from "axios";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { FaFilter } from "react-icons/fa";
 
 const TutorsList = () => {
@@ -37,10 +35,8 @@ const TutorsList = () => {
     };
     getTutors();
   }, [tutorName, courseName, tutorRating]);
-  console.log(tutors);
   return (
     <>
-      <Header />
       <div className="flex justify-center mt-24">
         <input
           className={`mx-4 max-w-md w-200 border-none p-2 rounded-lg bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg shadow-lg focus:outline-none transition-all duration-300 ${
@@ -89,14 +85,14 @@ const TutorsList = () => {
                 <Menu.Item>
                   <div>
                     <label
-                      for="ratingRange"
-                      class="mb-2 inline-block text-neutral-700 dark:text-neutral-200"
+                      htmlFor="ratingRange"
+                      className="mb-2 inline-block text-neutral-700 dark:text-neutral-200"
                     >
                       {tutorRating ? tutorRating : "Rating"}
                     </label>
                     <input
                       type="range"
-                      class="transparent h-1.5 w-full cursor-pointer appearance-none rounded-lg border-transparent bg-neutral-200"
+                      className="transparent h-1.5 w-full cursor-pointer appearance-none rounded-lg border-transparent bg-neutral-200"
                       min="0"
                       max="5"
                       value={tutorRating}

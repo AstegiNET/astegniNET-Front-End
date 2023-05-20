@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "../../../landingPage/components/Header";
 import { Link } from "react-router-dom";
 
 import { useState, useEffect } from "react";
@@ -60,7 +59,6 @@ const Login = () => {
 
   return (
     <>
-      <Header />
       <div className="isolate bg-white py-24 px-6 sm:py-32 lg:px-8 ">
         <div className="  absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
           <svg

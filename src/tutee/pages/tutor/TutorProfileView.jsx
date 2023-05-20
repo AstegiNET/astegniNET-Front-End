@@ -1,38 +1,80 @@
 import React, { useEffect } from "react";
-import OutlineButton from "./components/Button";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const UserProfile = () => {
   const id = useParams().id;
   const [tutor, setTutor] = useState([]);
   const [course, setCourse] = useState({});
+  const [requestSent, setRequestSent] = useState(false);
 
+  const { tutee } = useSelector((state) => state.tuteeAuth);
+  const navigate = useNavigate();
   const API_URL = `http://localhost:5000/api/tutors/tutor/${id}`;
-  const getTutor = async () => {
-    const response = await axios.get(API_URL);
-    setTutor(response.data);
-    // return response.data;
+  const sendRequest = async () => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${tutee.token}`,
+      },
+    };
+    const request = {
+      tutee: tutee.id,
+      tutor: id,
+      course: tutor.course,
+    };
+    const response = await axios.post(
+      "http://localhost:5000/api/request/sendRequest",
+      request,
+      config
+    );
+    if (response.statusText==="OK") {
+      navigate("/tutors")
+    }
+    return response.data;
   };
-
+  const getRequest = async () => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${tutee?.token}`,
+      },
+    };
+    const response = await axios.get(
+      "http://localhost:5000/api/request/getRequests",
+      config
+    );
+    setRequestSent(
+      response.data?.filter(
+        (item) =>
+          item.tutor === id &&
+          item.tutee === tutee._id &&
+          item.course === tutor.course
+      ).length>0
+    );
+  };
   useEffect(() => {
+    const getTutor = async () => {
+      const response = await axios.get(API_URL);
+      setTutor(response.data);
+      // return response.data;
+    };
+
+    const getCourse = async () => {
+      const response = await axios.get(
+        `http://localhost:5000/api/courses/getCourse/${tutor.course}`
+      );
+
+      setCourse(response.data);
+      // return response.data;
+    };
     getTutor();
     getCourse();
-  }, [tutor, course]);
-  const getCourse = async () => {
-    // const response = await axios.get(`http://localhost:5000/api/courses/getCourse/64539e07e30e5e90588899b2`);
-    const response = await axios.get(
-      `http://localhost:5000/api/courses/getCourse/${tutor.course}`
-    );
-
-    setCourse(response.data);
-    // return response.data;
-  };
-
-  console.log(course);
+    getRequest();
+  }, [API_URL, tutor.course]);
+  // console.log(sentRequest);
   return (
-    <div className="bg-gray-100">
+    <div className="relative bg-gray-100">
       <div className="container mx-auto my-5 p-5">
         <div className="md:flex no-wrap md:-mx-2 ">
           <div className="w-full md:w-6/12 md:mx-2">
@@ -47,10 +89,17 @@ const UserProfile = () => {
               <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
                 {tutor.fname} {tutor.lname}
               </h1>
-              <h3 className="text-gray-600 font-lg text-semibold leading-6"></h3>
               <div className="my-4"></div>
-              <OutlineButton label={"Send Request"} />
-
+              <button
+                disabled={requestSent}
+                onClick={tutee ? sendRequest : navigate("/tutee/login")}
+                className={`w-full px-4 py-2 font-medium text-indigo-600  bg-transparent border border-indigo-600 rounded-md ${
+                  !requestSent &&
+                  "hover:bg-indigo-600 hover:text-white"
+                } hover:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2`}
+              >
+                {requestSent ? "Request sent" : "Send Request"}
+              </button>
               <div className="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
                 <div className="flex items-center py-3">
                   <span>Status</span>
