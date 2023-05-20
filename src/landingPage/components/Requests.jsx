@@ -1,4 +1,7 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { FaCheck, FaSearch, FaTrash } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const requests = [
   {
@@ -7,25 +10,26 @@ const requests = [
     imageUrl:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
   },
-  {
-    name: "Leslie Alexander",
-    role: "Co-Founder / CEO",
-    imageUrl:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  },
-  {
-    name: "Leslie Alexander",
-    role: "Co-Founder / CEO",
-    imageUrl:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  },
-  {
-    name: "Leslie Alexander",
-    role: "Co-Founder / CEO",
-    imageUrl:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  },
 ];
+//   {
+//     name: "Leslie Alexander",
+//     role: "Co-Founder / CEO",
+//     imageUrl:
+//       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+//   },
+//   {
+//     name: "Leslie Alexander",
+//     role: "Co-Founder / CEO",
+//     imageUrl:
+//       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+//   },
+//   {
+//     name: "Leslie Alexander",
+//     role: "Co-Founder / CEO",
+//     imageUrl:
+//       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+//   },
+// ];
 
 function RequestsNotFound() {
   return (
@@ -58,6 +62,28 @@ function RequestsNotFound() {
 }
 
 export default function Requests() {
+  const [requests, setRequests] = useState([]);
+  const { tutee } = useSelector((state) => state.tuteeAuth);
+  const { tutor } = useSelector((state) => state.tutorAuth);
+
+  useEffect(() => {
+    const getRequests = async () => {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${tutor?.token}`,
+        },
+      };
+      const response = await axios.get(
+        "http://localhost:5000/api/request/fetchRequests",
+        config
+      );
+      setRequests(response.data);
+      return response.data;
+    };
+    getRequests();
+  }, [tutor]);
+  
+  console.log(requests);
   return (
     <>
       {requests.length > 0 ? (
@@ -73,8 +99,8 @@ export default function Requests() {
               </p>
             </div>
             <ul className="grid gap-x-4 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
-              {requests.map((request) => (
-                <li key={request.name}>
+              {requests.map((request, index) => (
+                <li key={index}>
                   <div className="flex items-center gap-x-6">
                     <img
                       className="h-16 w-16 rounded-full"
@@ -83,17 +109,29 @@ export default function Requests() {
                     />
                     <div>
                       <h3 className="text-base font-semibold leading-7 tracking-tight text-gray-900">
-                        {request.name}
+                        {request.tutee}
                       </h3>
-                      <p className="text-sm font-semibold leading-6 text-indigo-600">
-                        {request.role}
+                      <p>
+                        course:{" "}
+                        <span className="text-sm font-semibold leading-6 text-indigo-600">
+                          {request.course}
+                        </span>
+                      </p>
+                      <p>
+                        status:{" "}
+                        <span className="text-sm font-semibold leading-6 text-indigo-600">
+                          {request.status}
+                        </span>
+                      </p>
+                      <p className="text-sm font-semibold leading-6 text-gray-100">
+                        {request.description}
                       </p>
                       <div className="flex">
                         <button className="flex items-center mx-2 px-4 font-small text-indigo-600 bg-transparent border border-indigo-600 rounded-xl hover:bg-indigo-600 hover:text-white hover:border-transparent focus:outline-none">
-                          <FaCheck className="mr-2"/> <span>Accept</span>
+                          <FaCheck className="mr-2" /> <span>Accept</span>
                         </button>
                         <button className="flex items-center mx-2 px-4 font-small text-red-600 bg-transparent border border-red-600 rounded-xl hover:bg-red-600 hover:text-white hover:border-transparent focus:outline-none">
-                        <FaTrash className="mr-2"/> <span>Delete</span>
+                          <FaTrash className="mr-2" /> <span>Delete</span>
                         </button>
                       </div>
                     </div>
