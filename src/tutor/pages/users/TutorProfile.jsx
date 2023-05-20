@@ -1,7 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Header from "../../../landingPage/components/Header";
-import Footer from "../../components/commonComponent/Footer";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import logo from "../../assets/images/graduate-svgrepo-com.svg";
@@ -13,8 +11,6 @@ const TutorProfile = () => {
 
   return (
     <>
-      <Header />
-
       <div className="bg-white shadow rounded-lg w-5/6 md:w-5/6  lg:w-4/6 xl:w-3/6 mx-auto">
         <div className="mt-32 flex justify-center">
           <Link to="/">
@@ -116,8 +112,6 @@ const TutorProfile = () => {
           </div>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 };

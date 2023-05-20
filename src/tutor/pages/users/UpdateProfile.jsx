@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Header from "../../../landingPage/components/Header";
-import Footer from "../../components/commonComponent/Footer";
-
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../../assets/images/graduate-svgrepo-com.svg";
 import { tutorReset } from "../../features/auth/tutorAuthSlice";
@@ -74,8 +71,6 @@ const UpdateTutorProfile = () => {
 
   return (
     <>
-      <Header />
-
       <div className="bg-white shadow rounded-lg w-5/6 md:w-5/6  lg:w-4/6 xl:w-3/6 mx-auto">
         <div className="mt-32 flex justify-center">
           <Link to="/">
@@ -297,7 +292,6 @@ const UpdateTutorProfile = () => {
         </div>
       </div>
 
-      <Footer />
     </>
   );
 };
