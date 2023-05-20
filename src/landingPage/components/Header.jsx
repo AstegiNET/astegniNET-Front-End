@@ -19,8 +19,8 @@ import { logout, reset } from "../../tutee/features/auth/tuteeAuthSlice";
 const navigation = [
   { name: "about us", href: "#about" },
   { name: "constact us", href: "#contact" },
-  { name: "For tutees and parents", href: "#" },
-  { name: "Tutors", href: "#" },
+  { name: "Requests", href: "/requests" },
+  { name: "Tutors", href: "/tutors" },
 ];
 
 const Header = () => {
@@ -58,7 +58,7 @@ const Header = () => {
         <div className="flex lg:flex-1">
           <Link to="/" className="-m-1.5 p-1.5">
             <span className="sr-only">AstegiNET</span>
-            <img className="h-8 w-auto" src={logo} alt="AstegiNET" />
+            <img className="hidden lg:block h-8 w-auto" src={logo} alt="AstegiNET" />
           </Link>
         </div>
 

@@ -1,21 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Footer from "../../components/commonComponent/Footer";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-// import { useNavigate,Link } from "react-router-dom";
-// import Spinner from "../../components/commonComponent/Spinner";
 import logo from "../../assets/images/graduate-svgrepo-com.svg";
-import Header from "../../components/commonComponent/Header";
+// import axios from "axios";
 
 const TuteeProfile = () => {
   const { tutee } = useSelector((state) => state.tuteeAuth);
+
+  // Get user Requests {{url}}/request/getRequests
+  // const getRequests = async () => {
+  //   const API_URL = "http://localhost:5000/api/request/getRequests";
+  //   const config = {
+  //     headers: {
+  //       Authorization: `Bearer ${tutee.token}`,
+  //     },
+  //   };
+  //   const response = await axios.get(API_URL, config);
+  //   return response.data;
+  // };
 
   useEffect(() => {});
 
   return (
     <>
-      <Header />
 
       <div className=" mt-32 border border-indigo-200 bg-white shadow rounded-lg w-5/6 md:w-5/6  lg:w-4/6 xl:w-3/6 mx-auto">
         <div className="mt-5 flex justify-center">
@@ -119,7 +127,6 @@ const TuteeProfile = () => {
         </div>
       </div>
 
-      <Footer />
     </>
   );
 };

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Header from "../../../landingPage/components/Header";
-import Footer from "../../components/commonComponent/Footer";
 
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../../assets/images/graduate-svgrepo-com.svg";
@@ -23,7 +21,7 @@ const UpdateProfile = () => {
     email: tutee.email,
     phone: tutee.phone,
     role: tutee.role,
-    password: tutee.password,
+    password: "",
     password2: "",
   });
 
@@ -69,8 +67,6 @@ const UpdateProfile = () => {
 
   return (
     <>
-      <Header />
-
       <div className=" mt-32 border border-indigo-200 bg-white shadow rounded-lg w-5/6 md:w-5/6  lg:w-4/6 xl:w-3/6 mx-auto">
         <div className="mt-5 flex justify-center">
           <Link to="/">
@@ -218,26 +214,6 @@ const UpdateProfile = () => {
 
                   <div className="sm:col-span-2">
                     <label
-                      htmlFor="role"
-                      className="block text-sm font-semibold leading-6 text-gray-900"
-                    >
-                      Role
-                    </label>
-                    <div className="relative mt-2.5">
-                      <input
-                        type="text"
-                        name="role"
-                        id="role"
-                        value={role}
-                        onChange={onChange}
-                        autoComplete="role"
-                        placeholder="enter tutee"
-                        className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      />
-                    </div>
-                  </div>
-                  <div className="sm:col-span-2">
-                    <label
                       htmlFor="Password"
                       className="block text-sm font-semibold leading-6 text-gray-900"
                     >
@@ -291,8 +267,6 @@ const UpdateProfile = () => {
           </div>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 };
