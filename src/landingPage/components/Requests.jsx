@@ -70,7 +70,7 @@ export default function Requests() {
     const getRequests = async () => {
       const config = {
         headers: {
-          Authorization: `Bearer ${tutor?.token}`,
+          Authorization: `Bearer ${tutor?.token || tutee?.token}`,
         },
       };
       const response = await axios.get(
@@ -81,7 +81,7 @@ export default function Requests() {
       return response.data;
     };
     getRequests();
-  }, [tutor]);
+  }, [tutor,tutee]);
   
   console.log(requests);
   return (
@@ -104,7 +104,7 @@ export default function Requests() {
                   <div className="flex items-center gap-x-6">
                     <img
                       className="h-16 w-16 rounded-full"
-                      src={request.imageUrl}
+                      src={request.tutor_avatar} // should be tutee_avatar for Tutor 
                       alt=""
                     />
                     <div>
@@ -123,7 +123,7 @@ export default function Requests() {
                           {request.status}
                         </span>
                       </p>
-                      <p className="text-sm font-semibold leading-6 text-gray-100">
+                      <p className="text-grey-600">
                         {request.description}
                       </p>
                       <div className="flex">
