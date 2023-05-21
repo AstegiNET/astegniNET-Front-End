@@ -14,7 +14,7 @@ const TutorRegister = () => {
     fname: "",
     lname: "",
     email: "",
-    phone: "",
+
     salary: "",
     course: "",
     password: "",
@@ -32,6 +32,7 @@ const TutorRegister = () => {
   );
 
   const { courses } = useSelector((state) => state.course);
+  console.log(courses);
 
   useEffect(() => {
     if (isError) {
@@ -222,7 +223,7 @@ const TutorRegister = () => {
               htmlFor="course"
               className="block text-sm font-semibold leading-6 text-gray-900"
             >
-              Salary
+              course
             </label>
             <div className="relative mt-2.5">
               <select
@@ -237,7 +238,7 @@ const TutorRegister = () => {
                   <>
                     {courses.map((course) => (
                       <option value={course._id} key={course._id}>
-                        {course.text}
+                        {course.name}
                       </option>
                     ))}
                   </>
