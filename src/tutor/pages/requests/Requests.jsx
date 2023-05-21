@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaCheck, FaSearch, FaTrash } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import Sidebar from "../../components/commonComponent/Sidebar";
 
 export default function Requests() {
   const [requests, setRequests] = useState([]);
@@ -58,70 +59,77 @@ export default function Requests() {
   console.log(requests);
   return (
     <>
-      {requests.length > 0 ? (
-        <div className="bg-white py-24 sm:py-32">
-          <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
-            <div className="max-w-2xl">
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                Meet our leadership
-              </h2>
-              <p className="mt-6 text-lg leading-8 text-gray-600">
-                Libero fames augue nisl porttitor nisi, quis. Id ac elit odio
-                vitae elementum enim vitae ullamcorper suspendisse.
-              </p>
-            </div>
-            <ul className="grid gap-x-4 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
-              {requests.map((request, index) => (
-                <li key={index}>
-                  <div className="flex items-center gap-x-6">
-                    <img
-                      className="h-16 w-16 rounded-full"
-                      src={request.tutee_avatar}
-                      alt=""
-                    />
-                    <div>
-                      <h3 className="text-base font-semibold leading-7 tracking-tight text-gray-900">
-                        {request.tutee}
-                      </h3>
-                      <p>
-                        course:{" "}
-                        <span className="text-sm font-semibold leading-6 text-indigo-600">
-                          {request.course}
-                        </span>
-                      </p>
-                      <p>
-                        status:{" "}
-                        <span className="text-sm font-semibold leading-6 text-indigo-600">
-                          {request.status}
-                        </span>
-                      </p>
-                      <p className="text-sm font-semibold leading-6 text-gray-100">
-                        {request.description}
-                      </p>
-                      <div className="flex">
-                        <button
-                          onClick={() => acceptRequest(request._id)}
-                          className="flex items-center mx-2 px-4 font-small text-indigo-600 bg-transparent border border-indigo-600 rounded-xl hover:bg-indigo-600 hover:text-white hover:border-transparent focus:outline-none"
-                        >
-                          <FaCheck className="mr-2" /> <span>Accept</span>
-                        </button>
-                        <button
-                          onClick={() => rejectRequest(request._id)}
-                          className="flex items-center mx-2 px-4 font-small text-red-600 bg-transparent border border-red-600 rounded-xl hover:bg-red-600 hover:text-white hover:border-transparent focus:outline-none"
-                        >
-                          <FaTrash className="mr-2" /> <span>Reject</span>
-                        </button>
-                      </div>
-                    </div>
+      <div className="pt-50">
+        <Sidebar />
+        <div className="p-4 sm:ml-64">
+          <div className="py-16 shadow-2xl min-h-screen rounded-lg dark:border-gray-700">
+            {requests.length > 0 ? (
+              <div className="bg-white py-24 sm:py-32">
+                <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
+                  <div className="max-w-2xl">
+                    <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                      My Requests
+                    </h2>
+                    <p className="mt-6 text-lg leading-8 text-gray-600">
+                      Libero fames augue nisl porttitor nisi, quis. Id ac elit
+                      odio vitae elementum enim vitae ullamcorper suspendisse.
+                    </p>
                   </div>
-                </li>
-              ))}
-            </ul>
+                  <ul className="grid gap-x-4 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
+                    {requests.map((request, index) => (
+                      <li key={index}>
+                        <div className="flex items-center gap-x-6">
+                          <img
+                            className="h-16 w-16 rounded-full"
+                            src={request.tutee_avatar}
+                            alt=""
+                          />
+                          <div>
+                            <h3 className="text-base font-semibold leading-7 tracking-tight text-gray-900">
+                              {request.tutee}
+                            </h3>
+                            <p>
+                              course:{" "}
+                              <span className="text-sm font-semibold leading-6 text-indigo-600">
+                                {request.course}
+                              </span>
+                            </p>
+                            <p>
+                              status:{" "}
+                              <span className="text-sm font-semibold leading-6 text-indigo-600">
+                                {request.status}
+                              </span>
+                            </p>
+                            <p className="text-sm font-semibold leading-6 text-gray-100">
+                              {request.description}
+                            </p>
+                            <div className="flex">
+                              <button
+                                onClick={() => acceptRequest(request._id)}
+                                className="flex items-center mx-2 px-4 font-small text-indigo-600 bg-transparent border border-indigo-600 rounded-xl hover:bg-indigo-600 hover:text-white hover:border-transparent focus:outline-none"
+                              >
+                                <FaCheck className="mr-2" /> <span>Accept</span>
+                              </button>
+                              <button
+                                onClick={() => rejectRequest(request._id)}
+                                className="flex items-center mx-2 px-4 font-small text-red-600 bg-transparent border border-red-600 rounded-xl hover:bg-red-600 hover:text-white hover:border-transparent focus:outline-none"
+                              >
+                                <FaTrash className="mr-2" /> <span>Reject</span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ) : (
+              <RequestsNotFound />
+            )}
           </div>
         </div>
-      ) : (
-        <RequestsNotFound />
-      )}
+      </div>
     </>
   );
 }
