@@ -29,7 +29,7 @@ export default function Requests() {
     };
 
     const response = await axios.put(
-      `http://localhost:5000/api/request/acceptRequest/64693832b5626e72c3f62d39`,
+      `http://localhost:5000/api/request/acceptRequest/${id}`,
       config
     );
     //setRequests is updated here
