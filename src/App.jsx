@@ -27,12 +27,14 @@ import Footer from "./landingPage/components/Footer";
 import CommonProtectedRoutes from "./landingPage/utils/CommonUtils";
 import Requests from "./tutor/pages/requests/Requests";
 import TuteeRequests from "./tutee/pages/requests/Requests";
+import Profile from "./tutee/pages/users/Profile";
 
 export default function App() {
   return (
     <Router>
       <Header />
       <Routes>
+        <Route path="profile" element={<Profile />} />
         <Route path="/" element={<LandingPage />} />
 
         <Route path="/tutee/register" element={<Register />} />
@@ -66,7 +68,7 @@ export default function App() {
             path="/tutor/profile/UpdateProfile"
             element={<UpdateTutorProfile />}
           />
-
+          <Route path="/tutorequests" element={<Requests />} />
           <Route path="/tutor/allcourses" element={<TutorViewAllCourses />} />
           <Route path="/tutor/addcourses" element={<AddCourse />} />
         </Route>

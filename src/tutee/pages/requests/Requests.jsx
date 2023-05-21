@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import uuid4 from "uuid4";
+import Sidebar from "../../components/commonComponent/Sidebar";
 const payUrl = "http://localhost:5000/api/payment/pay";
 const callback_url = "http://localhost:3000/tutee/verifypay";
 const return_url = "http://localhost:3000/tutee/verifypay";
@@ -88,79 +89,89 @@ export default function Requests() {
   console.log(requests);
   return (
     <>
-      {requests.length > 0 ? (
-        <div className="bg-white py-24 sm:py-32">
-          <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
-            <div className="max-w-2xl">
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                your requests
-              </h2>
-              <p className="mt-6 text-lg leading-8 text-gray-600">
-                Libero fames augue nisl porttitor nisi, quis. Id ac elit odio
-                vitae elementum enim vitae ullamcorper suspendisse.
-              </p>
-            </div>
-            <ul className="grid gap-x-4 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
-              {requests.map((request, index) => (
-                <li key={index}>
-                  <div className="flex items-center gap-x-6">
-                    <img
-                      className="h-16 w-16 rounded-full"
-                      src={request.tutor_avatar}
-                      alt=""
-                    />
-                    <div>
-                      <h3 className="text-base font-semibold leading-7 tracking-tight text-gray-900">
-                        {request.tutor}
-                      </h3>
-                      <p>
-                        course:{" "}
-                        <span className="text-sm font-semibold leading-6 text-indigo-600">
-                          {request.course}
-                        </span>
-                      </p>
-                      <p>
-                        status:{" "}
-                        <span className="text-sm font-semibold leading-6 text-indigo-600">
-                          {request.status}
-                        </span>
-                      </p>
-                      <p className="text-sm font-semibold leading-6 text-gray-100">
-                        {request.description}
-                      </p>
-                      <div className="flex">
-                        {request.status === "pending" && (
-                          <button
-                            onClick={() => cancelRequest(request._id)}
-                            className="flex items-center mx-2 px-4 font-small text-red-600 bg-transparent border border-red-600 rounded-xl hover:bg-red-600 hover:text-white hover:border-transparent focus:outline-none"
-                          >
-                            <FaTrash className="mr-2" /> <span>Cancel</span>
-                          </button>
-                        )}
-                        {request.status === "rejected" && (
-                          <button className="disabled flex items-center mx-2 px-4 font-small text-red-600 bg-transparent border border-red-600 rounded-xl hover:bg-red-600 hover:text-white hover:border-transparent focus:outline-none">
-                            <FaTrash className="mr-2" /> <span>Rejected</span>
-                          </button>
-                        )}
-                        {request.status === "accepted" && (
-                          <button
-                            // onClick={() => cancelRequest(request._id)}
-                            className="flex items-center mx-2 px-4 font-small text-green-600 bg-transparent border border-green-600 rounded-xl hover:bg-green-600 hover:text-white hover:border-transparent focus:outline-none"
-                          >
-                            <FaCcAmazonPay className="mr-2" /> <span>Pay</span>
-                          </button>
-                        )}
-                      </div>
-                    </div>
+      <div className="pt-50">
+        <Sidebar />
+        <div className="p-4 sm:ml-64">
+          <div className="py-16 shadow-2xl min-h-screen rounded-lg dark:border-gray-700">
+            {requests.length > 0 ? (
+              <div className="bg-white py-24 sm:py-32">
+                <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
+                  <div className="max-w-2xl">
+                    <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                      your requests
+                    </h2>
+                    <p className="mt-6 text-lg leading-8 text-gray-600">
+                      Libero fames augue nisl porttitor nisi, quis. Id ac elit
+                      odio vitae elementum enim vitae ullamcorper suspendisse.
+                    </p>
                   </div>
-                </li>
-              ))}
-            </ul>
+                  <ul className="grid gap-x-4 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
+                    {requests.map((request, index) => (
+                      <li key={index}>
+                        <div className="flex items-center gap-x-6">
+                          <img
+                            className="h-16 w-16 rounded-full"
+                            src={request.tutor_avatar}
+                            alt=""
+                          />
+                          <div>
+                            <h3 className="text-base font-semibold leading-7 tracking-tight text-gray-900">
+                              {request.tutor}
+                            </h3>
+                            <p>
+                              course:{" "}
+                              <span className="text-sm font-semibold leading-6 text-indigo-600">
+                                {request.course}
+                              </span>
+                            </p>
+                            <p>
+                              status:{" "}
+                              <span className="text-sm font-semibold leading-6 text-indigo-600">
+                                {request.status}
+                              </span>
+                            </p>
+                            <p className="text-sm font-semibold leading-6 text-gray-100">
+                              {request.description}
+                            </p>
+                            <div className="flex">
+                              {request.status === "pending" && (
+                                <button
+                                  onClick={() => cancelRequest(request._id)}
+                                  className="flex items-center mx-2 px-4 font-small text-red-600 bg-transparent border border-red-600 rounded-xl hover:bg-red-600 hover:text-white hover:border-transparent focus:outline-none"
+                                >
+                                  <FaTrash className="mr-2" />{" "}
+                                  <span>Cancel</span>
+                                </button>
+                              )}
+                              {request.status === "rejected" && (
+                                <button className="disabled flex items-center mx-2 px-4 font-small text-red-600 bg-transparent border border-red-600 rounded-xl hover:bg-red-600 hover:text-white hover:border-transparent focus:outline-none">
+                                  <FaTrash className="mr-2" />{" "}
+                                  <span>Rejected</span>
+                                </button>
+                              )}
+                              {request.status === "accepted" && (
+                                <button
+                                  // onClick={() => cancelRequest(request._id)}
+                                  className="flex items-center mx-2 px-4 font-small text-green-600 bg-transparent border border-green-600 rounded-xl hover:bg-green-600 hover:text-white hover:border-transparent focus:outline-none"
+                                >
+                                  <FaCcAmazonPay className="mr-2" />{" "}
+                                  <span>Pay</span>
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ) : (
+              <RequestsNotFound />
+            )}
           </div>
         </div>
-      ) : (
-        <RequestsNotFound />
-      )}
+      </div>
     </>
   );
 }
