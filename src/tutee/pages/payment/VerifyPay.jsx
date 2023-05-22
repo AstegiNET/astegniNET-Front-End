@@ -28,7 +28,22 @@ const VerifyPay = () => {
     verify();
   });
 
-  return <div className="pt-30">VerifyPay</div>;
+  return (
+    <div className="pt-30">
+      <div className="pt-30">VerifyPay</div>
+      <div className="pt-30">VerifyPay</div>
+      <div className="pt-30">VerifyPay</div>
+      <div className="pt-30">VerifyPay</div>
+      <div className="pt-30">VerifyPay</div>
+      <div className="pt-30">VerifyPay</div>
+      <div className="pt-30">VerifyPay</div>
+      <div className="pt-30">VerifyPay</div>
+      <div className="pt-30">VerifyPay</div>
+      <div className="pt-30">VerifyPay</div>
+      <div className="pt-30">VerifyPay</div>
+      <div className="pt-30">VerifyPay</div>
+    </div>
+  );
 };
 
 export default VerifyPay;

@@ -36,7 +36,6 @@ export default function App() {
       <Routes>
         <Route path="profile" element={<Profile />} />
         <Route path="/" element={<LandingPage />} />
-
         <Route path="/tutee/register" element={<Register />} />
         <Route path="/tutee/login" element={<Login />} />
         <Route path="/tutors" element={<TutorsList />} />
@@ -45,7 +44,6 @@ export default function App() {
         {/* pages that tutee only have acces */}
         <Route element={<TuteeProtectedRoutes />}>
           <Route path="/tutee/allcourses" element={<ViewAllCourses />} />
-          <Route path="/tutee/tutors" element={<TutorsList />} />
           <Route path="tutee/tutors/:id" element={<TutorProfileView />} />
           <Route path="/tutee/profile/viewprofile" element={<TuteeProfile />} />
           <Route path="/tuteerequests" element={<TuteeRequests />} />

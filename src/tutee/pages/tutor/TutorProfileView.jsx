@@ -29,8 +29,8 @@ const UserProfile = () => {
       request,
       config
     );
-    if (response.statusText==="OK") {
-      navigate("/tutors")
+    if (response.statusText === "OK") {
+      navigate("/tutors");
     }
     return response.data;
   };
@@ -50,7 +50,7 @@ const UserProfile = () => {
           item.tutor === id &&
           item.tutee === tutee._id &&
           item.course === tutor.course
-      ).length>0
+      ).length > 0
     );
   };
   useEffect(() => {
@@ -74,11 +74,11 @@ const UserProfile = () => {
   }, [API_URL, tutor.course]);
   // console.log(sentRequest);
   return (
-    <div className="relative bg-gray-100">
+    <div className="relative ">
       <div className="container mx-auto my-5 p-5">
         <div className="md:flex no-wrap md:-mx-2 ">
-          <div className="w-full md:w-6/12 md:mx-2">
-            <div className="bg-white p-3 border-t-4 border-green-400">
+          <div className="bg-gray-50 shadow-sm rounded-lg p-5 w-full md:w-6/12 md:mx-2">
+            <div className=" p-3 border-t-4 border-green-400">
               <div className="image overflow-hidden">
                 <img
                   className="h-100 w-100 rounded-full mx-auto"
@@ -94,8 +94,7 @@ const UserProfile = () => {
                 disabled={requestSent}
                 onClick={tutee ? sendRequest : navigate("/tutee/login")}
                 className={`w-full px-4 py-2 font-medium text-indigo-600  bg-transparent border border-indigo-600 rounded-md ${
-                  !requestSent &&
-                  "hover:bg-indigo-600 hover:text-white"
+                  !requestSent && "hover:bg-indigo-600 hover:text-white"
                 } hover:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2`}
               >
                 {requestSent ? "Request sent" : "Send Request"}
@@ -127,7 +126,7 @@ const UserProfile = () => {
             </div>
           </div>
 
-          <div className="w-full md:w-6/12 mx-2 h-64">
+          <div className="bg-gray-100 w-full md:w-6/12 mx-2 h-64">
             <div className="bg-white p-3 shadow-sm rounded-sm">
               <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
                 <span clas="text-green-500">
@@ -178,8 +177,6 @@ const UserProfile = () => {
               </div>
             </div>
 
-            <div className="my-4"></div>
-
             <div className="bg-white p-3 shadow-sm rounded-sm">
               <div>
                 <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
@@ -226,7 +223,7 @@ const UserProfile = () => {
                 </ul>
               </div>
             </div>
-            <div className="my-4"></div>
+
             <div className="bg-white p-3 hover:shadow">
               <div className="flex items-center space-x-3 font-semibold text-gray-900 text-xl leading-8">
                 <span className="text-green-500">

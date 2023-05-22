@@ -67,7 +67,7 @@ export default function Requests() {
               <div className="bg-white py-24 sm:py-32">
                 <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
                   <div className="max-w-2xl">
-                    <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                    <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                       My Requests
                     </h2>
                     <p className="mt-6 text-lg leading-8 text-gray-600">
@@ -86,7 +86,7 @@ export default function Requests() {
                           />
                           <div>
                             <h3 className="text-base font-semibold leading-7 tracking-tight text-gray-900">
-                              {request.tutee}
+                              {request.tutee_name}
                             </h3>
                             <p>
                               course:{" "}

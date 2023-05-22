@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import { FaSearch, FaTrash, FaCcAmazonPay } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+// import { Payment } from "../payment/Pay";
 
 import uuid4 from "uuid4";
 import Sidebar from "../../components/commonComponent/Sidebar";
+import Pay from "../payment/Pay";
 const payUrl = "http://localhost:5000/api/payment/pay";
 const callback_url = "http://localhost:3000/tutee/verifypay";
 const return_url = "http://localhost:3000/tutee/verifypay";
@@ -47,43 +49,41 @@ export default function Requests() {
     console.log(response.data);
   };
 
-  const Pay = async (props) => {
-    const { course, tutor, amount } = props;
-    const Navigate = useNavigate({});
+  // const Pay = async (props) => {
+  //   const { course, tutor, amount } = props;
+  //   const Navigate = useNavigate({});
 
-    const TX_REF = uuid4();
-    const initializeInfo = {
-      first_name: tutee.fname,
-      last_name: tutee.lname,
-      tutor: tutor,
-      course: course,
-      email: tutee.email,
-      phone_number: tutee.phone,
-      amount: amount,
-      currency: "ETB",
-      tx_ref: TX_REF,
-      callback_url: `${callback_url}/${TX_REF}`,
-      return_url: `${return_url}/${TX_REF}`,
-    };
+  //   const TX_REF = uuid4();
+  //   const initializeInfo = {
+  //     first_name: tutee.fname,
+  //     last_name: tutee.lname,
+  //     tutor: tutor,
+  //     course: course,
+  //     email: tutee.email,
+  //     phone_number: tutee.phone,
+  //     amount: amount,
+  //     currency: "ETB",
+  //     tx_ref: TX_REF,
+  //     callback_url: `${callback_url}/${TX_REF}`,
+  //     return_url: `${return_url}/${TX_REF}`,
+  //   };
 
-    const config = {
-      headers: {
-        Authorization: `Bearer ${tutee.token}`,
-      },
-    };
-
-    const response = await axios.post(payUrl, initializeInfo, config);
-    if (response.data.checkout_url) {
-      console.log(response.data.checkout_url);
-      window.location.replace(response.data.checkout_url);
-    } else {
-      Navigate("/");
-    }
-  };
+  //   const config = {
+  //     headers: {
+  //       Authorization: `Bearer ${tutee.token}`,
+  //     },
+  //   };
+  //   console.log(props);
+  //   const response = await axios.post(payUrl, initializeInfo, config);
+  //   if (response.data.checkout_url) {
+  //     window.location.replace(response.data.checkout_url);
+  //   } else {
+  //     Navigate("/");
+  //   }
+  // };
 
   useEffect(() => {
     getRequests();
-    console.log(tutee);
   }, []);
 
   console.log(requests);
@@ -97,7 +97,7 @@ export default function Requests() {
               <div className="bg-white py-24 sm:py-32">
                 <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
                   <div className="max-w-2xl">
-                    <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                    <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                       your requests
                     </h2>
                     <p className="mt-6 text-lg leading-8 text-gray-600">
@@ -116,7 +116,7 @@ export default function Requests() {
                           />
                           <div>
                             <h3 className="text-base font-semibold leading-7 tracking-tight text-gray-900">
-                              {request.tutor}
+                              {request.tutor_name}
                             </h3>
                             <p>
                               course:{" "}
@@ -133,6 +133,7 @@ export default function Requests() {
                             <p className="text-sm font-semibold leading-6 text-gray-100">
                               {request.description}
                             </p>
+
                             <div className="flex">
                               {request.status === "pending" && (
                                 <button
@@ -149,15 +150,32 @@ export default function Requests() {
                                   <span>Rejected</span>
                                 </button>
                               )}
-                              {request.status === "accepted" && (
-                                <button
-                                  // onClick={() => cancelRequest(request._id)}
-                                  className="flex items-center mx-2 px-4 font-small text-green-600 bg-transparent border border-green-600 rounded-xl hover:bg-green-600 hover:text-white hover:border-transparent focus:outline-none"
-                                >
-                                  <FaCcAmazonPay className="mr-2" />{" "}
-                                  <span>Pay</span>
-                                </button>
-                              )}
+                              {request.status === "accepted" &&
+                                request.paymentStatus === "pending" && (
+                                  <Pay
+                                    payData={{
+                                      name: request.tutee_name,
+                                      email: request.tutee_email,
+                                      amount: `${request.tutor_salary}`,
+                                      phone: request.tutee_phone,
+
+                                      tutee_id: request.tutee_id,
+                                      tutor_id: request.tutor_id,
+                                      course_id: request.course_id,
+                                      request_id: request._id,
+
+                                      token: tutee?.token,
+                                    }}
+                                  />
+                                )}
+
+                              {request.status === "accepted" &&
+                                request.paymentStatus === "payed" && (
+                                  <button className="flex items-center mx-2 px-4 font-small  rounded-xl bg-green-600 text-white border-transparent ">
+                                    <FaCcAmazonPay className="mr-2" />
+                                    <span>payed</span>
+                                  </button>
+                                )}
                             </div>
                           </div>
                         </div>
