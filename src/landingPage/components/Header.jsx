@@ -39,7 +39,7 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-white shadow-md ">
+    <header className="fixed mb-5 inset-x-0 top-0 z-50 bg-white shadow-md ">
       <nav
         className="flex items-center justify-between p-3 lg:px-8"
         aria-label="Global"
