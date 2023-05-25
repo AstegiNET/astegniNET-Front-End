@@ -24,10 +24,12 @@ import TutorsList from "./tutee/components/tutorList/TutorsList";
 import TutorProfileView from "./tutee/pages/tutor/TutorProfileView";
 import Header from "./landingPage/components/Header";
 import Footer from "./landingPage/components/Footer";
-import CommonProtectedRoutes from "./landingPage/utils/CommonUtils";
+
 import Requests from "./tutor/pages/requests/Requests";
 import TuteeRequests from "./tutee/pages/requests/Requests";
 import Profile from "./tutee/pages/users/Profile";
+import TutorEnrollment from "./tutor/pages/enrollments/Enrollment";
+import TuteeEnrollment from "./tutee/pages/enrollments/Enrollments";
 
 export default function App() {
   return (
@@ -47,7 +49,7 @@ export default function App() {
           <Route path="tutee/tutors/:id" element={<TutorProfileView />} />
           <Route path="/tutee/profile/viewprofile" element={<TuteeProfile />} />
           <Route path="/tuteerequests" element={<TuteeRequests />} />
-
+          <Route path="/tuteeenrollments" element={<TuteeEnrollment />} />
           <Route path="/tutee/pay" element={<Pay />} />
           <Route path="/tutee/verifypay/:id" element={<VerifyPay />} />
           <Route
@@ -67,16 +69,14 @@ export default function App() {
             element={<UpdateTutorProfile />}
           />
           <Route path="/tutorequests" element={<Requests />} />
+          <Route path="/tutorenrollments" element={<TutorEnrollment />} />
           <Route path="/tutor/allcourses" element={<TutorViewAllCourses />} />
           <Route path="/tutor/addcourses" element={<AddCourse />} />
         </Route>
 
-        <Route element={<CommonProtectedRoutes />}>
-          <Route path="/requests" element={<Requests />} />
-        </Route>
-
         {/* testing payment and video call */}
         <Route path="/videocall" element={<VideoCall />} />
+        <Route path="/verifypay" element={<VerifyPay />} />
       </Routes>
 
       {/* <Footer /> */}

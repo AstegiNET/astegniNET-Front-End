@@ -2,15 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaSearch, FaTrash, FaCcAmazonPay } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-// import { Payment } from "../payment/Pay";
-
-import uuid4 from "uuid4";
 import Sidebar from "../../components/commonComponent/Sidebar";
 import Pay from "../payment/Pay";
-const payUrl = "http://localhost:5000/api/payment/pay";
-const callback_url = "http://localhost:3000/tutee/verifypay";
-const return_url = "http://localhost:3000/tutee/verifypay";
+import TuteeHeader from "../../components/commonComponent/TuteeHeader";
 
 export default function Requests() {
   const [requests, setRequests] = useState([]);
@@ -49,39 +43,6 @@ export default function Requests() {
     console.log(response.data);
   };
 
-  // const Pay = async (props) => {
-  //   const { course, tutor, amount } = props;
-  //   const Navigate = useNavigate({});
-
-  //   const TX_REF = uuid4();
-  //   const initializeInfo = {
-  //     first_name: tutee.fname,
-  //     last_name: tutee.lname,
-  //     tutor: tutor,
-  //     course: course,
-  //     email: tutee.email,
-  //     phone_number: tutee.phone,
-  //     amount: amount,
-  //     currency: "ETB",
-  //     tx_ref: TX_REF,
-  //     callback_url: `${callback_url}/${TX_REF}`,
-  //     return_url: `${return_url}/${TX_REF}`,
-  //   };
-
-  //   const config = {
-  //     headers: {
-  //       Authorization: `Bearer ${tutee.token}`,
-  //     },
-  //   };
-  //   console.log(props);
-  //   const response = await axios.post(payUrl, initializeInfo, config);
-  //   if (response.data.checkout_url) {
-  //     window.location.replace(response.data.checkout_url);
-  //   } else {
-  //     Navigate("/");
-  //   }
-  // };
-
   useEffect(() => {
     getRequests();
   }, []);
@@ -93,6 +54,7 @@ export default function Requests() {
         <Sidebar />
         <div className="p-4 sm:ml-64">
           <div className="py-16 shadow-2xl min-h-screen rounded-lg dark:border-gray-700">
+            <TuteeHeader tutee={tutee} />
             {requests.length > 0 ? (
               <div className="bg-white py-24 sm:py-32">
                 <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
@@ -108,7 +70,7 @@ export default function Requests() {
                   <ul className="grid gap-x-4 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
                     {requests.map((request, index) => (
                       <li key={index}>
-                        <div className="flex items-center gap-x-6">
+                        <div className="flex items-center gap-x-6 shadow-lg rounded-xl p-5">
                           <img
                             className="h-16 w-16 rounded-full"
                             src={request.tutor_avatar}
@@ -130,7 +92,7 @@ export default function Requests() {
                                 {request.status}
                               </span>
                             </p>
-                            <p className="text-sm font-semibold leading-6 text-gray-100">
+                            <p className="text-sm font-semibold leading-6 text-gray">
                               {request.description}
                             </p>
 
@@ -138,14 +100,14 @@ export default function Requests() {
                               {request.status === "pending" && (
                                 <button
                                   onClick={() => cancelRequest(request._id)}
-                                  className="flex items-center mx-2 px-4 font-small text-red-600 bg-transparent border border-red-600 rounded-xl hover:bg-red-600 hover:text-white hover:border-transparent focus:outline-none"
+                                  className="flex items-center mx-2 my-5 px-4 font-small text-red-600 bg-transparent border border-red-600 rounded-xl hover:bg-red-600 hover:text-white hover:border-transparent focus:outline-none"
                                 >
                                   <FaTrash className="mr-2" />{" "}
                                   <span>Cancel</span>
                                 </button>
                               )}
                               {request.status === "rejected" && (
-                                <button className="disabled flex items-center mx-2 px-4 font-small text-red-600 bg-transparent border border-red-600 rounded-xl hover:bg-red-600 hover:text-white hover:border-transparent focus:outline-none">
+                                <button className="disabled flex items-center mx-2 my-5 px-4 font-small text-red-600 bg-transparent border border-red-600 rounded-xl hover:bg-red-600 hover:text-white hover:border-transparent focus:outline-none">
                                   <FaTrash className="mr-2" />{" "}
                                   <span>Rejected</span>
                                 </button>
@@ -171,7 +133,7 @@ export default function Requests() {
 
                               {request.status === "accepted" &&
                                 request.paymentStatus === "payed" && (
-                                  <button className="flex items-center mx-2 px-4 font-small  rounded-xl bg-green-600 text-white border-transparent ">
+                                  <button className="flex items-center mx-2 my-5 px-4 font-small  rounded-xl bg-green-600 text-white border-transparent ">
                                     <FaCcAmazonPay className="mr-2" />
                                     <span>payed</span>
                                   </button>

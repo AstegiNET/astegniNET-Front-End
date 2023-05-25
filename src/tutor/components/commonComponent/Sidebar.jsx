@@ -60,7 +60,7 @@ const Sidebar = () => {
             </li>
             <li>
               <Link
-                to="#"
+                to="/tutorenrollments"
                 className="flex items-center p-2 text-gray-500 hover:text-gray-900  font-medium  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <FaCcAmazonPay className="mr-2" />

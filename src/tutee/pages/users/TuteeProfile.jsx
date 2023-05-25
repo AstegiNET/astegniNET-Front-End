@@ -15,6 +15,7 @@ const TuteeProfile = () => {
     <>
       <div className="pt-50">
         <Sidebar />
+
         <div className="p-4">
           <div className="py-16 shadow-2xl min-h-screen rounded-lg dark:border-gray-700">
             <div className="  bg-white shadow rounded-lg w-5/6 md:w-4/6  mx-auto">
