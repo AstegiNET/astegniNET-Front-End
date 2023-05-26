@@ -107,7 +107,7 @@ export default function Requests() {
                                 </button>
                               )}
                               {request.status === "rejected" && (
-                                <button className="disabled flex items-center mx-2 my-5 px-4 font-small text-red-600 bg-transparent border border-red-600 rounded-xl hover:bg-red-600 hover:text-white hover:border-transparent focus:outline-none">
+                                <button className="disabled flex items-center mx-2 my-5 px-4 font-small text-red-600 bg-transparent border border-red-600 rounded-xl focus:outline-none">
                                   <FaTrash className="mr-2" />{" "}
                                   <span>Rejected</span>
                                 </button>

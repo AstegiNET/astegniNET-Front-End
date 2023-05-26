@@ -23,7 +23,7 @@ import VideoCall from "./videoCall/VideoCall";
 import TutorsList from "./tutee/components/tutorList/TutorsList";
 import TutorProfileView from "./tutee/pages/tutor/TutorProfileView";
 import Header from "./landingPage/components/Header";
-import Footer from "./landingPage/components/Footer";
+// import Footer from "./landingPage/components/Footer";
 
 import Requests from "./tutor/pages/requests/Requests";
 import TuteeRequests from "./tutee/pages/requests/Requests";

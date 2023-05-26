@@ -113,21 +113,21 @@ export default function Requests() {
                               <div className="flex">
                                 <button
                                   onClick={() => acceptRequest(request._id)}
-                                  className="flex items-center mx-2 px-4 font-small text-indigo-600 bg-transparent border border-indigo-600 rounded-xl hover:bg-indigo-600 hover:text-white hover:border-transparent focus:outline-none"
+                                  className="flex items-center mx-2 my-4 px-4 font-small text-indigo-600 bg-transparent border border-indigo-600 rounded-xl hover:bg-indigo-600 hover:text-white hover:border-transparent focus:outline-none"
                                 >
                                   <FaCheck className="mr-2" />{" "}
                                   <span>Accept</span>
                                 </button>
                                 <button
                                   onClick={() => rejectRequest(request._id)}
-                                  className="flex items-center mx-2 px-4 font-small text-red-600 bg-transparent border border-red-600 rounded-xl hover:bg-red-600 hover:text-white hover:border-transparent focus:outline-none"
+                                  className="flex items-center mx-2 my-4 px-4 font-small text-red-600 bg-transparent border border-red-600 rounded-xl hover:bg-red-600 hover:text-white hover:border-transparent focus:outline-none"
                                 >
                                   <FaTrash className="mr-2" />{" "}
                                   <span>Reject</span>
                                 </button>
                               </div>
                             ) : request.status === "accepted" ? (
-                              <button className="flex items-center mx-2 my-4 px-4 font-small rounded-xl bg-indigo-600 focus:outline-none text-white">
+                              <button className="flex items-center mx-2  my-4 px-4 font-small rounded-xl bg-indigo-600 focus:outline-none text-white">
                                 <FaCheck className="mr-2" />{" "}
                                 <span>{request.status}</span>
                               </button>

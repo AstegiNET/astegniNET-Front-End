@@ -128,7 +128,7 @@ const Pay = ({ payData, children }) => {
     <>
       <button
         onClick={payFunction}
-        className="flex items-center mx-2 px-4 font-small text-green-600 bg-transparent border border-green-600 rounded-xl hover:bg-green-600 hover:text-white hover:border-transparent focus:outline-none"
+        className="flex items-center mx-2 my-4 px-4 font-small text-green-600 bg-transparent border border-green-600 rounded-xl hover:bg-green-600 hover:text-white hover:border-transparent focus:outline-none"
       >
         <FaCcAmazonPay className="mr-2" /> <span>Pay</span>
       </button>

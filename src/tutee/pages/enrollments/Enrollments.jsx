@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { FaCheck, FaSearch, FaTrash } from "react-icons/fa";
+import { FaCheck, FaSearch } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import Sidebar from "../../components/commonComponent/Sidebar";
-import { Link } from "react-router-dom";
+
 import TuteeHeader from "../../components/commonComponent/TuteeHeader";
 
 export default function Enrollment() {
