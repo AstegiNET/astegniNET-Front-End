@@ -37,6 +37,17 @@ const Header = () => {
     dispatch(reset());
     navigate("/");
   };
+  const tutorOnLogout = () => {
+    dispatch(tutorLogout());
+    dispatch(tutorReset());
+    navigate("/");
+  };
+
+  const tuteeOnLogout = () => {
+    dispatch(logout());
+    dispatch(reset());
+    navigate("/");
+  };
 
   return (
     <header className="fixed mb-5 inset-x-0 top-0 z-50 bg-white shadow-md ">
@@ -95,15 +106,15 @@ const Header = () => {
           >
             <Menu.Items className="absolute right-0 z-10 lg:mt-10 sm:mt-8 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <div className="py-1">
-                {tutee || tutor ? (
+                {tutee && tutor ? (
                   <>
                     <div>
                       <Menu.Item>
                         <Link
-                          onClick={onLogout}
+                          to={tutee ? "/tutee/profile/viewprofile" : ""}
                           className=" text-gray-900 block px-4 py-2 text-sm"
                         >
-                          logout
+                          tutee profile
                         </Link>
                       </Menu.Item>
                     </div>
@@ -111,16 +122,99 @@ const Header = () => {
                     <div>
                       <Menu.Item>
                         <Link
-                          to={
-                            tutor
-                              ? "/tutor/profile/viewprofile"
-                              : tutee
-                              ? "/tutee/profile/viewprofile"
-                              : ""
-                          }
+                          onClick={tuteeOnLogout}
                           className=" text-gray-900 block px-4 py-2 text-sm"
                         >
-                          profile
+                          tutee logout
+                        </Link>
+                      </Menu.Item>
+                    </div>
+
+                    <div>
+                      <Menu.Item>
+                        <Link
+                          to={tutee ? "/tutor/profile/viewprofile" : ""}
+                          className=" text-gray-900 block px-4 py-2 text-sm"
+                        >
+                          tutor profile
+                        </Link>
+                      </Menu.Item>
+                    </div>
+                    <div>
+                      <Menu.Item>
+                        <Link
+                          onClick={tutorOnLogout}
+                          className=" text-gray-900 block px-4 py-2 text-sm"
+                        >
+                          tutor logout
+                        </Link>
+                      </Menu.Item>
+                    </div>
+                  </>
+                ) : tutee ? (
+                  <>
+                    <div>
+                      <Menu.Item>
+                        <Link
+                          to={tutee ? "/tutee/profile/viewprofile" : ""}
+                          className=" text-gray-900 block px-4 py-2 text-sm"
+                        >
+                          tutee profile
+                        </Link>
+                      </Menu.Item>
+                    </div>
+                    <div>
+                      <Menu.Item>
+                        <Link
+                          onClick={tuteeOnLogout}
+                          className=" text-gray-900 block px-4 py-2 text-sm"
+                        >
+                          tutee logout
+                        </Link>
+                      </Menu.Item>
+                    </div>
+
+                    <div>
+                      <Menu.Item>
+                        <Link
+                          to="/tutor/login"
+                          className=" text-gray-900 block px-4 py-2 text-sm"
+                        >
+                          tutor
+                        </Link>
+                      </Menu.Item>
+                    </div>
+                  </>
+                ) : tutor ? (
+                  <>
+                    <div>
+                      <Menu.Item>
+                        <Link
+                          to={tutor ? "/tutor/profile/viewprofile" : ""}
+                          className=" text-gray-900 block px-4 py-2 text-sm"
+                        >
+                          tutor profile
+                        </Link>
+                      </Menu.Item>
+                    </div>
+                    <div>
+                      <Menu.Item>
+                        <Link
+                          onClick={tutorOnLogout}
+                          className=" text-gray-900 block px-4 py-2 text-sm"
+                        >
+                          tutor logout
+                        </Link>
+                      </Menu.Item>
+                    </div>
+
+                    <div>
+                      <Menu.Item>
+                        <Link
+                          to="/tutee/login"
+                          className=" text-gray-900 block px-4 py-2 text-sm"
+                        >
+                          tutee
                         </Link>
                       </Menu.Item>
                     </div>
@@ -203,3 +297,35 @@ const Header = () => {
 };
 
 export default Header;
+
+// {tutee || tutor ? (
+//   <>
+//     <div>
+//       <Menu.Item>
+//         <Link
+//           onClick={onLogout}
+//           className=" text-gray-900 block px-4 py-2 text-sm"
+//         >
+//           logout
+//         </Link>
+//       </Menu.Item>
+//     </div>
+
+//     <div>
+//       <Menu.Item>
+//         <Link
+//           to={
+//             tutor
+//               ? "/tutor/profile/viewprofile"
+//               : tutee
+//               ? "/tutee/profile/viewprofile"
+//               : ""
+//           }
+//           className=" text-gray-900 block px-4 py-2 text-sm"
+//         >
+//           profile
+//         </Link>
+//       </Menu.Item>
+//     </div>
+//   </>
+//)
