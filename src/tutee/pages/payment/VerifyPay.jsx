@@ -42,12 +42,14 @@ const VerifyPay = () => {
       );
 
       const paymentDetails = response.data.data;
+      const date = new Date(paymentDetails.created_at);
+      const formattedDate = date.toLocaleString();
 
       setPayDetails({
         name: `${paymentDetails.first_name} ${paymentDetails.last_name}`,
         email: paymentDetails.email,
         trans_ref: paymentDetails.tx_ref,
-        date: paymentDetails.created_at,
+        date: formattedDate,
         amount: paymentDetails.amount,
         charge: paymentDetails.charge,
         status: paymentDetails.status,
