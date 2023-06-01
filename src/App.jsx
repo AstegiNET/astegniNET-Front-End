@@ -19,7 +19,6 @@ import UpdateTutorProfile from "./tutor/pages/users/UpdateProfile";
 import AddCourse from "./tutor/pages/courses/AddCourse";
 import TutorViewAllCourses from "./tutor/pages/courses/TutorViewAllCourses";
 
-import VideoCall from "./videoCall/VideoCall";
 import TutorsList from "./tutee/components/tutorList/TutorsList";
 import TutorProfileView from "./tutee/pages/tutor/TutorProfileView";
 import Header from "./landingPage/components/Header";
@@ -27,7 +26,7 @@ import Header from "./landingPage/components/Header";
 
 import Requests from "./tutor/pages/requests/Requests";
 import TuteeRequests from "./tutee/pages/requests/Requests";
-import Profile from "./tutee/pages/users/Profile";
+
 import TutorEnrollment from "./tutor/pages/enrollments/Enrollment";
 import TuteeEnrollment from "./tutee/pages/enrollments/Enrollments";
 
@@ -36,12 +35,12 @@ export default function App() {
     <Router>
       <Header />
       <Routes>
-        <Route path="profile" element={<Profile />} />
         <Route path="/" element={<LandingPage />} />
-        <Route path="/tutee/register" element={<Register />} />
-        <Route path="/tutee/login" element={<Login />} />
         <Route path="/tutors" element={<TutorsList />} />
         <Route path="tutors/:id" element={<TutorProfileView />} />
+
+        <Route path="/tutee/register" element={<Register />} />
+        <Route path="/tutee/login" element={<Login />} />
 
         {/* pages that tutee only have acces */}
         <Route element={<TuteeProtectedRoutes />}>
@@ -73,10 +72,6 @@ export default function App() {
           <Route path="/tutor/allcourses" element={<TutorViewAllCourses />} />
           <Route path="/tutor/addcourses" element={<AddCourse />} />
         </Route>
-
-        {/* testing payment and video call */}
-        <Route path="/videocall" element={<VideoCall />} />
-        <Route path="/verifypay" element={<VerifyPay />} />
       </Routes>
 
       {/* <Footer /> */}

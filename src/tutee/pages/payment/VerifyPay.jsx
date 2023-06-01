@@ -36,15 +36,13 @@ const VerifyPay = () => {
         `http://localhost:5000/api/payment/pay/verify/${tex_ref}`,
         config
       );
-      const paymentData = await axios.get(
-        `http://localhost:5000/api/payment/getPayment/${tex_ref}`,
-        config
-      );
 
       const paymentDetails = response.data.data;
       const date = new Date(paymentDetails.created_at);
       const formattedDate = date.toLocaleString();
 
+      var date = new Date(paymentDetails.created_at);
+      const formattedDate = date.toLocaleString();
       setPayDetails({
         name: `${paymentDetails.first_name} ${paymentDetails.last_name}`,
         email: paymentDetails.email,
