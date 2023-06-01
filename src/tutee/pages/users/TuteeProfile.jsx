@@ -15,6 +15,7 @@ const TuteeProfile = () => {
     <>
       <div className="pt-50">
         <Sidebar />
+
         <div className="p-4">
           <div className="py-16 shadow-2xl min-h-screen rounded-lg dark:border-gray-700">
             <div className="  bg-white shadow rounded-lg w-5/6 md:w-4/6  mx-auto">
@@ -52,7 +53,7 @@ const TuteeProfile = () => {
                   <div className="mt-5 w-full flex flex-col items-center overflow-hidden text-sm">
                     <Link
                       to="#"
-                      className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-100 transition duration-150"
+                      className=" border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-100 transition duration-150"
                     >
                       Updated his status
                       <span className="text-gray-500 text-xs">24 min ago</span>
@@ -60,7 +61,7 @@ const TuteeProfile = () => {
 
                     <Link
                       to="#"
-                      className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-100 transition duration-150"
+                      className=" border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-100 transition duration-150"
                     >
                       Added new profile picture
                       <span className="text-gray-500 text-xs">42 min ago</span>
@@ -68,14 +69,14 @@ const TuteeProfile = () => {
 
                     <Link
                       to="#"
-                      className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-100 transition duration-150"
+                      className=" border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-100 transition duration-150"
                     >
                       <span className="text-gray-500 text-xs">49 min ago</span>
                     </Link>
 
                     <Link
                       to="#"
-                      className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-100 transition duration-150"
+                      className=" border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-100 transition duration-150"
                     >
                       Editedpreference
                       <span className="text-gray-500 text-xs">1 day ago</span>
@@ -83,7 +84,7 @@ const TuteeProfile = () => {
 
                     <Link
                       to="#"
-                      className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-100 transition duration-150 overflow-hidden"
+                      className=" border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-100 transition duration-150 overflow-hidden"
                     >
                       perform payment
                       <span className="text-gray-500 text-xs">5 days ago</span>

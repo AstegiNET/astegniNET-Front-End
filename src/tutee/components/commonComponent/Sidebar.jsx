@@ -1,8 +1,21 @@
 import React from "react";
 import { FaCcAmazonPay } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/graduate-svgrepo-com.svg";
+import { logout, reset } from "../../features/auth/tuteeAuthSlice";
+
+// tutee/features/auth/tuteeAuthSlice
+import { useDispatch } from "react-redux";
 const Sidebar = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const onLogout = () => {
+    dispatch(logout());
+    dispatch(reset());
+    navigate("/");
+  };
+
   return (
     <div>
       <aside
@@ -60,7 +73,7 @@ const Sidebar = () => {
             </li>
             <li>
               <Link
-                to="#"
+                to="/tuteeenrollments"
                 className="flex items-center p-2 text-gray-500 hover:text-gray-900  font-medium  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <FaCcAmazonPay className="mr-2" />
@@ -69,7 +82,7 @@ const Sidebar = () => {
             </li>
             <li>
               <Link
-                to="#"
+                onClick={onLogout}
                 className="flex items-center p-2 text-gray-500 hover:text-gray-900  font-medium  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <FaCcAmazonPay className="mr-2" />
