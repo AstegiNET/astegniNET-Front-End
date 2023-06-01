@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import logo from "../../assets/images/graduate-svgrepo-com.svg";
 import Sidebar from "../../components/commonComponent/Sidebar";
 
 import axios from "axios";
