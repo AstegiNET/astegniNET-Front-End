@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import logo from "../../assets/images/graduate-svgrepo-com.svg";
 import Sidebar from "../../components/commonComponent/Sidebar";
 
 import axios from "axios";
@@ -38,9 +37,9 @@ const VerifyPay = () => {
       );
 
       const paymentDetails = response.data.data;
-
-      var date = new Date(paymentDetails.created_at);
+      const date = new Date(paymentDetails.created_at);
       const formattedDate = date.toLocaleString();
+
       setPayDetails({
         name: `${paymentDetails.first_name} ${paymentDetails.last_name}`,
         email: paymentDetails.email,
