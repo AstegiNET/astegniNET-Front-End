@@ -60,7 +60,7 @@
 
 // export default Pay;
 
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FaCcAmazonPay } from "react-icons/fa";
 import axios from "axios";
