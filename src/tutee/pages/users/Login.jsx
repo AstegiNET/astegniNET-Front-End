@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -29,7 +29,7 @@ const Login = () => {
     }
 
     if (isSuccess || tutee) {
-      navigate("/");
+      navigate("/tutee/profile/viewProfile");
     }
 
     dispatch(reset());
@@ -89,11 +89,17 @@ const Login = () => {
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Tutee Login
           </h2>
+          <div className="text-md mt-10 leading-6 text-gray-600">
+            Login as a
+            <Link to={"/tutor/login"} className="font-semibold hover:ml-2 px-2 py-1 rounded-md hover:bg-indigo-600 hover:text-white text-indigo-600">
+              &nbsp;Tutor
+            </Link>
+          </div>
         </div>
         <form
           action="#"
           method="POST"
-          className=" mx-auto mt-10 max-w-xl sm:mt-20"
+          className=" mx-auto max-w-xl sm:mt-4"
           onSubmit={onSubmit}
         >
           <div className="grid grid-cols-1 gap-y-6 gap-x-8 sm:grid-cols-2">
