@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import logo from "../../assets/images/graduate-svgrepo-com.svg";
 import Sidebar from "../../components/commonComponent/Sidebar";
 
 import axios from "axios";
@@ -34,10 +33,6 @@ const VerifyPay = () => {
     const verify = async () => {
       const response = await axios.get(
         `http://localhost:5000/api/payment/pay/verify/${tex_ref}`,
-        config
-      );
-      const paymentData = await axios.get(
-        `http://localhost:5000/api/payment/getPayment/${tex_ref}`,
         config
       );
 
