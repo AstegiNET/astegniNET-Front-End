@@ -4,6 +4,7 @@ import axios from "axios";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { FaFilter } from "react-icons/fa";
+import { GET_TUTORS } from "../../../api/API";
 
 const TutorsList = () => {
   const [courseName, setCourseName] = useState("");
@@ -13,8 +14,6 @@ const TutorsList = () => {
   const [nameFocused, setNameFocused] = useState(false);
   const [tutors, setTutors] = useState([]);
 
-  // var API_URL = `http://localhost:5000/api/tutors/search`;
-
   const handleSearchByName = (event) => {
     setTutorName(event.target.value);
   };
@@ -22,19 +21,16 @@ const TutorsList = () => {
     setCourseName(event.target.value);
   };
 
-  // const filteredUsers = resultedTutors.filter((user) =>
-  //   user.name.toLowerCase().includes(searchTerm.toLowerCase())
-  // );
   useEffect(() => {
-    var API_URL = `http://localhost:5000/api/tutors/search?fname=${tutorName}&course=${courseName}&rating=${tutorRating}`;
-    // getTutors();
+    var API_URL = `${GET_TUTORS}?fname=${tutorName}&course=${courseName}&rating=${tutorRating}`;
+
     const getTutors = async () => {
       const response = await axios.get(API_URL);
       setTutors(response.data);
-      // return response.data;
     };
     getTutors();
   }, [tutorName, courseName, tutorRating]);
+
   return (
     <>
       <div className="flex justify-center mt-24">

@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { FaCcAmazonPay } from "react-icons/fa";
 import axios from "axios";
 import uuid4 from "uuid4";
-const payUrl = "http://localhost:5000/api/payment/pay";
-const callback_url = "http://localhost:3000/tutee/verifypay";
-const return_url = "http://localhost:3000/tutee/verifypay";
+
+import { ADD_PAY, INITIALIZE_PAY, CLIENT_BASE_URL } from "../../../api/API";
+const callback_url = `${CLIENT_BASE_URL}/tutee/verifypay`;
+const return_url = `${CLIENT_BASE_URL}/tutee/verifypay`;
 
 const Pay = ({ payData }) => {
   const Navigate = useNavigate({});
@@ -38,10 +39,10 @@ const Pay = ({ payData }) => {
       },
     };
 
-    const response = await axios.post(payUrl, initializeInfo, config);
+    const response = await axios.post(INITIALIZE_PAY, initializeInfo, config);
     if (response.data.checkout_url) {
       const addPay = await axios.post(
-        `http://localhost:5000/api/payment/addPay/${payData.request_id}`,
+        `${ADD_PAY}/${payData.request_id}`,
         data,
         config
       );

@@ -3,11 +3,10 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Sidebar from "../../components/commonComponent/Sidebar";
-
 import axios from "axios";
-
 import { useParams } from "react-router-dom";
 import { useState } from "react";
+import { VERIFY_PAY } from "../../../api/API";
 
 const VerifyPay = () => {
   let tex_ref = useParams().id;
@@ -31,10 +30,7 @@ const VerifyPay = () => {
     };
 
     const verify = async () => {
-      const response = await axios.get(
-        `http://localhost:5000/api/payment/pay/verify/${tex_ref}`,
-        config
-      );
+      const response = await axios.get(`${VERIFY_PAY}/${tex_ref}`, config);
 
       const paymentDetails = response.data.data;
       const date = new Date(paymentDetails.created_at);

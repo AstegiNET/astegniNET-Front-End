@@ -4,6 +4,11 @@ import { FaCheck, FaSearch, FaTrash } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import Sidebar from "../../components/commonComponent/Sidebar";
 import TuteeHeader from "../../components/commonComponent/TutorHeader";
+import {
+  FETCH_REQUESTS,
+  ACCEPT_REQUEST,
+  REJECT_REQUEST,
+} from "../../../api/API";
 
 export default function Requests() {
   const [requests, setRequests] = useState([]);
@@ -14,63 +19,35 @@ export default function Requests() {
       headers: {
         Authorization: `Bearer ${tutor?.token}`,
       },
-    }
+    };
     return userAuth;
   }, [tutor?.token]);
 
   const getRequests = async () => {
-    const response = await axios.get(
-      "http://localhost:5000/api/request/fetchRequests",
-      config
-    );
+    const response = await axios.get(FETCH_REQUESTS, config);
     setRequests(response.data);
-    // console.log(response.data);
     return response.data;
   };
 
   const acceptRequest = async (id) => {
-    // const config = {
-    //   headers: {
-    //     Authorization: `Bearer ${tutor?.token}`,
-    //   },
-    // };
-
-    const response = await axios.put(
-      `http://localhost:5000/api/request/acceptRequest/${id}`,
-      config
-    );
+    const response = await axios.put(`${ACCEPT_REQUEST}/${id}`, config);
     //setRequests is updated here
     console.log(response.data);
     getRequests();
   };
 
   const rejectRequest = async (id) => {
-    // const config = {
-    //   headers: {
-    //     Authorization: `Bearer ${tutor?.token}`,
-    //   },
-    // };
-
-    const response = await axios.put(
-      `http://localhost:5000/api/request/rejectRequest/${id}`,
-      config
-    );
+    const response = await axios.put(`${REJECT_REQUEST}/${id}`, config);
     console.log(response.data);
-    // getRequests();
   };
 
   useEffect(() => {
     const getRequests = async () => {
-      const response = await axios.get(
-        "http://localhost:5000/api/request/fetchRequests",
-        config
-      );
+      const response = await axios.get(FETCH_REQUESTS, config);
       setRequests(response.data);
-      // console.log(response.data);
       return response.data;
     };
     getRequests();
-    // console.log("token= " + tutor?.token);
   }, [config]);
 
   return (
@@ -79,7 +56,7 @@ export default function Requests() {
         <Sidebar />
         <div className="p-4 sm:ml-64">
           <div className="py-16 shadow-2xl min-h-screen rounded-lg dark:border-gray-700">
-            {/* <TuteeHeader tutor={tutor} /> */}
+            <TuteeHeader tutor={tutor} />
             {requests.length > 0 ? (
               <div className="bg-white py-24 sm:py-32">
                 <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
