@@ -1,65 +1,54 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { FaCheck, FaSearch, FaTrash } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import Sidebar from "../../components/commonComponent/Sidebar";
-import { Link } from "react-router-dom";
 import TuteeHeader from "../../components/commonComponent/TutorHeader";
+import {
+  FETCH_REQUESTS,
+  ACCEPT_REQUEST,
+  REJECT_REQUEST,
+} from "../../../api/API";
 
 export default function Requests() {
   const [requests, setRequests] = useState([]);
   const { tutor } = useSelector((state) => state.tutorAuth);
 
-  const getRequests = async () => {
-    const config = {
+  const config = useMemo(() => {
+    const userAuth = {
       headers: {
         Authorization: `Bearer ${tutor?.token}`,
       },
     };
-    const response = await axios.get(
-      "http://localhost:5000/api/request/fetchRequests",
-      config
-    );
+    return userAuth;
+  }, [tutor?.token]);
+
+  const getRequests = async () => {
+    const response = await axios.get(FETCH_REQUESTS, config);
     setRequests(response.data);
-    console.log(response.data);
     return response.data;
   };
 
   const acceptRequest = async (id) => {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${tutor?.token}`,
-      },
-    };
-
-    const response = await axios.put(
-      `http://localhost:5000/api/request/acceptRequest/${id}`,
-      config
-    );
+    const response = await axios.put(`${ACCEPT_REQUEST}/${id}`, config);
     //setRequests is updated here
     console.log(response.data);
     getRequests();
   };
 
   const rejectRequest = async (id) => {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${tutor?.token}`,
-      },
-    };
-
-    const response = await axios.put(
-      `http://localhost:5000/api/request/rejectRequest/${id}`,
-      config
-    );
+    const response = await axios.put(`${REJECT_REQUEST}/${id}`, config);
     console.log(response.data);
-    getRequests();
   };
 
   useEffect(() => {
+    const getRequests = async () => {
+      const response = await axios.get(FETCH_REQUESTS, config);
+      setRequests(response.data);
+      return response.data;
+    };
     getRequests();
-    console.log("token= " + tutor?.token);
-  }, []);
+  }, [config]);
 
   return (
     <>
@@ -73,7 +62,7 @@ export default function Requests() {
                 <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
                   <div className="max-w-2xl">
                     <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                      My Requests
+                      Your Requests
                     </h2>
                     <p className="mt-6 text-lg leading-8 text-gray-600">
                       Libero fames augue nisl porttitor nisi, quis. Id ac elit

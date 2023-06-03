@@ -16,7 +16,7 @@ import {
 
 import { logout, reset } from "../../tutee/features/auth/tuteeAuthSlice";
 
-const navigation = [
+let navigation = [
   { name: "about us", href: "#about" },
   { name: "constact us", href: "#contact" },
 
@@ -29,22 +29,13 @@ const Header = () => {
   const dispatch = useDispatch();
   const { tutee } = useSelector((state) => state.tuteeAuth);
   const { tutor } = useSelector((state) => state.tutorAuth);
-
+if (tutor){
+  navigation=navigation.slice(0,2)
+}
   const onLogout = () => {
     dispatch(logout());
     dispatch(tutorLogout());
     dispatch(tutorReset());
-    dispatch(reset());
-    navigate("/");
-  };
-  const tutorOnLogout = () => {
-    dispatch(tutorLogout());
-    dispatch(tutorReset());
-    navigate("/");
-  };
-
-  const tuteeOnLogout = () => {
-    dispatch(logout());
     dispatch(reset());
     navigate("/");
   };
@@ -106,15 +97,19 @@ const Header = () => {
           >
             <Menu.Items className="absolute right-0 z-10 lg:mt-10 sm:mt-8 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <div className="py-1">
-                {tutee && tutor ? (
+                {tutee || tutor ? (
                   <>
                     <div>
                       <Menu.Item>
                         <Link
-                          to={tutee ? "/tutee/profile/viewprofile" : ""}
+                          to={
+                            tutee
+                              ? "/tutee/profile/viewprofile"
+                              : "/tutor/profile/viewprofile"
+                          }
                           className=" text-gray-900 block px-4 py-2 text-sm"
                         >
-                          tutee profile
+                          Profile
                         </Link>
                       </Menu.Item>
                     </div>
@@ -122,99 +117,10 @@ const Header = () => {
                     <div>
                       <Menu.Item>
                         <Link
-                          onClick={tuteeOnLogout}
+                          onClick={onLogout}
                           className=" text-gray-900 block px-4 py-2 text-sm"
                         >
-                          tutee logout
-                        </Link>
-                      </Menu.Item>
-                    </div>
-
-                    <div>
-                      <Menu.Item>
-                        <Link
-                          to={tutee ? "/tutor/profile/viewprofile" : ""}
-                          className=" text-gray-900 block px-4 py-2 text-sm"
-                        >
-                          tutor profile
-                        </Link>
-                      </Menu.Item>
-                    </div>
-                    <div>
-                      <Menu.Item>
-                        <Link
-                          onClick={tutorOnLogout}
-                          className=" text-gray-900 block px-4 py-2 text-sm"
-                        >
-                          tutor logout
-                        </Link>
-                      </Menu.Item>
-                    </div>
-                  </>
-                ) : tutee ? (
-                  <>
-                    <div>
-                      <Menu.Item>
-                        <Link
-                          to={tutee ? "/tutee/profile/viewprofile" : ""}
-                          className=" text-gray-900 block px-4 py-2 text-sm"
-                        >
-                          tutee profile
-                        </Link>
-                      </Menu.Item>
-                    </div>
-                    <div>
-                      <Menu.Item>
-                        <Link
-                          onClick={tuteeOnLogout}
-                          className=" text-gray-900 block px-4 py-2 text-sm"
-                        >
-                          tutee logout
-                        </Link>
-                      </Menu.Item>
-                    </div>
-
-                    <div>
-                      <Menu.Item>
-                        <Link
-                          to="/tutor/login"
-                          className=" text-gray-900 block px-4 py-2 text-sm"
-                        >
-                          tutor
-                        </Link>
-                      </Menu.Item>
-                    </div>
-                  </>
-                ) : tutor ? (
-                  <>
-                    <div>
-                      <Menu.Item>
-                        <Link
-                          to={tutor ? "/tutor/profile/viewprofile" : ""}
-                          className=" text-gray-900 block px-4 py-2 text-sm"
-                        >
-                          tutor profile
-                        </Link>
-                      </Menu.Item>
-                    </div>
-                    <div>
-                      <Menu.Item>
-                        <Link
-                          onClick={tutorOnLogout}
-                          className=" text-gray-900 block px-4 py-2 text-sm"
-                        >
-                          tutor logout
-                        </Link>
-                      </Menu.Item>
-                    </div>
-
-                    <div>
-                      <Menu.Item>
-                        <Link
-                          to="/tutee/login"
-                          className=" text-gray-900 block px-4 py-2 text-sm"
-                        >
-                          tutee
+                          logout
                         </Link>
                       </Menu.Item>
                     </div>
@@ -224,20 +130,20 @@ const Header = () => {
                     <div>
                       <Menu.Item>
                         <Link
-                          to="/tutee/login"
+                          to={"/tutee/login"}
                           className=" text-gray-900 block px-4 py-2 text-sm"
                         >
-                          tutee
+                          Login
                         </Link>
                       </Menu.Item>
                     </div>
                     <div>
                       <Menu.Item>
                         <Link
-                          to="/tutor/login"
+                          to={"/tutee/register"}
                           className=" text-gray-900 block px-4 py-2 text-sm"
                         >
-                          tutor
+                          Register
                         </Link>
                       </Menu.Item>
                     </div>

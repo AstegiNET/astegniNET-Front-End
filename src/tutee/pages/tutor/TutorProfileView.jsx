@@ -3,16 +3,23 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import {
+  GET_TUTOR,
+  SEND_REQUEST,
+  GET_REQUESTS,
+  GET_COURSE,
+} from "../../../api/API";
 
 const UserProfile = () => {
   const id = useParams().id;
   const [tutor, setTutor] = useState([]);
   const [course, setCourse] = useState({});
   const [requestSent, setRequestSent] = useState(false);
-
   const { tutee } = useSelector((state) => state.tuteeAuth);
   const navigate = useNavigate();
-  const API_URL = `http://localhost:5000/api/tutors/tutor/${id}`;
+
+  const API_URL = `${GET_TUTOR}/${id}`;
+
   const sendRequest = async () => {
     const config = {
       headers: {
@@ -24,11 +31,7 @@ const UserProfile = () => {
       tutor: id,
       course: tutor.course,
     };
-    const response = await axios.post(
-      "http://localhost:5000/api/request/sendRequest",
-      request,
-      config
-    );
+    const response = await axios.post(SEND_REQUEST, request, config);
     if (response.statusText === "OK") {
       navigate("/tutors");
     }
@@ -40,10 +43,7 @@ const UserProfile = () => {
         Authorization: `Bearer ${tutee?.token}`,
       },
     };
-    const response = await axios.get(
-      "http://localhost:5000/api/request/getRequests",
-      config
-    );
+    const response = await axios.get(GET_REQUESTS, config);
     setRequestSent(
       response.data?.filter(
         (item) =>
@@ -57,22 +57,18 @@ const UserProfile = () => {
     const getTutor = async () => {
       const response = await axios.get(API_URL);
       setTutor(response.data);
-      // return response.data;
     };
 
     const getCourse = async () => {
-      const response = await axios.get(
-        `http://localhost:5000/api/courses/getCourse/${tutor.course}`
-      );
+      const response = await axios.get(`${GET_COURSE}/${tutor.course}`);
 
       setCourse(response.data);
-      // return response.data;
     };
     getTutor();
     getCourse();
     getRequest();
   }, [API_URL, tutor.course]);
-  // console.log(sentRequest);
+
   return (
     <div className="relative ">
       <div className="container mx-auto my-5 p-5">

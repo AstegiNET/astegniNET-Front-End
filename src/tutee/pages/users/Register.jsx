@@ -103,8 +103,14 @@ const Register = () => {
           <p className="mt-2 text-lg leading-8 text-gray-600">
             register here if you havent any account
           </p>
+          <div className="text-md mt-10 leading-6 text-gray-600">
+            Register as a
+            <Link to={"/tutor/register"} className="font-semibold hover:ml-2 px-2 py-1 rounded-md hover:bg-indigo-600 hover:text-white text-indigo-600">
+              &nbsp;Tutor
+            </Link>
+          </div>
         </div>
-        <form onSubmit={onSubmit} className=" mx-auto mt-16 max-w-xl sm:mt-20">
+        <form onSubmit={onSubmit} className=" mx-auto mt-4 max-w-xl">
           <div className="grid grid-cols-1 gap-y-6 gap-x-8 sm:grid-cols-2">
             <div>
               <label

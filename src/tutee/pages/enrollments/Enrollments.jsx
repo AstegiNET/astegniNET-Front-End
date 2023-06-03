@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { FaCheck, FaSearch } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import Sidebar from "../../components/commonComponent/Sidebar";
-
 import TuteeHeader from "../../components/commonComponent/TuteeHeader";
+import { FETCH_ENROLLMENTS } from "../../../api/API";
 
 export default function Enrollment() {
   const [enrollments, setEnrollments] = useState([]);
@@ -16,10 +16,7 @@ export default function Enrollment() {
         Authorization: `Bearer ${tutee?.token}`,
       },
     };
-    const response = await axios.get(
-      "http://localhost:5000/api/request/fetchEnrollments",
-      config
-    );
+    const response = await axios.get(FETCH_ENROLLMENTS, config);
     setEnrollments(response.data);
     console.log(response.data);
     return response.data;

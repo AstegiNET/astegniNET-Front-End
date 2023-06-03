@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import Sidebar from "../../components/commonComponent/Sidebar";
 import Pay from "../payment/Pay";
 import TuteeHeader from "../../components/commonComponent/TuteeHeader";
+import { FETCH_REQUESTS, DELETE_REQUEST } from "../../../api/API";
 
 export default function Requests() {
   const [requests, setRequests] = useState([]);
@@ -16,10 +17,7 @@ export default function Requests() {
         Authorization: `Bearer ${tutee?.token}`,
       },
     };
-    const response = await axios.get(
-      "http://localhost:5000/api/request/fetchRequests",
-      config
-    );
+    const response = await axios.get(FETCH_REQUESTS, config);
     setRequests(response.data);
     return response.data;
   };
@@ -31,10 +29,7 @@ export default function Requests() {
       },
     };
 
-    const response = await axios.delete(
-      `http://localhost:5000/api/request/deleteRequest/${id}`,
-      config
-    );
+    const response = await axios.delete(`${DELETE_REQUEST}/${id}`, config);
 
     setRequests((prevRequests) =>
       prevRequests.filter((prevRequest) => prevRequest.id !== id)

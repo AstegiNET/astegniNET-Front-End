@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/tutees/";
+import { REGISTER_TUTEE, LOGIN_TUTEE } from "../../../api/API";
 
 // Register tutee
 const register = async (tuteeData) => {
-  const response = await axios.post(API_URL + "register", tuteeData);
+  const response = await axios.post(REGISTER_TUTEE, tuteeData);
 
   if (response.data) {
     localStorage.setItem("tutee", JSON.stringify(response.data));
@@ -15,7 +15,7 @@ const register = async (tuteeData) => {
 
 // Login user
 const login = async (userData) => {
-  const response = await axios.post(API_URL + "login", userData);
+  const response = await axios.post(LOGIN_TUTEE, userData);
 
   if (response.data) {
     localStorage.setItem("tutee", JSON.stringify(response.data));

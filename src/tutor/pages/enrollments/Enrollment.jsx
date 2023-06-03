@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { FaCheck, FaSearch, FaTrash } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import Sidebar from "../../components/commonComponent/Sidebar";
-import { Link } from "react-router-dom";
+import { FETCH_ENROLLMENTS } from "../../../api/API";
 import TuteeHeader from "../../components/commonComponent/TutorHeader";
 
 export default function Enrollment() {
@@ -16,10 +16,7 @@ export default function Enrollment() {
         Authorization: `Bearer ${tutor?.token}`,
       },
     };
-    const response = await axios.get(
-      "http://localhost:5000/api/request/fetchEnrollments",
-      config
-    );
+    const response = await axios.get(FETCH_ENROLLMENTS, config);
     setEnrollments(response.data);
     console.log(response.data);
     return response.data;
