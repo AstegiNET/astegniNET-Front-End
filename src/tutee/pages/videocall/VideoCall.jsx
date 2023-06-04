@@ -3,7 +3,7 @@ import VideoCall from "../../../video/VideoCall";
 
 const VideoChat = () => {
   return (
-    <VideoCall role = "participant"/>
+    <VideoCall role = "audience"/>
   );
 };
 
