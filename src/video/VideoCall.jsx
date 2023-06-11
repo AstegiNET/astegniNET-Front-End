@@ -70,7 +70,11 @@ const VideoCall = ({ role }) => {
                     className="absolute top-16 z-20 text-white rounded pinter px-1 py-2"
                     onClick={() => setPinned(!isPinned)}
                   >
-                    {isPinned ? <FaWindowMaximize size={24}/> : <FaWindowMinimize size={24}/>}
+                    {isPinned ? (
+                      <FaWindowMaximize size={24} />
+                    ) : (
+                      <FaWindowMinimize size={24} />
+                    )}
                   </button>
                   <AgoraUIKit
                     styleProps={{

@@ -10,7 +10,7 @@ const Sidebar = () => {
         className="fixed  top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 shadow-2xl"
         aria-label="Sidebar"
       >
-        <div className="h-full px-3 py-16 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+        <div className="h-full px-3 py-16 overflow-y-auto ">
           <div className="my-5  lg:hidden  justify-center">
             <Link to="/">
               <img
@@ -24,7 +24,7 @@ const Sidebar = () => {
             <li>
               <Link
                 to="/"
-                className="flex items-center p-2 text-gray-500 hover:text-gray-900 font-medium  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="flex items-center p-2 text-gray-500 hover:text-gray-900 font-medium  rounded-lg  hover:bg-gray-100 "
               >
                 <FaCcAmazonPay className="mr-2" />
                 <span className="ml-3">AstegniNET</span>
@@ -33,7 +33,7 @@ const Sidebar = () => {
             <li>
               <Link
                 to="/tutor/profile/updateprofile"
-                className="flex items-center p-2 text-gray-500 hover:text-gray-900  font-medium  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="flex items-center p-2 text-gray-500 hover:text-gray-900  font-medium  rounded-lg  hover:bg-gray-100 "
               >
                 <FaCcAmazonPay className="mr-2" />
                 <span className="ml-3">update profile</span>
@@ -42,7 +42,7 @@ const Sidebar = () => {
             <li>
               <Link
                 to="/tutor/profile/viewprofile"
-                className="flex items-center p-2 text-gray-500 hover:text-gray-900 font-medium  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="flex items-center p-2 text-gray-500 hover:text-gray-900 font-medium  rounded-lg  hover:bg-gray-100 "
               >
                 <FaCcAmazonPay className="mr-2" />
                 <span className="ml-3">view profile</span>
@@ -52,7 +52,7 @@ const Sidebar = () => {
             <li>
               <Link
                 to="/tutorequests"
-                className="flex items-center p-2 text-gray-500 hover:text-gray-900  font-medium  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="flex items-center p-2 text-gray-500 hover:text-gray-900  font-medium  rounded-lg  hover:bg-gray-100 "
               >
                 <FaCcAmazonPay className="mr-2" />
                 <span className="ml-3">Requests</span>
@@ -61,7 +61,7 @@ const Sidebar = () => {
             <li>
               <Link
                 to="/tutorenrollments"
-                className="flex items-center p-2 text-gray-500 hover:text-gray-900  font-medium  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="flex items-center p-2 text-gray-500 hover:text-gray-900  font-medium  rounded-lg  hover:bg-gray-100 "
               >
                 <FaCcAmazonPay className="mr-2" />
                 <span className="ml-3">enrollments</span>
@@ -70,7 +70,7 @@ const Sidebar = () => {
             <li>
               <Link
                 to="#"
-                className="flex items-center p-2 text-gray-500 hover:text-gray-900  font-medium  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="flex items-center p-2 text-gray-500 hover:text-gray-900  font-medium  rounded-lg  hover:bg-gray-100 "
               >
                 <FaCcAmazonPay className="mr-2" />
                 <span className="ml-3">logout</span>
