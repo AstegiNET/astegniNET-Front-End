@@ -8,6 +8,8 @@ import { toast } from "react-toastify";
 import { tutorRegister, tutorReset } from "../../features/auth/tutorAuthSlice";
 import { getAllCourses } from "../../features/courses/courseSlice";
 import Spinner from "../../components/commonComponent/Spinner";
+import { FETCH_ALL_COURSES } from "../../../api/API";
+import axios from "axios";
 
 const TutorRegister = () => {
   const [formData, setFormData] = useState({
@@ -32,7 +34,12 @@ const TutorRegister = () => {
   );
 
   const { courses } = useSelector((state) => state.course);
-  console.log(courses);
+
+  const getAllCourses = async () => {
+    const response = await axios.get(FETCH_ALL_COURSES);
+    return response.data;
+  };
+  console.log(getAllCourses());
 
   useEffect(() => {
     if (isError) {
@@ -115,7 +122,10 @@ const TutorRegister = () => {
           </p>
           <div className="text-md mt-10 leading-6 text-gray-600">
             Register as a
-            <Link to={"/tutee/register"} className="font-semibold hover:ml-2 px-2 py-1 rounded-md hover:bg-indigo-600 hover:text-white text-indigo-600">
+            <Link
+              to={"/tutee/register"}
+              className="font-semibold hover:ml-2 px-2 py-1 rounded-md hover:bg-indigo-600 hover:text-white text-indigo-600"
+            >
               &nbsp;Tutee
             </Link>
           </div>
