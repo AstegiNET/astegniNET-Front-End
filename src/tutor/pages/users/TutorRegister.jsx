@@ -39,7 +39,7 @@ const TutorRegister = () => {
     const response = await axios.get(FETCH_ALL_COURSES);
     return response.data;
   };
-  console.log(getAllCourses());
+  console.log(courses);
 
   useEffect(() => {
     if (isError) {
