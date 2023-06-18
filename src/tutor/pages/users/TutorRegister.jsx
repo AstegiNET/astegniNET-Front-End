@@ -8,8 +8,6 @@ import { toast } from "react-toastify";
 import { tutorRegister, tutorReset } from "../../features/auth/tutorAuthSlice";
 import { getAllCourses } from "../../features/courses/courseSlice";
 import Spinner from "../../components/commonComponent/Spinner";
-import { FETCH_ALL_COURSES } from "../../../api/API";
-import axios from "axios";
 
 const TutorRegister = () => {
   const [formData, setFormData] = useState({
@@ -34,13 +32,6 @@ const TutorRegister = () => {
   );
 
   const { courses } = useSelector((state) => state.course);
-  // const getAllCourses = async () => {
-  //   const response = await axios.get(FETCH_ALL_COURSES);
-
-  //   return response.data;
-  // };
-
-  // console.log(getAllCourses());
 
   useEffect(() => {
     if (isError) {
