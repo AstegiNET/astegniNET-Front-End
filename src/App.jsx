@@ -43,7 +43,6 @@ export default function App() {
         <Route path="/tutee/register" element={<Register />} />
         <Route path="/tutee/login" element={<Login />} />
 
-        {/* pages that tutee only have acces */}
         <Route element={<TuteeProtectedRoutes />}>
           <Route path="/tutee/allcourses" element={<ViewAllCourses />} />
           <Route path="tutee/tutors/:id" element={<TutorProfileView />} />
@@ -62,7 +61,6 @@ export default function App() {
         <Route path="/tutor/register" element={<TutorRegister />} />
         <Route path="/tutor/login" element={<TutorLogin />} />
 
-        {/* routes that tutor can only acess */}
         <Route element={<TutorProtectedRoutes />}>
           <Route path="/tutor/profile/viewprofile" element={<TutorProfile />} />
           <Route
