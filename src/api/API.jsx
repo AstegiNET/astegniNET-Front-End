@@ -27,7 +27,7 @@ export const DELETE_REQUEST = `${BASE_URI}/request/deleteRequest`;
 export const GET_REQUESTS = `${BASE_URI}/request/getRequests`;
 export const FETCH_REQUESTS = `${BASE_URI}/request/fetchRequests`;
 
-export const FETCH_ALL_COURSES = `${BASE_URI}/courses/getAllCourses`;
-
 export const FETCH_ENROLLMENTS = `${BASE_URI}/request/fetchEnrollments`;
+
 export const GET_COURSE = `${BASE_URI}/courses/getCourse`;
+export const FETCH_ALL_COURSES = `${BASE_URI}/courses/getAllCourses`;
