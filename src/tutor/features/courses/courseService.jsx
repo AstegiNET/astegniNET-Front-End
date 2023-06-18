@@ -1,4 +1,5 @@
 import axios from "axios";
+import { FETCH_ALL_COURSES } from "../../../api/API";
 
 const API_URL = "http://localhost:5000/api/courses/";
 
@@ -30,7 +31,7 @@ const getCourses = async (token) => {
 
 // Get user courses
 const getAllCourses = async () => {
-  const response = await axios.get(API_URL + "getAllCourses");
+  const response = await axios.get(FETCH_ALL_COURSES);
 
   return response.data;
 };
