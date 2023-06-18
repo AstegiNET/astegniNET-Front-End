@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AgoraUIKit, { layout } from "agora-react-uikit";
-import { APP_ID } from "../.env/app_id";
+// import { APP_ID } from "../.env/app_id";
 import ChatsScreen from "./components/ChatScreen";
 import { FaWindowMaximize, FaWindowMinimize } from "react-icons/fa";
 const messages = [
@@ -91,7 +91,7 @@ const VideoCall = ({ role }) => {
                       },
                     }}
                     rtcProps={{
-                      appId: APP_ID,
+                      appId: "87bed5f277064fbebc114bc9162b0783",
                       channel: "test",
                       token: null, // add your token if using app in secured mode
                       role: role, //role
