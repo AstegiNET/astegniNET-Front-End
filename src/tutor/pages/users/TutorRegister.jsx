@@ -33,14 +33,14 @@ const TutorRegister = () => {
     (state) => state.tutorAuth
   );
 
+  const { courses } = useSelector((state) => state.course);
   const getAllCourses = async () => {
     const response = await axios.get(FETCH_ALL_COURSES);
+
     return response.data;
   };
-  console.log(getAllCourses());
 
-  const { courses } = getAllCourses();
-  // const { courses } = useSelector((state) => state.course);
+  console.log(getAllCourses());
 
   useEffect(() => {
     if (isError) {
