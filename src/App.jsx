@@ -31,6 +31,8 @@ import TutorEnrollment from "./tutor/pages/enrollments/Enrollment";
 import TuteeEnrollment from "./tutee/pages/enrollments/Enrollments";
 import VideoChat from "./tutor/pages/videocall/VideoCall";
 import TuteeVideoChat from "./tutee/pages/videocall/VideoCall";
+import CommonProtectedRoutes from "./landingPage/utils/CommonUtils";
+import VideoCall from "./video/VideoCall";
 
 export default function App() {
   return (
@@ -73,6 +75,11 @@ export default function App() {
           <Route path="/tutor/allcourses" element={<TutorViewAllCourses />} />
           <Route path="/tutor/addcourses" element={<AddCourse />} />
           <Route path="/tutor/videoCall" element={<VideoChat />} />
+          
+        </Route>
+
+        <Route element={<CommonProtectedRoutes/>}>
+        <Route path="/videoCall" element={<VideoCall />} />
         </Route>
       </Routes>
 

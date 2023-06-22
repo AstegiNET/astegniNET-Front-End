@@ -39,7 +39,7 @@ const messages = [
     time: "2022-11-01T12:20:00",
   },
 ];
-const VideoCall = ({ role }) => {
+const VideoCall = ({role}) => {
   const [videocall, setVideocall] = useState(true);
   const [isPinned, setPinned] = useState(false);
   const [username, setUsername] = useState("");
@@ -94,7 +94,7 @@ const VideoCall = ({ role }) => {
                       appId: "87bed5f277064fbebc114bc9162b0783",
                       channel: "test",
                       token: null, // add your token if using app in secured mode
-                      role: role, //role
+                      role: role || "host", //role
                       layout: isPinned ? layout.pin : layout.grid,
                       enableScreensharing: true,
                       grid: 2,
