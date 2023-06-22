@@ -29,7 +29,7 @@ const TutorLogin = () => {
     }
 
     if (isSuccess || tutor) {
-      navigate("/tutor/profile/viewProfile");
+      navigate("/tutor/home");
     }
 
     dispatch(tutorReset());

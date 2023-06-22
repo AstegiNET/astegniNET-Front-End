@@ -8,7 +8,9 @@ import Testimonial from "./components/Testimonial";
 
 export default function LandingPage() {
   return (
-    <>  <div id="home" className="bg-white">
+    <>  
+    <Header/>
+    <div id="home" className="bg-white">
         <div className="mx-auto  py-4 sm:px-6  mt-16 lg:px-8">
           <div className="relative isolate overflow-hidden bg-gray-100 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
             <svg
@@ -170,6 +172,7 @@ export default function LandingPage() {
       <AboutUs />
       <Testimonial/>
       <ContactUS />
+      <Footer/>
     </>
   );
 }

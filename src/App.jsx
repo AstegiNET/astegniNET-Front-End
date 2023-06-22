@@ -14,30 +14,27 @@ import VerifyPay from "./tutee/pages/payment/VerifyPay";
 import TutorProtectedRoutes from "./tutor/utils/TutorProtectedRoutes";
 import TutorLogin from "./tutor/pages/users/TutorLogin";
 import TutorRegister from "./tutor/pages/users/TutorRegister";
-import TutorProfile from "./tutor/pages/users/TutorProfile";
 import UpdateTutorProfile from "./tutor/pages/users/UpdateProfile";
-import AddCourse from "./tutor/pages/courses/AddCourse";
-import TutorViewAllCourses from "./tutor/pages/courses/TutorViewAllCourses";
 
 import TutorsList from "./tutee/components/tutorList/TutorsList";
 import TutorProfileView from "./tutee/pages/tutor/TutorProfileView";
 import Header from "./landingPage/components/Header";
 // import Footer from "./landingPage/components/Footer";
 
-import Requests from "./tutor/pages/requests/Requests";
+import Requests from "./tutor/pages/requests/RequestComponent";
 import TuteeRequests from "./tutee/pages/requests/Requests";
 
 import TutorEnrollment from "./tutor/pages/enrollments/Enrollment";
 import TuteeEnrollment from "./tutee/pages/enrollments/Enrollments";
-import VideoChat from "./tutor/pages/videocall/VideoCall";
 import TuteeVideoChat from "./tutee/pages/videocall/VideoCall";
 import CommonProtectedRoutes from "./landingPage/utils/CommonUtils";
 import VideoCall from "./video/VideoCall";
+import TutorHome from "./tutor/pages/TutorHome";
 
 export default function App() {
   return (
     <Router>
-      <Header />
+      {/* <Header /> */}
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/tutors" element={<TutorsList />} />
@@ -65,21 +62,14 @@ export default function App() {
         <Route path="/tutor/login" element={<TutorLogin />} />
 
         <Route element={<TutorProtectedRoutes />}>
-          <Route path="/tutor/profile/viewprofile" element={<TutorProfile />} />
-          <Route
-            path="/tutor/profile/UpdateProfile"
-            element={<UpdateTutorProfile />}
-          />
-          <Route path="/tutorequests" element={<Requests />} />
-          <Route path="/tutorenrollments" element={<TutorEnrollment />} />
-          <Route path="/tutor/allcourses" element={<TutorViewAllCourses />} />
-          <Route path="/tutor/addcourses" element={<AddCourse />} />
-          <Route path="/tutor/videoCall" element={<VideoChat />} />
-          
+          <Route path="/tutor/home" element={<TutorHome />} />
+          <Route path="/tutor/UpdateProfile" element={<UpdateTutorProfile />} />
+          <Route path="/tutor/requests" element={<Requests />} />
+          <Route path="/tutor/enrollments" element={<TutorEnrollment />} />
         </Route>
 
-        <Route element={<CommonProtectedRoutes/>}>
-        <Route path="/videoCall" element={<VideoCall />} />
+        <Route element={<CommonProtectedRoutes />}>
+          <Route path="/videoCall" element={<VideoCall />} />
         </Route>
       </Routes>
 

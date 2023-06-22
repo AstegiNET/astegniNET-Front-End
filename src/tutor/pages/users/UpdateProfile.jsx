@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import logo from "../../assets/images/graduate-svgrepo-com.svg";
 import { tutorReset } from "../../features/auth/tutorAuthSlice";
 import Spinner from "../../components/commonComponent/Spinner";
-import Sidebar from "../../components/commonComponent/Sidebar";
+import Sidebar from "../../components/commonComponent/sidebar/Sidebar";
 // import { toast } from "react-toastify";
 
 const UpdateTutorProfile = () => {
@@ -47,36 +47,16 @@ const UpdateTutorProfile = () => {
     }));
   };
 
-  // const onSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   if (password !== password2) {
-  //     toast.error("Passwords do not match");
-  //   } else {
-  //     const tutorData = {
-  //       fname,
-  //       lname,
-  //       email,
-  //       phone,
-  //       salary,
-  //       password,
-  //     };
-
-  //     dispatch(tutorRegister(tutorData));
-  //   }
-  // };
-
   if (isLoading) {
     return <Spinner />;
   }
 
   return (
     <>
-      <div className="pt-50">
-        <Sidebar />
-
-        <div className="p-4 ">
-          <div className="py-16 shadow-2xl min-h-screen rounded-lg dark:border-gray-700">
+      <div className="flex pt-50">
+        <Sidebar/>
+        <div className="w-full">
+          <div className="py-16">
             <div className="  bg-white shadow rounded-lg  w-4/6  mx-auto">
               <div className="mt-5 flex justify-center">
                 <Link to="/">
@@ -90,26 +70,14 @@ const UpdateTutorProfile = () => {
 
               <div className="mt-10">
                 <h1 className="font-bold text-center text-3xl text-gray-900">
-                  AstegniNET
+                  {tutor.fname} {tutor.lname}
                 </h1>
                 <p className="text-center text-sm text-gray-400 font-medium">
                   cross platform online tutorial app
                 </p>
 
-                <div className="my-5 px-6">
-                  <Link
-                    to="/tutor/profile/viewprofile"
-                    className="text-gray-200 block rounded-lg text-center font-medium leading-6 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 hover:text-white"
-                  >
-                    welcome {tutor.fname} {tutor.lname}
-                  </Link>
-                </div>
-
                 <div className="w-full">
                   <div className="mt-5 w-full flex flex-col items-center overflow-hidden text-sm">
-                    <h3 className="font-medium text-gray-900 text-left px-6">
-                      update profile
-                    </h3>
                     {/* onSubmit={onSubmit} */}
                     <form className=" w-full p-10">
                       <div className="grid grid-cols-1 gap-y-6 gap-x-8 sm:grid-cols-2">
