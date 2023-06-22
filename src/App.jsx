@@ -30,6 +30,7 @@ import TuteeRequests from "./tutee/pages/requests/Requests";
 import TutorEnrollment from "./tutor/pages/enrollments/Enrollment";
 import TuteeEnrollment from "./tutee/pages/enrollments/Enrollments";
 import VideoChat from "./tutor/pages/videocall/VideoCall";
+import TuteeVideoChat from "./tutee/pages/videocall/VideoCall";
 
 export default function App() {
   return (
@@ -55,7 +56,7 @@ export default function App() {
             path="/tutee/profile/updateprofile"
             element={<UpdateProfile />}
           />
-          <Route path="/tutee/videoCall" element={<VideoChat />} />
+          <Route path="/tutee/videoCall" element={<TuteeVideoChat />} />
         </Route>
 
         <Route path="/tutor/register" element={<TutorRegister />} />

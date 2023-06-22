@@ -1,10 +1,10 @@
 import React from "react";
 import VideoCall from "../../../video/VideoCall";
 
-const VideoChat = () => {
+const TuteeVideoChat = () => {
   return (
     <VideoCall role = "audience"/>
   );
 };
 
-export default VideoChat;
+export default TuteeVideoChat;

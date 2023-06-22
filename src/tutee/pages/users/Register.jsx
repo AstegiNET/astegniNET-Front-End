@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { register, reset } from "../../features/auth/tuteeAuthSlice";
 import Spinner from "../../components/commonComponent/Spinner";
-
 const Register = () => {
   const [formData, setFormData] = useState({
     fname: "",
@@ -104,7 +103,7 @@ const Register = () => {
             Tutee Register
           </h2>
           <p className="mt-2 text-lg leading-8 text-gray-600">
-            register here if you havent any account
+            Register here if you have no account
           </p>
           <div className="text-md mt-10 leading-6 text-gray-600">
             Register as a
@@ -131,6 +130,7 @@ const Register = () => {
                   name="fname"
                   id="fname"
                   value={fname}
+                  required
                   onChange={onChange}
                   placeholder="enter first name"
                   autoComplete="given-name"
@@ -151,6 +151,7 @@ const Register = () => {
                   name="lname"
                   id="lname"
                   value={lname}
+                  required
                   onChange={onChange}
                   placeholder="enter last name"
                   autoComplete="family-name"
@@ -172,6 +173,7 @@ const Register = () => {
                   name="email"
                   id="email"
                   value={email}
+                  required
                   onChange={onChange}
                   placeholder="enter email"
                   autoComplete="email"
@@ -192,6 +194,7 @@ const Register = () => {
                   name="phone"
                   id="phone"
                   value={phone}
+                  required
                   onChange={onChange}
                   placeholder="enter phone number"
                   autoComplete="tel"
@@ -209,7 +212,7 @@ const Register = () => {
               </label>
               <div className="relative mt-2.5">
                 <input
-                  type="text"
+                  type="file"
                   name="avatar"
                   id="avatar"
                   value={avatar}
@@ -234,6 +237,7 @@ const Register = () => {
                   name="password"
                   id="password"
                   value={password}
+                  required
                   onChange={onChange}
                   placeholder="enter password"
                   autoComplete="password"
@@ -255,6 +259,7 @@ const Register = () => {
                   name="password2"
                   id="password2"
                   value={password2}
+                  required
                   autoComplete="password2"
                   onChange={onChange}
                   placeholder="enter password"
@@ -264,7 +269,7 @@ const Register = () => {
             </div>
 
             <div className="text-sm leading-6 text-gray-600">
-              already have an account
+              Already have an account?
               <Link to="/tutee/login" className="font-semibold text-indigo-600">
                 &nbsp;login
               </Link>
