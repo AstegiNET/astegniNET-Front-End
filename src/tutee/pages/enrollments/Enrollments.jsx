@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import Sidebar from "../../components/commonComponent/sidebar/Sidebar";
 import TuteeHeader from "../../components/commonComponent/TuteeHeader";
 import { FETCH_ENROLLMENTS } from "../../../api/API";
+import NotFound from "../../components/notFound/NotFound";
 
 export default function Enrollment() {
   const [enrollments, setEnrollments] = useState([]);
@@ -30,9 +31,9 @@ export default function Enrollment() {
     <>
       <div className="flex pt-10">
         <Sidebar />
-        <div className="p-4 w-full">
-          <div className=" shadow-2xl min-h-screen rounded-lg dark:border-gray-700">
-            <TuteeHeader tutee={tutee} />
+        <div className="w-full">
+          <TuteeHeader tutee={"Enrollments"} />
+          <div className="p-4  shadow-2xl min-h-screen rounded-lg dark:border-gray-700">
             {enrollments.length > 0 ? (
               <div className="bg-white py-24 sm:py-32">
                 <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 ">
@@ -79,40 +80,11 @@ export default function Enrollment() {
                 </div>
               </div>
             ) : (
-              <EnrollmentsNotFound />
+              <NotFound title={"Enrollments"} description={"Sorry, you don't have any enrollments yet"}/>
             )}
           </div>
         </div>
       </div>
     </>
-  );
-}
-
-function EnrollmentsNotFound() {
-  return (
-    <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
-      <div className="text-center">
-        <h1 className="mt-4 text-xl font-bold tracking-tight text-gray-900 sm:text-2xl">
-          <span>
-            <FaSearch />
-            No Enrollments Found
-          </span>
-        </h1>
-        <p className="mt-6 text-base leading-7 text-gray-600">
-          Sorry, you don't have any enrollments yet.
-        </p>
-        <div className="mt-10 flex items-center justify-center gap-x-6">
-          <a
-            href="/"
-            className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            Go back home
-          </a>
-          <a href="/" className="text-sm font-semibold text-gray-900">
-            Contact support <span aria-hidden="true">&rarr;</span>
-          </a>
-        </div>
-      </div>
-    </main>
   );
 }

@@ -34,10 +34,10 @@ const Tutors = () => {
   }, [tutorName, courseName, tutorRating]);
 
   return (
-    <div className="flex pb-10">
+    <div className="flex py-10">
       <Sidebar />
       <div className="w-full">
-        <TuteeHeader tutee={"tutors"} />
+        <TuteeHeader tutee={"Tutors"} />
         <div className="flex justify-center mt-24">
           <input
             className={`mx-4 max-w-md w-200 border-none p-2 rounded-lg bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg shadow-lg focus:outline-none transition-all duration-300 ${
