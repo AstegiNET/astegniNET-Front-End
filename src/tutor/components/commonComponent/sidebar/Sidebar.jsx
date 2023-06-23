@@ -8,26 +8,21 @@ import { Link } from "react-router-dom";
 import logo from "../../../assets/images/graduate-svgrepo-com.svg";
 
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { tutorLogout, tutorReset } from "../../../features/auth/tutorAuthSlice";
-import { logout, reset } from "../../../../tutee/features/auth/tuteeAuthSlice";
 
 const Sidebar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { tutee } = useSelector((state) => state.tuteeAuth);
-  const { tutor } = useSelector((state) => state.tutorAuth);
 
   const onLogout = () => {
-    dispatch(logout());
     dispatch(tutorLogout());
     dispatch(tutorReset());
-    dispatch(reset());
-    navigate("/");
+    navigate("/tutor/login");
   };
   return (
-    <div className="bottom-0 ">
-      <aside className="shadow-2xl min-h-screen rounded-lg dark:border-gray-700 z-20 hidden w-64 overflow-y-auto bg-white  md:block flex-shrink-0">
+    <div className="bottom-0 min-h-screen ">
+      <aside className="shadow-xl min-h-screen rounded-lg dark:border-gray-700 z-20 hidden w-64 overflow-y-auto bg-white  md:block flex-shrink-0">
         <div className="py-4 text-gray-500 ">
           <div className="relative px-6 ">
             <Link to="/">

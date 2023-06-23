@@ -96,6 +96,7 @@ const UpdateTutorProfile = () => {
                               value={fname}
                               onChange={onChange}
                               placeholder="enter first name"
+                              pattern="[A-Za-z]{3,20}"
                               autoComplete="given-name"
                               className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             />
@@ -116,6 +117,7 @@ const UpdateTutorProfile = () => {
                               value={lname}
                               onChange={onChange}
                               placeholder="enter last name"
+                              pattern="[A-Za-z]{3,20}"
                               autoComplete="family-name"
                               className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             />
@@ -137,6 +139,7 @@ const UpdateTutorProfile = () => {
                               value={email}
                               onChange={onChange}
                               placeholder="enter email"
+                              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                               autoComplete="email"
                               className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             />
@@ -157,6 +160,8 @@ const UpdateTutorProfile = () => {
                               value={phone}
                               onChange={onChange}
                               placeholder="enter phone number"
+                              pattern="09[0-9]{8}" 
+                              title="Phone number must be 10 digits long and start with '09'" 
                               autoComplete="tel"
                               className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             />
@@ -178,6 +183,8 @@ const UpdateTutorProfile = () => {
                               value={password}
                               onChange={onChange}
                               placeholder="enter password"
+                              pattern=".{6,}" 
+                              title="Password must be at least 6 characters long"
                               autoComplete="password"
                               className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             />
