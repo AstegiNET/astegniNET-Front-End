@@ -28,11 +28,9 @@ export default function Enrollment() {
   return (
     <>
       <div className="flex pt-50">
-        
-      <Sidebar/>
-      <EnrollmentComponent enrollments = {enrollments}/>
+        <Sidebar />
+        <EnrollmentComponent enrollments={enrollments} />
       </div>
     </>
   );
 }
-
