@@ -344,8 +344,8 @@ const TutorRegister = () => {
 
             <div className="text-sm leading-6 text-gray-600">
               already have an account
-              <Link to="/login" className="font-semibold text-indigo-600">
-                &nbsp;login
+              <Link to="/tutor/login" className="font-semibold text-indigo-600">
+                &nbsp;Login
               </Link>
             </div>
           </div>
