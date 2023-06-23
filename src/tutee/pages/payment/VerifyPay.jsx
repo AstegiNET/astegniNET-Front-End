@@ -53,7 +53,7 @@ const VerifyPay = () => {
 
   return (
     <>
-      <div className="pt-50">
+      <div className="flex pt-50">
         <Sidebar />
 
         <div className="p-4">
