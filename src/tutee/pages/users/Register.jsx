@@ -57,8 +57,7 @@ const Register = () => {
         lname,
         email,
         phone,
-        avatar:
-          "https://www.shutterstock.com/image-vector/school-education-concept-teacher-textbook-600w-2203441101.jpg",
+        avatar,
         password,
       };
 
