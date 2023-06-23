@@ -1,16 +1,20 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useSelector } from "react-redux";
-import { FETCH_ENROLLMENTS } from "../../../api/API";
 import Header from "../../components/commonComponent/Header";
-// const API_URL = "http://localhost:5000/api/request/fetchEnrollments";
 
-const EnrollmentComponent = ({enrollments}) => {
-  console.log(enrollments)
+const EnrollmentComponent = ({ enrollments }) => {
+  const { tutor, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.tutorAuth
+  );
+
+  const startSession = () => {
+    window.open(`/videoCall/${tutor?._id}`, "_blank");
+  };
+  console.log(enrollments);
   return (
-    
     <div className="w-full">
+      <Header title = "Enrollments"/>
       <div className="flex flex-col mb-20 flex-1 w-full">
         <main className="h-full overflow-y-auto">
           <div className="container grid px-6 mx-auto">
@@ -101,7 +105,6 @@ const EnrollmentComponent = ({enrollments}) => {
                         <td className="px-4 py-3 text-sm">
                           {enrollment.updatedAt}
                         </td>
-
                       </tr>
                     ))}
                   </tbody>

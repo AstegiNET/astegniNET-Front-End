@@ -61,7 +61,7 @@ export default function App() {
         </Route>
 
         <Route element={<CommonProtectedRoutes />}>
-          <Route path="/videoCall" element={<VideoCall />} />
+          <Route path="/videoCall/:tutorid" element={<VideoCall />} />
         </Route>
       </Routes>
 
