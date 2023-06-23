@@ -38,7 +38,7 @@ const Tutors = () => {
       <Sidebar />
       <div className="w-full">
         <TuteeHeader tutee={"tutors"} />
-        <div className="flex justify-center mt-24">
+        <div className="flex justify-center mt-10">
           <input
             className={`mx-4 max-w-md w-200 border-none p-2 rounded-lg bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg shadow-lg focus:outline-none transition-all duration-300 ${
               courseFocused ? "scale-125" : ""
