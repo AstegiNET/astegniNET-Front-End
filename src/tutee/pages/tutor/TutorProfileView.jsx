@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { IoIosArrowBack } from "react-icons/io";
 import {
   GET_TUTOR,
   SEND_REQUEST,
@@ -69,9 +70,23 @@ const UserProfile = () => {
     getRequest();
   }, [API_URL, tutor.course]);
 
+  const handleGoBack = () => {
+    window.history.back();
+  };
+
   return (
     <div className="relative ">
-      <div className="container mx-auto my-5 p-5">
+      <div className="flex justify-between">
+        <button
+          onClick={() => handleGoBack()}
+          className="flex py-2  mt-4 ml-4  px-4 font-semibold leading-tight bg-gray-200 text-gray-600 hover:bg-indigo-500 hover:text-gray-100 rounded-md"
+        >
+          <IoIosArrowBack />
+          Go Back
+        </button>
+        <div></div>
+      </div>
+      <div className="container mx-auto  p-5">
         <div className="md:flex no-wrap md:-mx-2 ">
           <div className="bg-gray-50 shadow-sm rounded-lg p-5 w-full md:w-6/12 md:mx-2">
             <div className=" p-3 border-t-4 border-green-400">

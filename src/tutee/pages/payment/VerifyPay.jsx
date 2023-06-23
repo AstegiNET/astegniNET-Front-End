@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import Sidebar from "../../components/commonComponent/Sidebar";
+import Sidebar from "../../components/commonComponent/sidebar/Sidebar";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
@@ -53,10 +53,10 @@ const VerifyPay = () => {
 
   return (
     <>
-      <div className="pt-50">
+      <div className="flex pt-50">
         <Sidebar />
 
-        <div className="p-4">
+        <div className="p-4 w-full">
           <div className="py-16 shadow-2xl min-h-screen rounded-lg dark:border-gray-700">
             <div className="  bg-white shadow rounded-lg w-5/6 md:w-4/6  mx-auto">
               <div className="mt-10">

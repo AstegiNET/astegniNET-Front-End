@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import logo from "../../assets/images/graduate-svgrepo-com.svg";
-import Sidebar from "../../components/commonComponent/Sidebar";
+import Sidebar from "../../components/commonComponent/sidebar/Sidebar";
 // import axios from "axios";
 
 const TuteeProfile = () => {
@@ -13,11 +13,10 @@ const TuteeProfile = () => {
 
   return (
     <>
-      <div className="pt-50">
+      <div className="flex pt-10">
         <Sidebar />
-
-        <div className="p-4">
-          <div className="py-16 shadow-2xl min-h-screen rounded-lg dark:border-gray-700">
+        <div className="w-full">
+          <div className="py-16 shadow-2xl min-h-screen rounded-lg ">
             <div className="  bg-white shadow rounded-lg w-5/6 md:w-4/6  mx-auto">
               <div className="mt-5 flex justify-center">
                 <Link to="/">

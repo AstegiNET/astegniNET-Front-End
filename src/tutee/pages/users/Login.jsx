@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -29,7 +29,7 @@ const Login = () => {
     }
 
     if (isSuccess || tutee) {
-      navigate("/tutee/profile/viewProfile");
+      navigate("/tutee/home");
     }
 
     dispatch(reset());
@@ -91,7 +91,10 @@ const Login = () => {
           </h2>
           <div className="text-md mt-10 leading-6 text-gray-600">
             Login as a
-            <Link to={"/tutor/login"} className="font-semibold hover:ml-2 px-2 py-1 rounded-md hover:bg-indigo-600 hover:text-white text-indigo-600">
+            <Link
+              to={"/tutor/login"}
+              className="font-semibold hover:ml-2 px-2 py-1 rounded-md hover:bg-indigo-600 hover:text-white text-indigo-600"
+            >
               &nbsp;Tutor
             </Link>
           </div>
@@ -116,11 +119,11 @@ const Login = () => {
                   name="email"
                   id="email"
                   value={email}
+                  required
                   onChange={onChange}
                   placeholder="enter email"
                   autoComplete="email"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  required
                 />
               </div>
             </div>
@@ -137,22 +140,22 @@ const Login = () => {
                   name="password"
                   id="password"
                   value={password}
+                  required
                   onChange={onChange}
                   placeholder="enter password"
                   autoComplete="password"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  required
                 />
               </div>
             </div>
 
             <div className="text-sm leading-6 text-gray-600">
-              no account registered?
+              Not registered yet?
               <Link
                 to="/tutee/register"
                 className="font-semibold text-indigo-600"
               >
-                &nbsp;register
+                &nbsp;Register Now
               </Link>
             </div>
           </div>

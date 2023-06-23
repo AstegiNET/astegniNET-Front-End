@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import logo from "../../assets/images/graduate-svgrepo-com.svg";
-import Sidebar from "../../components/commonComponent/Sidebar";
 
 const TutorProfile = () => {
   const { tutor } = useSelector((state) => state.tutorAuth);
@@ -12,9 +11,7 @@ const TutorProfile = () => {
 
   return (
     <>
-      <div className="pt-50">
-        <Sidebar />
-
+      <div className="pt-50 w-full">
         <div className="p-4">
           <div className="py-16 shadow-2xl min-h-screen rounded-lg dark:border-gray-700">
             <div className="  bg-white shadow rounded-lg w-5/6 md:w-4/6  mx-auto">
@@ -37,12 +34,11 @@ const TutorProfile = () => {
                 </p>
 
                 <div className="my-5 px-6">
-                  <Link
-                    to="/tutor/profile/viewprofile"
-                    className="text-gray-200 block rounded-lg text-center font-medium leading-6 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 hover:text-white"
+                  <div
+                    className="text-gray-400 block rounded-lg text-xl font-bold leading-6 px-6 py-3 bg-gray-100 shadow-md"
                   >
                     welcome {tutor.fname} {tutor.lname}
-                  </Link>
+                  </div>
                 </div>
 
                 <div className="w-full">

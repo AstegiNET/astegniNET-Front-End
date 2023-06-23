@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import logo from "../../assets/images/graduate-svgrepo-com.svg";
 import { tutorReset } from "../../features/auth/tutorAuthSlice";
 import Spinner from "../../components/commonComponent/Spinner";
-import Sidebar from "../../components/commonComponent/Sidebar";
+import Sidebar from "../../components/commonComponent/sidebar/Sidebar";
 // import { toast } from "react-toastify";
 
 const UpdateTutorProfile = () => {
@@ -47,36 +47,16 @@ const UpdateTutorProfile = () => {
     }));
   };
 
-  // const onSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   if (password !== password2) {
-  //     toast.error("Passwords do not match");
-  //   } else {
-  //     const tutorData = {
-  //       fname,
-  //       lname,
-  //       email,
-  //       phone,
-  //       salary,
-  //       password,
-  //     };
-
-  //     dispatch(tutorRegister(tutorData));
-  //   }
-  // };
-
   if (isLoading) {
     return <Spinner />;
   }
 
   return (
     <>
-      <div className="pt-50">
-        <Sidebar />
-
-        <div className="p-4 ">
-          <div className="py-16 shadow-2xl min-h-screen rounded-lg dark:border-gray-700">
+      <div className="flex pt-50">
+        <Sidebar/>
+        <div className="w-full">
+          <div className="py-16">
             <div className="  bg-white shadow rounded-lg  w-4/6  mx-auto">
               <div className="mt-5 flex justify-center">
                 <Link to="/">
@@ -90,26 +70,14 @@ const UpdateTutorProfile = () => {
 
               <div className="mt-10">
                 <h1 className="font-bold text-center text-3xl text-gray-900">
-                  AstegniNET
+                  {tutor.fname} {tutor.lname}
                 </h1>
                 <p className="text-center text-sm text-gray-400 font-medium">
                   cross platform online tutorial app
                 </p>
 
-                <div className="my-5 px-6">
-                  <Link
-                    to="/tutor/profile/viewprofile"
-                    className="text-gray-200 block rounded-lg text-center font-medium leading-6 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 hover:text-white"
-                  >
-                    welcome {tutor.fname} {tutor.lname}
-                  </Link>
-                </div>
-
                 <div className="w-full">
                   <div className="mt-5 w-full flex flex-col items-center overflow-hidden text-sm">
-                    <h3 className="font-medium text-gray-900 text-left px-6">
-                      update profile
-                    </h3>
                     {/* onSubmit={onSubmit} */}
                     <form className=" w-full p-10">
                       <div className="grid grid-cols-1 gap-y-6 gap-x-8 sm:grid-cols-2">
@@ -128,6 +96,7 @@ const UpdateTutorProfile = () => {
                               value={fname}
                               onChange={onChange}
                               placeholder="enter first name"
+                              pattern="[A-Za-z]{3,20}"
                               autoComplete="given-name"
                               className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             />
@@ -148,6 +117,7 @@ const UpdateTutorProfile = () => {
                               value={lname}
                               onChange={onChange}
                               placeholder="enter last name"
+                              pattern="[A-Za-z]{3,20}"
                               autoComplete="family-name"
                               className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             />
@@ -169,6 +139,7 @@ const UpdateTutorProfile = () => {
                               value={email}
                               onChange={onChange}
                               placeholder="enter email"
+                              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                               autoComplete="email"
                               className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             />
@@ -189,6 +160,8 @@ const UpdateTutorProfile = () => {
                               value={phone}
                               onChange={onChange}
                               placeholder="enter phone number"
+                              pattern="09[0-9]{8}" 
+                              title="Phone number must be 10 digits long and start with '09'" 
                               autoComplete="tel"
                               className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             />
@@ -210,6 +183,8 @@ const UpdateTutorProfile = () => {
                               value={password}
                               onChange={onChange}
                               placeholder="enter password"
+                              pattern=".{6,}" 
+                              title="Password must be at least 6 characters long"
                               autoComplete="password"
                               className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             />

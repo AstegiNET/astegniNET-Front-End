@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaCheck, FaSearch } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import Sidebar from "../../components/commonComponent/Sidebar";
+import Sidebar from "../../components/commonComponent/sidebar/Sidebar";
 import TuteeHeader from "../../components/commonComponent/TuteeHeader";
 import { FETCH_ENROLLMENTS } from "../../../api/API";
 
@@ -28,24 +28,15 @@ export default function Enrollment() {
 
   return (
     <>
-      <div className="pt-50">
+      <div className="flex pt-10">
         <Sidebar />
-        <div className="p-4 sm:ml-64">
-          <div className="py-16 shadow-2xl min-h-screen rounded-lg dark:border-gray-700">
+        <div className="p-4 w-full">
+          <div className=" shadow-2xl min-h-screen rounded-lg dark:border-gray-700">
             <TuteeHeader tutee={tutee} />
             {enrollments.length > 0 ? (
               <div className="bg-white py-24 sm:py-32">
-                <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
-                  <div className="max-w-2xl">
-                    <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                      My Enrollments
-                    </h2>
-                    <p className="mt-6 text-lg leading-8 text-gray-600">
-                      Libero fames augue nisl porttitor nisi, quis. Id ac elit
-                      odio vitae elementum enim vitae ullamcorper suspendisse.
-                    </p>
-                  </div>
-                  <ul className="grid gap-x-4 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
+                <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 ">
+                  <ul className="grid gap-x-4 gap-y-12 sm:grid-cols-3 sm:gap-y-16 xl:col-span-2">
                     {enrollments.map((request, index) => (
                       <li key={index}>
                         <div className="flex items-center gap-x-6 shadow-lg rounded-xl p-5">
@@ -101,12 +92,11 @@ function EnrollmentsNotFound() {
   return (
     <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
       <div className="text-center">
-        <h1 className="mt-4 text-3xl foFnt-bold tracking-tight text-indigo-300 sm:text-5xl">
-          <FaSearch />
-        </h1>
-
-        <h1 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-          No Enrollments Found
+        <h1 className="mt-4 text-xl font-bold tracking-tight text-gray-900 sm:text-2xl">
+          <span>
+            <FaSearch />
+            No Enrollments Found
+          </span>
         </h1>
         <p className="mt-6 text-base leading-7 text-gray-600">
           Sorry, you don't have any enrollments yet.
