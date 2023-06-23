@@ -29,7 +29,7 @@ const Login = () => {
     }
 
     if (isSuccess || tutee) {
-      navigate("/tutee/profile/viewProfile");
+      navigate("/tutee/home");
     }
 
     dispatch(reset());
@@ -91,7 +91,10 @@ const Login = () => {
           </h2>
           <div className="text-md mt-10 leading-6 text-gray-600">
             Login as a
-            <Link to={"/tutor/login"} className="font-semibold hover:ml-2 px-2 py-1 rounded-md hover:bg-indigo-600 hover:text-white text-indigo-600">
+            <Link
+              to={"/tutor/login"}
+              className="font-semibold hover:ml-2 px-2 py-1 rounded-md hover:bg-indigo-600 hover:text-white text-indigo-600"
+            >
               &nbsp;Tutor
             </Link>
           </div>

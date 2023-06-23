@@ -29,9 +29,9 @@ const Header = () => {
   const dispatch = useDispatch();
   const { tutee } = useSelector((state) => state.tuteeAuth);
   const { tutor } = useSelector((state) => state.tutorAuth);
-if (tutor){
-  navigation=navigation.slice(0,2)
-}
+  if (tutor) {
+    navigation = navigation.slice(0, 2);
+  }
   const onLogout = () => {
     dispatch(logout());
     dispatch(tutorLogout());
@@ -102,11 +102,7 @@ if (tutor){
                     <div>
                       <Menu.Item>
                         <Link
-                          to={
-                            tutee
-                              ? "/tutee/profile/viewprofile"
-                              : "/tutor/profile/viewprofile"
-                          }
+                          to={tutee ? "/tutee/home" : "/tutor/home"}
                           className=" text-gray-900 block px-4 py-2 text-sm"
                         >
                           Profile

@@ -39,28 +39,21 @@ export default function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/tutors" element={<TutorsList />} />
         <Route path="tutors/:id" element={<TutorProfileView />} />
-
         <Route path="/tutee/register" element={<Register />} />
         <Route path="/tutee/login" element={<Login />} />
 
         <Route element={<TuteeProtectedRoutes />}>
-          <Route path="/tutee/allcourses" element={<ViewAllCourses />} />
           <Route path="tutee/tutors/:id" element={<TutorProfileView />} />
-          <Route path="/tutee/profile/viewprofile" element={<TuteeProfile />} />
-          <Route path="/tuteerequests" element={<TuteeRequests />} />
-          <Route path="/tuteeenrollments" element={<TuteeEnrollment />} />
+          <Route path="/tutee/home" element={<TuteeProfile />} />
+          <Route path="/tutee/requests" element={<TuteeRequests />} />
+          <Route path="/tutee/enrollments" element={<TuteeEnrollment />} />
           <Route path="/tutee/pay" element={<Pay />} />
           <Route path="/tutee/verifypay/:id" element={<VerifyPay />} />
-          <Route
-            path="/tutee/profile/updateprofile"
-            element={<UpdateProfile />}
-          />
-          <Route path="/tutee/videoCall" element={<TuteeVideoChat />} />
+          <Route path="/tutee/updateprofile" element={<UpdateProfile />} />
         </Route>
 
         <Route path="/tutor/register" element={<TutorRegister />} />
         <Route path="/tutor/login" element={<TutorLogin />} />
-
         <Route element={<TutorProtectedRoutes />}>
           <Route path="/tutor/home" element={<TutorHome />} />
           <Route path="/tutor/UpdateProfile" element={<UpdateTutorProfile />} />

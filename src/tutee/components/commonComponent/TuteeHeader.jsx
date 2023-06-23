@@ -1,15 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const TuteeHeader = ({ tutee }) => {
   return (
-    <div className="my-5 px-6">
-      <Link
-        to="/tutee/profile/viewprofile"
-        className="text-gray-200 block rounded-lg text-center font-medium leading-6 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 hover:text-white"
-      >
+    <div className="px-6 py-2">
+      <div className="text-gray-500 block rounded-lg  font-medium leading-6 px-6 py-3 bg-gray-100 hover:bg-gray-200 hover:text-gray-600">
         welcome {tutee.fname} {tutee.lname}
-      </Link>
+      </div>
     </div>
   );
 };

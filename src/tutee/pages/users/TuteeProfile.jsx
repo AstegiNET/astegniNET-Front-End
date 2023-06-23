@@ -13,11 +13,10 @@ const TuteeProfile = () => {
 
   return (
     <>
-      <div className="pt-50">
+      <div className="flex pt-10">
         <Sidebar />
-
-        <div className="p-4">
-          <div className="py-16 shadow-2xl min-h-screen rounded-lg dark:border-gray-700">
+        <div className="w-full">
+          <div className="py-16 shadow-2xl min-h-screen rounded-lg ">
             <div className="  bg-white shadow rounded-lg w-5/6 md:w-4/6  mx-auto">
               <div className="mt-5 flex justify-center">
                 <Link to="/">
