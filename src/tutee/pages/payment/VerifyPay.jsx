@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import Sidebar from "../../components/commonComponent/Sidebar";
+import Sidebar from "../../components/commonComponent/sidebar/Sidebar";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
