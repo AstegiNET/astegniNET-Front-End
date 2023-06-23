@@ -14,6 +14,15 @@ const EnrollmentComponent = ({ enrollments }) => {
   console.log(enrollments);
   return (
     <div className="w-full">
+      <div className="flex justify-between">
+        <div></div>
+        <button
+          onClick={() => startSession()}
+          className="py-2 mr-10 mb-2  px-4 font-semibold leading-tight bg-green-600 text-green-100 rounded-md"
+        >
+          start session
+        </button>
+      </div>
       <div className="flex flex-col mb-20 flex-1 w-full">
         <main className="h-full overflow-y-auto">
           <div className="container grid px-6 mx-auto">
