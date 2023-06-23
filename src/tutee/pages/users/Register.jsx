@@ -132,6 +132,8 @@ const Register = () => {
                   required
                   onChange={onChange}
                   placeholder="enter first name"
+                  pattern="[A-Za-z]{3,20}"
+                  title="name should be in alphabets and at least 3 characters long"
                   autoComplete="given-name"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -153,6 +155,8 @@ const Register = () => {
                   required
                   onChange={onChange}
                   placeholder="enter last name"
+                  pattern="[A-Za-z]{3,20}"
+                  title="name should be in alphabets and at least 3 characters long"
                   autoComplete="family-name"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -175,6 +179,8 @@ const Register = () => {
                   required
                   onChange={onChange}
                   placeholder="enter email"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                  title="email should follow a valid email address format"
                   autoComplete="email"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -196,6 +202,8 @@ const Register = () => {
                   required
                   onChange={onChange}
                   placeholder="enter phone number"
+                  pattern="09[0-9]{8}" 
+                  title="Phone number must be 10 digits long and start with '09'" 
                   autoComplete="tel"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -211,7 +219,7 @@ const Register = () => {
               </label>
               <div className="relative mt-2.5">
                 <input
-                  type="file"
+                  type="text"
                   name="avatar"
                   id="avatar"
                   value={avatar}
@@ -239,6 +247,8 @@ const Register = () => {
                   required
                   onChange={onChange}
                   placeholder="enter password"
+                  pattern=".{6,10}" 
+                  title="Password must be at least 6, not more than 10 characters long"
                   autoComplete="password"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -262,6 +272,8 @@ const Register = () => {
                   autoComplete="password2"
                   onChange={onChange}
                   placeholder="enter password"
+                  pattern=".{6,10}" 
+                  title="Password must be at least 6, not more than 10 characters long"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>

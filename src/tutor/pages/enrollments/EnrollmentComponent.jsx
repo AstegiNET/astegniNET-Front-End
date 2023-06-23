@@ -14,7 +14,6 @@ const EnrollmentComponent = ({ enrollments }) => {
   console.log(enrollments);
   return (
     <div className="w-full">
-      <Header title="Enrollments" />
       <div className="flex justify-between">
         <div></div>
         <button

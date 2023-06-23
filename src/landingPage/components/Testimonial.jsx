@@ -14,8 +14,8 @@ export default function Testimonial() {
             <figcaption className="mt-10">
               <img
                 className="mx-auto h-50 w-50 rounded-full"
-                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                alt=""
+                src="https://media.licdn.com/dms/image/D4E03AQEAyW8xE536LA/profile-displayphoto-shrink_200_200/0/1686160438163?e=1692835200&v=beta&t=642zKHXSc_WNg65iCQYJvTEC4tVhFm87oZf0e84agpg"
+                alt="user prifile"
               />
               <div className="mt-4 flex items-center justify-center space-x-3 text-base">
                 <div className="font-semibold text-gray-900">Hana Girma</div>

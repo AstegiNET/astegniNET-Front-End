@@ -117,7 +117,7 @@ export default function LandingPage() {
           </div>
           <div className="text-center">
             <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              Oline tutorial cross platform
+              Online tutorial cross platform
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
               save your time

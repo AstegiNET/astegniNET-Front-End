@@ -11,6 +11,7 @@ import {
 } from "../../../api/API";
 import Sidebar from "../../components/commonComponent/sidebar/Sidebar";
 import Header from "../../components/commonComponent/Header";
+import NotFound from "../../components/notFound/NotFound";
 
 const RequestComponent = () => {
   const { tutor } = useSelector((state) => state.tutorAuth);
@@ -61,7 +62,9 @@ const RequestComponent = () => {
       <Sidebar />
       <div className="w-full">
         <Header title={"Requests"} />
-        <div className="flex flex-col flex-1 w-full">
+        
+        {requests.length ? (
+          <div className="flex flex-col flex-1 w-full">
           <main className=" overflow-y-auto">
             <div className="container grid px-6 mx-auto">
               <div className="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
@@ -192,6 +195,9 @@ const RequestComponent = () => {
             </div>
           </main>
         </div>
+        ) : (
+          <NotFound title={"Requests"} description = {"Sorry, you don't have any requests yet."}/>
+        )}
       </div>
     </div>
   );
