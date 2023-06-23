@@ -1,13 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import LandingPage from "./landingPage/LandingPage";
-// import Requests from "./landingPage/components/Requests";
 import TuteeProtectedRoutes from "./tutee/utils/TuteeProtectedRoutes";
 import Login from "./tutee/pages/users/Login";
 import Register from "./tutee/pages/users/Register";
 import TuteeProfile from "./tutee/pages/users/TuteeProfile";
 import UpdateProfile from "./tutee/pages/users/UpdateProfile";
-import ViewAllCourses from "./tutee/pages/courses/ViewCourses";
+
 import Pay from "./tutee/pages/payment/Pay";
 import VerifyPay from "./tutee/pages/payment/VerifyPay";
 
@@ -18,18 +17,17 @@ import UpdateTutorProfile from "./tutor/pages/users/UpdateProfile";
 
 import TutorsList from "./tutee/components/tutorList/TutorsList";
 import TutorProfileView from "./tutee/pages/tutor/TutorProfileView";
-import Header from "./landingPage/components/Header";
-// import Footer from "./landingPage/components/Footer";
 
 import Requests from "./tutor/pages/requests/RequestComponent";
 import TuteeRequests from "./tutee/pages/requests/Requests";
 
 import TutorEnrollment from "./tutor/pages/enrollments/Enrollment";
 import TuteeEnrollment from "./tutee/pages/enrollments/Enrollments";
-import TuteeVideoChat from "./tutee/pages/videocall/VideoCall";
+
 import CommonProtectedRoutes from "./landingPage/utils/CommonUtils";
 import VideoCall from "./video/VideoCall";
 import TutorHome from "./tutor/pages/TutorHome";
+import Tutors from "./tutee/pages/tutor/tutorList/TutorsList";
 
 export default function App() {
   return (
@@ -44,6 +42,7 @@ export default function App() {
 
         <Route element={<TuteeProtectedRoutes />}>
           <Route path="tutee/tutors/:id" element={<TutorProfileView />} />
+          <Route path="/tutorlist" element={<Tutors />} />
           <Route path="/tutee/home" element={<TuteeProfile />} />
           <Route path="/tutee/requests" element={<TuteeRequests />} />
           <Route path="/tutee/enrollments" element={<TuteeEnrollment />} />
