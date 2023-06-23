@@ -51,6 +51,7 @@ const Tutors = () => {
             onBlur={() => setCourseFocused(false)}
           />
           <input
+            // megrge conflict
             className={`max-w-md mx-4 border-none p-2 rounded-lg bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg shadow-lg focus:outline-none transition-all duration-300 ${
               nameFocused ? "scale-125" : ""
             }`}
