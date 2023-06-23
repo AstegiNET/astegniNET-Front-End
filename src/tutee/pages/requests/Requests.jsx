@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaSearch, FaTrash, FaCcAmazonPay } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import Sidebar from "../../components/commonComponent/Sidebar";
+import Sidebar from "../../components/commonComponent/sidebar/Sidebar";
 import Pay from "../payment/Pay";
 import TuteeHeader from "../../components/commonComponent/TuteeHeader";
 import { FETCH_REQUESTS, DELETE_REQUEST } from "../../../api/API";
@@ -48,7 +48,7 @@ export default function Requests() {
       <div className="flex pt-10">
         <Sidebar />
         <div className="w-full">
-          <div className="p-4 sm:ml-64  shadow-2xl min-h-screen rounded-lg dark:border-gray-700">
+          <div className="p-4  shadow-2xl min-h-screen rounded-lg dark:border-gray-700">
             <TuteeHeader tutee={tutee} />
             {requests.length > 0 ? (
               <div className="bg-white  sm:py-10">

@@ -14,17 +14,13 @@ const Sidebar = () => {
   const onLogout = () => {
     dispatch(logout());
     dispatch(reset());
-    navigate("/");
+    navigate("/tutee/login");
   };
 
   return (
     <div>
-      <aside className="fixed  top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 shadow-2xl">
+      <aside className=" bottom-  top-0 left-0  w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 shadow-2xl">
         <div className="h-full px-3 py-5 overflow-y-auto bg-gray-50 ">
-          {/* <div className="bottom-0 ">
-      <aside className="shadow-2xl min-h-screen rounded-lg dark:border-gray-700 z-20 hidden w-64 overflow-y-auto bg-white  md:block flex-shrink-0">
-        <div className="py-4 text-gray-500 "> */}
-
           <div className="mt-5 flex px-4 pb-5">
             <Link to="/">
               <img

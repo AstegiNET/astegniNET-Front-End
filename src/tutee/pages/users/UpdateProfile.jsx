@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import logo from "../../assets/images/graduate-svgrepo-com.svg";
 import { reset } from "../../features/auth/tuteeAuthSlice";
 import Spinner from "../../components/commonComponent/Spinner";
-import Sidebar from "../../components/commonComponent/Sidebar";
+import Sidebar from "../../components/commonComponent/sidebar/Sidebar";
 // import { toast } from "react-toastify";
 
 const UpdateProfile = () => {
@@ -49,10 +49,10 @@ const UpdateProfile = () => {
 
   return (
     <>
-      <div className="flex pt-10">
+      <div className="flex pt-50">
         <Sidebar />
         <div className="w-full">
-          <div className="py-16 shadow-2xl min-h-screen rounded-lg dark:border-gray-700">
+          <div className="py-16 shadow-lg min-h-screen rounded-lg dark:border-gray-700">
             <div className="  bg-white shadow rounded-lg w-5/6 md:w-4/6  mx-auto">
               <div className="mt-5 flex justify-center">
                 <Link to="/">

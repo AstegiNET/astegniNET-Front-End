@@ -30,6 +30,7 @@ import TuteeVideoChat from "./tutee/pages/videocall/VideoCall";
 import CommonProtectedRoutes from "./landingPage/utils/CommonUtils";
 import VideoCall from "./video/VideoCall";
 import TutorHome from "./tutor/pages/TutorHome";
+import Tutors from "./tutee/pages/tutor/tutorList/TutorsList";
 
 export default function App() {
   return (
@@ -44,6 +45,7 @@ export default function App() {
 
         <Route element={<TuteeProtectedRoutes />}>
           <Route path="tutee/tutors/:id" element={<TutorProfileView />} />
+          <Route path="/tutorlist" element={<Tutors />} />
           <Route path="/tutee/home" element={<TuteeProfile />} />
           <Route path="/tutee/requests" element={<TuteeRequests />} />
           <Route path="/tutee/enrollments" element={<TuteeEnrollment />} />
