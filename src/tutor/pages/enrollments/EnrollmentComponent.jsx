@@ -14,7 +14,6 @@ const EnrollmentComponent = ({ enrollments }) => {
   console.log(enrollments);
   return (
     <div className="w-full">
-      <Header title = "Enrollments"/>
       <div className="flex flex-col mb-20 flex-1 w-full">
         <main className="h-full overflow-y-auto">
           <div className="container grid px-6 mx-auto">
