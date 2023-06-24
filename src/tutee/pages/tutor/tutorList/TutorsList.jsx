@@ -34,7 +34,7 @@ const Tutors = () => {
   }, [tutorName, courseName, tutorRating]);
 
   return (
-    <div className="flex pb-10">
+    <div className="flex pb-10 text-left">
       <Sidebar />
       <div className="w-full">
         <TuteeHeader tutee={"tutors"} />
@@ -71,7 +71,8 @@ const Tutors = () => {
                   aria-hidden="true"
                 />
               </Menu.Button>
-            </div><Transition
+            </div>
+            <Transition
               as={Fragment}
               enter="transition ease-out duration-100"
               enterFrom="transform opacity-0 scale-95"

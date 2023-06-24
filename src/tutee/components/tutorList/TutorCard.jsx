@@ -23,9 +23,11 @@ const UserCard = ({ tutor }) => {
   // console.log(tutor.id)
   return (
     <Link to={`/tutors/${tutor.id}`}>
-      <div className=" rounded-xl overflow-hidden shadow-lg p-6 bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg flex">
+      <div className=" text-left rounded-xl overflow-hidden shadow-lg p-6 bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg flex">
         <div className="flex-none">
-          <img height = {"100px"} width = {"100px"}
+          <img
+            height={"100px"}
+            width={"100px"}
             className="w-50 h-50 object-cover rounded mx-auto"
             src={tutor.avatar}
             alt={tutor.fname}

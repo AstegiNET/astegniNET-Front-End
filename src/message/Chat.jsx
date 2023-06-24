@@ -12,7 +12,7 @@ function Chat({ socket, username, room }) {
   const [messageList, setMessageList] = useState([]);
 
   const { tutee } = useSelector((state) => state.tuteeAuth);
-  const { tutor } = useSelector((state) => state.tutorAuth);
+  const { tutor } = useSelector((state) => state.tutAuth);
 
   const sendMessage = async () => {
     if (currentMessage !== "") {

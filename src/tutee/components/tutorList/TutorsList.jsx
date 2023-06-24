@@ -5,6 +5,7 @@ import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { FaFilter } from "react-icons/fa";
 import { GET_TUTORS } from "../../../api/API";
+import Header from "../../../landingPage/components/Header";
 
 const TutorsList = () => {
   const [courseName, setCourseName] = useState("");
@@ -33,7 +34,8 @@ const TutorsList = () => {
 
   return (
     <>
-      <div className="flex justify-center mt-24">
+      <Header />
+      <div className="text-left flex justify-center mt-24">
         <input
           className={`mx-4 max-w-md w-200 border-none p-2 rounded-lg bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg shadow-lg focus:outline-none transition-all duration-300 ${
             courseFocused ? "scale-125" : ""

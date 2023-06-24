@@ -29,11 +29,11 @@ export default function Enrollment() {
 
   return (
     <>
-      <div className="flex pt-10">
+      <div className="text-left flex">
         <Sidebar />
         <div className="w-full">
           <TuteeHeader tutee={"Enrollments"} />
-          <div className="p-4  shadow-2xl min-h-screen rounded-lg dark:border-gray-700">
+          <div className="p-4   min-h-screen rounded-lg dark:border-gray-700">
             {enrollments.length > 0 ? (
               <div className="bg-white py-24 sm:py-32">
                 <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 ">

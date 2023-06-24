@@ -7,12 +7,13 @@ import { tutorRegister, tutorReset } from "../../features/auth/tutorAuthSlice";
 import { getAllCourses } from "../../features/courses/courseSlice";
 import Spinner from "../../components/commonComponent/Spinner";
 import { IoIosAddCircleOutline } from "react-icons/io";
+import Header from "../../../landingPage/components/Header";
 
 const TutorRegister = () => {
   const [formData, setFormData] = useState({
     fname: "",
     lname: "",
-    sex:"Male",
+    sex: "Male",
     email: "",
     salary: "",
     course: "",
@@ -121,6 +122,7 @@ const TutorRegister = () => {
   };
   return (
     <>
+      <Header />
       <div className="isolate bg-white py-24 px-6 sm:py-32 lg:px-8 ">
         <div className="  absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
           <svg
@@ -225,11 +227,11 @@ const TutorRegister = () => {
                 onChange={onChange}
                 className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               >
-                {["Male","Female"].map((s) => (
-                      <option value={s} key={s}>
-                        {s}
-                      </option>
-                    ))}
+                {["Male", "Female"].map((s) => (
+                  <option value={s} key={s}>
+                    {s}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="sm:col-span-2">
@@ -486,8 +488,8 @@ const TutorRegister = () => {
               <div className="col-span-2 mt-2 bg-gray-100">
                 {schedule.map((sch) => (
                   <p className="p-2 hover:bg-gray-500 hover:text-white">
-                  {sch}
-                </p>
+                    {sch}
+                  </p>
                 ))}
               </div>
             </div>

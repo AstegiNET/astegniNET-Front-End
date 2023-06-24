@@ -28,7 +28,7 @@ export default function Enrollment() {
   }, []);
 
   return (
-    <div className="flex pt-50">
+    <div className="flex  text-left">
       <Sidebar />
       <div className="w-full">
         <Header title="Enrollments" />

@@ -49,10 +49,10 @@ const UpdateProfile = () => {
 
   return (
     <>
-      <div className="flex pt-50">
+      <div className="flex">
         <Sidebar />
-        <div className="w-full">
-          <div className="py-16 shadow-lg min-h-screen rounded-lg dark:border-gray-700">
+        <div className="w-full text-left">
+          <div className="  min-h-screen rounded-lg ">
             <div className="  bg-white shadow rounded-lg w-5/6 md:w-4/6  mx-auto">
               <div className="mt-5 flex justify-center">
                 <Link to="/">
@@ -171,8 +171,8 @@ const UpdateProfile = () => {
                               value={phone}
                               onChange={onChange}
                               placeholder="enter phone number"
-                              pattern="09[0-9]{8}" 
-                              title="Phone number must be 10 digits long and start with '09'" 
+                              pattern="09[0-9]{8}"
+                              title="Phone number must be 10 digits long and start with '09'"
                               autoComplete="tel"
                               className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             />
@@ -194,7 +194,7 @@ const UpdateProfile = () => {
                               value={password}
                               onChange={onChange}
                               placeholder="enter password"
-                              pattern=".{6,10}" 
+                              pattern=".{6,10}"
                               title="Password must be at least 6, not more than 10 characters long"
                               autoComplete="password"
                               className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -216,7 +216,7 @@ const UpdateProfile = () => {
                               id="password2"
                               value={password2}
                               autoComplete="password2"
-                              pattern=".{6,10}" 
+                              pattern=".{6,10}"
                               title="Password must be at least 6, not more than 10 characters long"
                               onChange={onChange}
                               placeholder="enter password"

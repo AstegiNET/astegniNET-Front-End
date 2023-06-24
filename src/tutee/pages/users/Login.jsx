@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 import { login, reset } from "../../features/auth/tuteeAuthSlice";
 import Spinner from "../../components/commonComponent/Spinner";
+import Header from "../../../landingPage/components/Header";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -24,11 +25,10 @@ const Login = () => {
   );
 
   useEffect(() => {
-   
     if (isSuccess || tutee) {
       navigate("/tutee/home");
     }
-  }, [tutee, isSuccess,navigate]);
+  }, [tutee, isSuccess, navigate]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -59,6 +59,7 @@ const Login = () => {
 
   return (
     <>
+      <Header />
       <div className="isolate bg-white py-24 px-6 sm:py-32 lg:px-8 ">
         <div className="  absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
           <svg

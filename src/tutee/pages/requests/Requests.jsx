@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { FaSearch, FaTrash, FaCcAmazonPay } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import Sidebar from "../../components/commonComponent/sidebar/Sidebar";
+
 import Pay from "../payment/Pay";
 import TuteeHeader from "../../components/commonComponent/TuteeHeader";
 import { FETCH_REQUESTS, DELETE_REQUEST } from "../../../api/API";
@@ -46,11 +47,11 @@ export default function Requests() {
   console.log(requests);
   return (
     <>
-      <div className="flex pt-10">
+      <div className="flex text-left">
         <Sidebar />
         <div className="w-full">
-        <TuteeHeader tutee={"Requests"} />
-          <div className="p-4  shadow-2xl min-h-screen rounded-lg dark:border-gray-700">
+          <TuteeHeader tutee={"Requests"} />
+          <div className="p-4   min-h-screen rounded-lg dark:border-gray-700">
             {requests.length > 0 ? (
               <div className="bg-white  sm:py-10">
                 <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 ">
@@ -134,7 +135,10 @@ export default function Requests() {
                 </div>
               </div>
             ) : (
-              <NotFound title={"Requests"} description={"Sorry, you didn't send any requests yet."}/>
+              <NotFound
+                title={"Requests"}
+                description={"Sorry, you didn't send any requests yet."}
+              />
             )}
           </div>
         </div>
@@ -142,4 +146,3 @@ export default function Requests() {
     </>
   );
 }
-
