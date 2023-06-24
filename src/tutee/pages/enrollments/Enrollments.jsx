@@ -80,7 +80,10 @@ export default function Enrollment() {
                 </div>
               </div>
             ) : (
-              <NotFound title={"Enrollments"} description={"Sorry, you don't have any enrollments yet"}/>
+              <NotFound
+                title={"Enrollments"}
+                description={"Sorry, you don't have any enrollments yet"}
+              />
             )}
           </div>
         </div>

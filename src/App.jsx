@@ -28,6 +28,7 @@ import CommonProtectedRoutes from "./landingPage/utils/CommonUtils";
 import VideoCall from "./video/VideoCall";
 import TutorHome from "./tutor/pages/TutorHome";
 import Tutors from "./tutee/pages/tutor/tutorList/TutorsList";
+import Message from "./message/Message";
 
 export default function App() {
   return (
@@ -62,6 +63,7 @@ export default function App() {
 
         <Route element={<CommonProtectedRoutes />}>
           <Route path="/videoCall/:tutorid" element={<VideoCall />} />
+          <Route path="/message" element={<Message />} />
         </Route>
       </Routes>
 
