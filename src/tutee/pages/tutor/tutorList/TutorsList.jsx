@@ -114,7 +114,7 @@ const Tutors = () => {
               : "Popular Tutors"}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {tutors.map((tutor, index) => (
+            {tutors?.map((tutor, index) => (
               <UserCard key={index} tutor={tutor} />
             ))}
           </div>

@@ -1,23 +1,25 @@
-import React from "react";
 import { Link } from "react-router-dom";
-
-import { useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { tutorRegister, tutorReset } from "../../features/auth/tutorAuthSlice";
 import { getAllCourses } from "../../features/courses/courseSlice";
 import Spinner from "../../components/commonComponent/Spinner";
+import { IoIosAddCircleOutline } from "react-icons/io";
 
 const TutorRegister = () => {
   const [formData, setFormData] = useState({
     fname: "",
     lname: "",
+    sex:"Male",
     email: "",
-
     salary: "",
     course: "",
+    education: "",
+    about: "",
     avatar: "",
+    schedule: [],
     password: "",
     password2: "",
   });
@@ -26,13 +28,26 @@ const TutorRegister = () => {
     fname,
     lname,
     email,
+    sex,
     phone,
     salary,
     course,
+    education,
+    about,
     avatar,
+    schedule,
     password,
     password2,
   } = formData;
+
+  const { courses } = useSelector((state) => state.course);
+  const [scheduleDate, setScheduleDate] = useState({
+    date: "Sunday",
+    startTime: "1:00",
+    endTime: "4:00",
+  });
+
+  const { date, startTime, endTime } = scheduleDate;
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -41,15 +56,13 @@ const TutorRegister = () => {
     (state) => state.tutorAuth
   );
 
-  const { courses } = useSelector((state) => state.course);
-
   useEffect(() => {
     if (isError) {
       toast.error(message);
     }
 
     if (isSuccess || tutor) {
-      navigate("/");
+      navigate("/tutor/home");
     }
     dispatch(getAllCourses());
     dispatch(tutorReset());
@@ -72,9 +85,13 @@ const TutorRegister = () => {
       const tutorData = {
         fname,
         lname,
+        sex,
+        education,
+        about,
         email,
         phone,
         salary,
+        schedule,
         course,
         avatar,
         password,
@@ -88,6 +105,20 @@ const TutorRegister = () => {
     return <Spinner />;
   }
 
+  const handleSchedule = (e) => {
+    setScheduleDate((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+    console.log(e.target.value);
+  };
+  const appendToSchedule = (e) => {
+    e.preventDefault();
+    schedule.push(
+      `${scheduleDate.date} ${scheduleDate.startTime} to ${scheduleDate.endTime}`
+    );
+    console.log(schedule);
+  };
   return (
     <>
       <div className="isolate bg-white py-24 px-6 sm:py-32 lg:px-8 ">
@@ -121,10 +152,10 @@ const TutorRegister = () => {
             Tutor Register
           </h2>
           <p className="mt-2 text-lg leading-8 text-gray-600">
-            register here if you havent any account
+            Register here if you have no account
           </p>
           <div className="text-md mt-10 leading-6 text-gray-600">
-            Register as a
+            Or, Register as a
             <Link
               to={"/tutee/register"}
               className="font-semibold hover:ml-2 px-2 py-1 rounded-md hover:bg-indigo-600 hover:text-white text-indigo-600"
@@ -179,7 +210,28 @@ const TutorRegister = () => {
                 />
               </div>
             </div>
-
+            <label
+              htmlFor="sex"
+              className="block text-sm font-semibold leading-6 text-gray-900"
+            >
+              Your sex
+            </label>
+            <div className="relative mt-2.5">
+              <select
+                type="text"
+                id="sex"
+                name="sex"
+                value={sex}
+                onChange={onChange}
+                className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              >
+                {["Male","Female"].map((s) => (
+                      <option value={s} key={s}>
+                        {s}
+                      </option>
+                    ))}
+              </select>
+            </div>
             <div className="sm:col-span-2">
               <label
                 htmlFor="email"
@@ -217,12 +269,44 @@ const TutorRegister = () => {
                   value={phone}
                   onChange={onChange}
                   placeholder="enter phone number"
-                  pattern="09[0-9]{8}" 
-                  title="Phone number must be 10 digits long and start with '09'" 
+                  pattern="09[0-9]{8}"
+                  title="Phone number must be 10 digits long and start with '09'"
                   autoComplete="tel"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
+            </div>
+
+            <label
+              htmlFor="education"
+              className="block text-sm font-semibold leading-6 text-gray-900"
+            >
+              Select your educational level
+            </label>
+            <div className="relative mt-2.5">
+              <select
+                type="text"
+                id="education"
+                name="education"
+                value={education}
+                onChange={onChange}
+                className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              >
+                {educational_levels?.length ? (
+                  <>
+                    {educational_levels.map((educational_level) => (
+                      <option
+                        value={educational_level.name}
+                        key={educational_level.id}
+                      >
+                        {educational_level.name}
+                      </option>
+                    ))}
+                  </>
+                ) : (
+                  <h3> not set any courses</h3>
+                )}
+              </select>
             </div>
 
             <div className="sm:col-span-2">
@@ -250,7 +334,7 @@ const TutorRegister = () => {
               htmlFor="course"
               className="block text-sm font-semibold leading-6 text-gray-900"
             >
-              course
+              Course you can teach
             </label>
             <div className="relative mt-2.5">
               <select
@@ -295,6 +379,119 @@ const TutorRegister = () => {
                 />
               </div>
             </div>
+            <div className="sm:col-span-2">
+              <label
+                htmlFor="about"
+                className="block text-sm font-semibold leading-6 text-gray-900"
+              >
+                About yourself
+              </label>
+              <div className="mt-2.5">
+                <textarea
+                  name="about"
+                  id="about"
+                  value={about}
+                  onChange={onChange}
+                  placeholder="write about yourself here, this will appear on your profile view"
+                  rows={4}
+                  className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  defaultValue={""}
+                />
+              </div>
+            </div>
+
+            {/* Schedule start */}
+            <div className="col-span-2 flex flex-col w-full">
+              <label
+                htmlFor="date"
+                className="block text-sm font-semibold leading-6 text-gray-900"
+              >
+                When will you be available?
+              </label>
+              <div className="flex w-full gap-4">
+                <div className=" mt-2.5">
+                  <select
+                    type="text"
+                    id="date"
+                    name="date"
+                    value={date}
+                    onChange={handleSchedule}
+                    className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  >
+                    {dates?.length ? (
+                      <>
+                        {dates.map((date) => (
+                          <option value={date.name} key={date.id}>
+                            {date.name}
+                          </option>
+                        ))}
+                      </>
+                    ) : (
+                      <h3> No schedule set</h3>
+                    )}
+                  </select>
+                </div>
+
+                <div className="mt-2.5">
+                  <select
+                    type="text"
+                    name="startTime"
+                    id="startTime"
+                    value={startTime}
+                    onChange={handleSchedule}
+                    className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  >
+                    {dates?.length ? (
+                      <>
+                        {hours.map((hour) => (
+                          <option value={hour.name} key={hour.id}>
+                            {hour.name}
+                          </option>
+                        ))}
+                      </>
+                    ) : (
+                      <h3> No schedule set</h3>
+                    )}
+                  </select>
+                </div>
+                <div className="mt-2.5">
+                  <select
+                    type="text"
+                    id="endTime"
+                    name="endTime"
+                    value={endTime}
+                    onChange={handleSchedule}
+                    className="w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  >
+                    {dates?.length ? (
+                      <>
+                        {hours.map((hour) => (
+                          <option value={hour.name} key={hour.id}>
+                            {hour.name}
+                          </option>
+                        ))}
+                      </>
+                    ) : (
+                      <h3> No schedule set</h3>
+                    )}
+                  </select>
+                </div>
+                <button
+                  className="mt-2.5 p-2 bg-gray-200 flex justify-center hover:bg-indigo-500 border-1 items-center rounded-full text-indigo-500 hover:text-white"
+                  onClick={appendToSchedule}
+                >
+                  <IoIosAddCircleOutline className="w-6 h-6" />
+                </button>
+              </div>
+              <div className="col-span-2 mt-2 bg-gray-100">
+                {schedule.map((sch) => (
+                  <p className="p-2 hover:bg-gray-500 hover:text-white">
+                  {sch}
+                </p>
+                ))}
+              </div>
+            </div>
+            {/* Schedule end */}
 
             <div className="sm:col-span-2">
               <label
@@ -311,7 +508,7 @@ const TutorRegister = () => {
                   value={password}
                   onChange={onChange}
                   placeholder="enter password"
-                  pattern=".{6,10}" 
+                  pattern=".{6,10}"
                   title="Password must be at least 6, not more than 10 characters long"
                   autoComplete="password"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -335,7 +532,7 @@ const TutorRegister = () => {
                   autoComplete="password2"
                   onChange={onChange}
                   placeholder="enter password"
-                  pattern=".{6,10}" 
+                  pattern=".{6,10}"
                   title="Password must be at least 6, not more than 10 characters long"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -344,8 +541,8 @@ const TutorRegister = () => {
 
             <div className="text-sm leading-6 text-gray-600">
               already have an account
-              <Link to="/login" className="font-semibold text-indigo-600">
-                &nbsp;login
+              <Link to="/tutor/login" className="font-semibold text-indigo-600">
+                &nbsp;Login
               </Link>
             </div>
           </div>
@@ -362,5 +559,27 @@ const TutorRegister = () => {
     </>
   );
 };
+const educational_levels = [
+  { id: 0, name: "Phd" },
+  { id: 2, name: "MSc/MBA degree" },
+  { id: 3, name: "BSc/BA degree" },
+  { id: 4, name: "Deploma" },
+  { id: 5, name: "Highschool graduated" },
+  { id: 6, name: "Other" },
+];
+const dates = [
+  { id: 1, name: "Sunday" },
+  { id: 2, name: "Monday" },
+  { id: 3, name: "Tuesday" },
+  { id: 4, name: "Wednesday" },
+  { id: 5, name: "Thursday" },
+  { id: 6, name: "Friday" },
+  { id: 7, name: "Saturday" },
+];
+
+const hours = Array.from({ length: 16 }, (_, i) => ({
+  id: i,
+  name: `${(i + 1).toString()} : 00`,
+}));
 
 export default TutorRegister;
