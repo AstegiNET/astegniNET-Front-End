@@ -53,10 +53,10 @@ const UpdateTutorProfile = () => {
 
   return (
     <>
-      <div className="flex pt-50">
-        <Sidebar/>
+      <div className="flex text-left ">
+        <Sidebar />
         <div className="w-full">
-          <div className="py-16">
+          <div className="">
             <div className="  bg-white shadow rounded-lg  w-4/6  mx-auto">
               <div className="mt-5 flex justify-center">
                 <Link to="/">
@@ -160,8 +160,8 @@ const UpdateTutorProfile = () => {
                               value={phone}
                               onChange={onChange}
                               placeholder="enter phone number"
-                              pattern="09[0-9]{8}" 
-                              title="Phone number must be 10 digits long and start with '09'" 
+                              pattern="09[0-9]{8}"
+                              title="Phone number must be 10 digits long and start with '09'"
                               autoComplete="tel"
                               className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             />
@@ -183,7 +183,7 @@ const UpdateTutorProfile = () => {
                               value={password}
                               onChange={onChange}
                               placeholder="enter password"
-                              pattern=".{6,}" 
+                              pattern=".{6,}"
                               title="Password must be at least 6 characters long"
                               autoComplete="password"
                               className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"

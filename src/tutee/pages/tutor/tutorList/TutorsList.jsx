@@ -34,7 +34,7 @@ const Tutors = () => {
   }, [tutorName, courseName, tutorRating]);
 
   return (
-    <div className="flex pb-10">
+    <div className="flex pb-10 text-left">
       <Sidebar />
       <div className="w-full">
         <TuteeHeader tutee={"tutors"} />
@@ -72,7 +72,6 @@ const Tutors = () => {
                 />
               </Menu.Button>
             </div>
-
             <Transition
               as={Fragment}
               enter="transition ease-out duration-100"
@@ -116,7 +115,7 @@ const Tutors = () => {
               : "Popular Tutors"}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {tutors.map((tutor, index) => (
+            {tutors?.map((tutor, index) => (
               <UserCard key={index} tutor={tutor} />
             ))}
           </div>

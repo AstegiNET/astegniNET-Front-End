@@ -11,11 +11,11 @@ const TutorProfile = () => {
 
   return (
     <>
-      <div className="pt-50 w-full">
+      <div className=" w-full text-left">
         <div className="p-4">
-          <div className="py-16 shadow-2xl min-h-screen rounded-lg dark:border-gray-700">
-            <div className="  bg-white shadow rounded-lg w-5/6 md:w-4/6  mx-auto">
-              <div className="mt-5 flex justify-center">
+          <div className=" min-h-screen rounded-lg ">
+            <div className="  bg-white shadow rounded-lg   mx-auto">
+              <div className=" flex justify-center">
                 <Link to="/">
                   <img
                     src={logo}
@@ -34,9 +34,7 @@ const TutorProfile = () => {
                 </p>
 
                 <div className="my-5 px-6">
-                  <div
-                    className="text-gray-400 block rounded-lg text-xl font-bold leading-6 px-6 py-3 bg-gray-100 shadow-md"
-                  >
+                  <div className="text-gray-400 block text-center  rounded-lg text-xl font-bold leading-6 px-6 py-3 bg-gray-100 shadow-md">
                     welcome {tutor.fname} {tutor.lname}
                   </div>
                 </div>

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -9,12 +9,17 @@ import {
   SEND_REQUEST,
   GET_REQUESTS,
   GET_COURSE,
+  GET_TUTORS,
+  FETCH_RATES,
 } from "../../../api/API";
+import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 
 const UserProfile = () => {
   const id = useParams().id;
   const [tutor, setTutor] = useState([]);
+  const [tutors, setTutors] = useState([]);
   const [course, setCourse] = useState({});
+  const [ratings, setRatings] = useState([]);
   const [requestSent, setRequestSent] = useState(false);
   const { tutee } = useSelector((state) => state.tuteeAuth);
   const navigate = useNavigate();
@@ -54,28 +59,78 @@ const UserProfile = () => {
       ).length > 0
     );
   };
+
+  const getRatings = async () => {
+    const response = await axios.get(`${FETCH_RATES}/${tutor._id}`);
+    setRatings(response.data);
+    console.log(ratings)
+  };
+
+  // const getTutors = async () => {
+  //   const API_URL =`${GET_TUTORS}?course=${course.name}`
+  //   const response = await axios.get(API_URL);
+  //   // console.log(response.data)
+  //   setTutors(response.data?.filter((tut)=>tut.id !== tutor._id));
+  //   console.log(tutors);
+  // };
+
+  const API_URL1 = `${GET_TUTORS}?course=${course.name}`;
   useEffect(() => {
     const getTutor = async () => {
       const response = await axios.get(API_URL);
       setTutor(response.data);
+      // console.log(response.data)
     };
 
     const getCourse = async () => {
       const response = await axios.get(`${GET_COURSE}/${tutor.course}`);
-
       setCourse(response.data);
+      // console.log(course);
     };
+
+    const getTutors = async () => {
+      const response = await axios.get(API_URL1);
+      setTutors(response.data?.filter((tut) => tut.id !== tutor._id));
+      // console.log(tutors);
+    };
+
     getTutor();
-    getCourse();
     getRequest();
-  }, [API_URL, tutor.course]);
+    getCourse();
+    getTutors();
+    getRatings();
+  }, [API_URL, API_URL1, tutor.course]);
 
   const handleGoBack = () => {
     window.history.back();
   };
 
+  function RatingBar() {
+    let rating = ratings/ratings.length;
+    const stars = [];
+
+    for (let i = 1; i <= 5; i++) {
+      if (i <= rating) {
+        stars.push(<FaStar key={i} size={16} className="text-yellow-400" />);
+      } else if (i - 0.5 === rating) {
+        stars.push(
+          <FaStarHalfAlt key={i} size={16} className="text-yellow-400" />
+        );
+      } else {
+        stars.push(<FaRegStar key={i} size={16} className="text-gray-400" />);
+      }
+    }
+    console.log(rating)
+    return <div className="flex">{stars}</div>;
+  }
+
+
+  const handleRating = ()=> {
+    
+  }
+
   return (
-    <div className="relative ">
+    <div className="relative">
       <div className="flex justify-between">
         <button
           onClick={() => handleGoBack()}
@@ -86,9 +141,9 @@ const UserProfile = () => {
         </button>
         <div></div>
       </div>
-      <div className="container mx-auto  p-5">
-        <div className="md:flex no-wrap md:-mx-2 ">
-          <div className="bg-gray-50 shadow-sm rounded-lg p-5 w-full md:w-6/12 md:mx-2">
+      <div className="container mx-auto p-5">
+        <div className="md:flex no-wrap md:mx-20 ">
+          <div className="bg-gray-50 shadow-sm rounded-lg p-5 w-full md:w-5/12 md:mx-2">
             <div className=" p-3 border-t-4 border-green-400">
               <div className="image overflow-hidden">
                 <img
@@ -115,29 +170,33 @@ const UserProfile = () => {
                   <span>Status</span>
                   <span className="ml-auto">
                     <span className="bg-indigo-600 py-1 px-2 rounded-full text-white text-sm">
-                      Active
+                      {tutor.isVerified ? "Verified" : "Not Verified"}
                     </span>
                   </span>
                 </div>
-                <div className="flex flex-wrap py-3">
-                  <div className="py-1 px-2 m-2 text-sm rounded-full bg-indigo-600 text-white">
-                    <span>{course.name}</span>
-                  </div>
-                  <div className="py-1 px-2 m-2 text-sm rounded-full bg-indigo-600 text-white">
-                    <span>Physics</span>
-                  </div>
-                  <div className="py-1 px-2 m-2 text-sm rounded-full bg-indigo-600 text-white">
-                    <span>Biology</span>
-                  </div>
-                  <div className="py-1 px-2 m-2 text-sm rounded-full bg-indigo-600 text-white">
-                    <span>Chemistry</span>
-                  </div>
+                <div className="flex items-center py-3">
+                  <span>Course</span>
+                  <span className="ml-auto">
+                    <span className="bg-indigo-600 py-1 px-2 rounded-full text-white text-sm">
+                      <span>{course.name}</span>
+                    </span>
+                  </span>
+                </div>
+                <div className="flex flex-col py-3">
+                  <span>Availability</span>
+                  <span className="py-1 px-2 rounded-full text-md">
+                    {tutor.schedule?.map((sch, index) => (
+                      <div className="p-2 mb-2 bg-indigo-100" key={index}>
+                        {sch}
+                      </div>
+                    ))}
+                  </span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="bg-gray-100 w-full md:w-6/12 mx-2 h-64">
+          <div className="bg-gray-100 w-full md:w-7/12 mx-2 h-64">
             <div className="bg-white p-3 shadow-sm rounded-sm">
               <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
                 <span clas="text-green-500">
@@ -161,28 +220,29 @@ const UserProfile = () => {
               <div className="text-gray-700">
                 <div className="text-left text-sm">
                   <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Atque ut, culpa magnam saepe quis excepturi omnis ad nisi
-                    facere quia earum autem, quisquam odit, dolore cum obcaecati
-                    sit consectetur beatae. Lorem ipsum dolor sit amet
-                    consectetur adipisicing elit. Impedit enim consequatur dicta
-                    repellendus temporibus placeat ad ex hic beatae. Cumque,
-                    reprehenderit possimus dolorum provident deleniti tenetur ex
-                    sapiente quam dolore!
+                    {tutor.about}
                   </p>
                   <div className="grid grid-cols-2">
-                    <div className="px-4 py-2 font-semibold">Gender</div>
-                    <div className="px-4 py-2">Female</div>
-                  </div>
-                  <div className="grid grid-cols-2">
-                    <div className="px-4 py-2 font-semibold">Address</div>
-                    <div className="px-4 py-2">
-                      Lideta, Addis Ababa, Ethiopia
-                    </div>
+                    <div className="px-4 py-2 font-semibold">Sex</div>
+                    <div className="px-4 py-2">{tutor.sex}</div>
                   </div>
                   <div className="grid grid-cols-2">
                     <div className="px-4 py-2 font-semibold">Member since</div>
-                    <div className="px-4 py-2">{tutor.createdAt}</div>
+                    <div className="px-4 py-2">
+                      {`${tutor.createdAt}`.slice(0, 10)}
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2">
+                    <div className="px-4 py-2 font-semibold">{RatingBar()}</div>
+                    <button
+                      className={`${
+                        tutor.enrolledTutee?.includes(tutee._id)
+                          ? `bg-green-500`
+                          : `bg-red-500`
+                      } px-2 py-2 flex justify-center items-center`}
+                    >
+                      <span>Rate Tutuor</span>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -216,20 +276,7 @@ const UserProfile = () => {
                 </div>
                 <ul className="list-inside space-y-2">
                   <li>
-                    <div className="text-teal-600">
-                      Masters Degree in Oxford
-                    </div>
-                    <div className="text-gray-500 text-xs">
-                      March 2020 - Now
-                    </div>
-                  </li>
-                  <li>
-                    <div className="text-teal-600">
-                      Bachelors Degreen in LPU
-                    </div>
-                    <div className="text-gray-500 text-xs">
-                      March 2020 - Now
-                    </div>
+                    <div className="text-teal-600">{tutor.education}</div>
                   </li>
                 </ul>
               </div>
@@ -256,30 +303,20 @@ const UserProfile = () => {
                 <span>Similar Profiles</span>
               </div>
               <div className="grid grid-cols-3">
-                <div className="text-center my-2">
-                  <img
-                    className="h-16 w-16 rounded-full mx-auto"
-                    src="https://cdn.australianageingagenda.com.au/wp-content/uploads/2015/06/28085920/Phil-Beckett-2-e1435107243361.jpg"
-                    alt=""
-                  />
-                  <span className="text-main-color">Kojstantin</span>
-                </div>
-                <div className="text-center my-2">
-                  <img
-                    className="h-16 w-16 rounded-full mx-auto"
-                    src="https://avatars2.githubusercontent.com/u/24622175?s=60&amp;v=4"
-                    alt=""
-                  />
-                  <span className="text-main-color">James</span>
-                </div>
-                <div className="text-center my-2">
-                  <img
-                    className="h-16 w-16 rounded-full mx-auto"
-                    src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt=""
-                  />
-                  <span className="text-main-color">Ashly</span>
-                </div>
+                {tutors?.map((tut, index) => (
+                  <a href={`/tutors/${tut.id}`}>
+                    <div key={index} className="text-center my-2">
+                      <img
+                        className="h-16 w-16 rounded-full mx-auto"
+                        src={tut.avatar}
+                        alt={tut.fname}
+                      />
+                      <span className="text-main-color">
+                        {tut.fname} {tut.lname}
+                      </span>
+                    </div>
+                  </a>
+                ))}
               </div>
             </div>
           </div>

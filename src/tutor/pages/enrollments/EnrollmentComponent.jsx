@@ -2,19 +2,23 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Header from "../../components/commonComponent/Header";
+import { Link, useNavigate } from "react-router-dom";
 
 const EnrollmentComponent = ({ enrollments }) => {
   const { tutor, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.tutorAuth
   );
+  const navigate = useNavigate();
 
   const startSession = () => {
     window.open(`/videoCall/${tutor?._id}`, "_blank");
   };
-  console.log(enrollments);
+  const contactTutee=(id)=>{
+    navigate("/tutor/chat",{state:id})
+    console.log(id);
+  }
   return (
     <div className="w-full">
-      <Header title="Enrollments" />
       <div className="flex justify-between">
         <div></div>
         <button
@@ -100,19 +104,14 @@ const EnrollmentComponent = ({ enrollments }) => {
                           {enrollment.course}
                         </td>
 
-                        <td className="px-4 py-3 text-xs">
-                          <span
-                            className={`px-2 py-1 font-semibold leading-tight  ${
-                              enrollment.ispaid
-                                ? "bg-green-100 text-green-700"
-                                : "bg-red-100 text-red-700"
-                            } rounded-full `}
-                          >
-                            {enrollment.ispaid ? "Payed" : "not Payed"}
-                          </span>
-                        </td>
                         <td className="px-4 py-3 text-sm">
                           {enrollment.updatedAt}
+                        </td>
+
+                        <td className="px-4 py-3 text-xs">
+                          <button onClick={()=>contactTutee(enrollment.tutee_id)} className="rounded-lg px-2 py-1 font-semibold leading-tight bg-indigo-500 text-white">
+                            Contact
+                          </button>
                         </td>
                       </tr>
                     ))}

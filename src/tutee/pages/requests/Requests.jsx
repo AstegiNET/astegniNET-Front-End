@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import { FaSearch, FaTrash, FaCcAmazonPay } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import Sidebar from "../../components/commonComponent/sidebar/Sidebar";
+
 import Pay from "../payment/Pay";
 import TuteeHeader from "../../components/commonComponent/TuteeHeader";
 import { FETCH_REQUESTS, DELETE_REQUEST } from "../../../api/API";
+import NotFound from "../../components/notFound/NotFound";
 
 export default function Requests() {
   const [requests, setRequests] = useState([]);
@@ -45,11 +47,11 @@ export default function Requests() {
   console.log(requests);
   return (
     <>
-      <div className="flex pt-10">
+      <div className="flex text-left">
         <Sidebar />
         <div className="w-full">
-          <div className="p-4  shadow-2xl min-h-screen rounded-lg dark:border-gray-700">
-            <TuteeHeader tutee={tutee} />
+          <TuteeHeader tutee={"Requests"} />
+          <div className="p-4   min-h-screen rounded-lg dark:border-gray-700">
             {requests.length > 0 ? (
               <div className="bg-white  sm:py-10">
                 <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 ">
@@ -133,41 +135,14 @@ export default function Requests() {
                 </div>
               </div>
             ) : (
-              <RequestsNotFound />
+              <NotFound
+                title={"Requests"}
+                description={"Sorry, you didn't send any requests yet."}
+              />
             )}
           </div>
         </div>
       </div>
     </>
-  );
-}
-
-function RequestsNotFound() {
-  return (
-    <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
-      <div className="text-center">
-        <h1 className="mt-4 text-3xl foFnt-bold tracking-tight text-indigo-300 sm:text-5xl">
-          <FaSearch />
-        </h1>
-
-        <h1 className="mt-4 text-xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-          No Requests Found
-        </h1>
-        <p className="mt-6 text-base leading-7 text-gray-600">
-          Sorry, you don't have any requests yet.
-        </p>
-        <div className="mt-10 flex items-center justify-center gap-x-6">
-          <a
-            href="/"
-            className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            Go back home
-          </a>
-          <a href="/" className="text-sm font-semibold text-gray-900">
-            Contact support <span aria-hidden="true">&rarr;</span>
-          </a>
-        </div>
-      </div>
-    </main>
   );
 }

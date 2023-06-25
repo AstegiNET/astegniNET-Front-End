@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import { FETCH_ENROLLMENTS } from "../../../api/API";
 import EnrollmentComponent from "./EnrollmentComponent";
 import Sidebar from "../../components/commonComponent/sidebar/Sidebar";
+import NotFound from "../../components/notFound/NotFound";
+import Header from "../../components/commonComponent/Header";
 
 export default function Enrollment() {
   const [enrollments, setEnrollments] = useState([]);
@@ -26,13 +28,19 @@ export default function Enrollment() {
   }, []);
 
   return (
-    <>
-      <div className="flex pt-50">
-        
-      <Sidebar/>
-      <EnrollmentComponent enrollments = {enrollments}/>
+    <div className="flex  text-left">
+      <Sidebar />
+      <div className="w-full">
+        <Header title="Enrollments" />
+        {enrollments.length ? (
+          <EnrollmentComponent enrollments={enrollments} />
+        ) : (
+          <NotFound
+            title={"Enrollments"}
+            description={"Sorry, you don't have any enrollments yet."}
+          />
+        )}
       </div>
-    </>
+    </div>
   );
 }
-

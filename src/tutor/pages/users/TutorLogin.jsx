@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 import { tutorLogin, tutorReset } from "../../features/auth/tutorAuthSlice";
 import Spinner from "../../components/commonComponent/Spinner";
+import Header from "../../../landingPage/components/Header";
 
 const TutorLogin = () => {
   const [formData, setFormData] = useState({
@@ -24,16 +25,10 @@ const TutorLogin = () => {
   );
 
   useEffect(() => {
-    if (isError) {
-      console.log(message);
-    }
-
     if (isSuccess || tutor) {
       navigate("/tutor/home");
     }
-
-    dispatch(tutorReset());
-  }, [tutor, isError, isSuccess, message, navigate, dispatch]);
+  }, [tutor, isSuccess, navigate]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -51,6 +46,10 @@ const TutorLogin = () => {
     };
 
     dispatch(tutorLogin(tutorData));
+    if (isError) {
+      console.log(message);
+    }
+    dispatch(tutorReset());
   };
 
   if (isLoading) {
@@ -59,6 +58,7 @@ const TutorLogin = () => {
 
   return (
     <>
+      <Header />
       <div className="isolate bg-white py-24 px-6 sm:py-32 lg:px-8 ">
         <div className="  absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
           <svg
@@ -91,7 +91,10 @@ const TutorLogin = () => {
           </h2>
           <div className="text-md mt-10 leading-6 text-gray-600">
             Login as a
-            <Link to={"/tutee/login"} className="font-semibold hover:ml-2 px-2 py-1 rounded-md hover:bg-indigo-600 hover:text-white text-indigo-600">
+            <Link
+              to={"/tutee/login"}
+              className="font-semibold hover:ml-2 px-2 py-1 rounded-md hover:bg-indigo-600 hover:text-white text-indigo-600"
+            >
               &nbsp;Tutee
             </Link>
           </div>
@@ -123,7 +126,6 @@ const TutorLogin = () => {
                   title="email should follow a valid email address format"
                   autoComplete="email"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  
                 />
               </div>
             </div>
