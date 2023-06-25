@@ -1,8 +1,8 @@
-const BASE_URI = "http://localhost:5000/api";
-export const CLIENT_BASE_URL = "http://localhost:3000";
+// const BASE_URI = "http://localhost:5000/api";
+// export const CLIENT_BASE_URL = "http://localhost:3000";
 
-// const BASE_URI = "https://astegni-net-back-end.vercel.app/api";
-// export const CLIENT_BASE_URL = "https://astegni-net-front-end.vercel.app";
+const BASE_URI = "https://astegni-net-back-end.vercel.app/api";
+export const CLIENT_BASE_URL = "https://astegni-net-front-end.vercel.app";
 
 export const REGISTER_TUTEE = `${BASE_URI}/tutees/register`;
 export const LOGIN_TUTEE = `${BASE_URI}/tutees/login`;
@@ -31,7 +31,6 @@ export const FETCH_ENROLLMENTS = `${BASE_URI}/request/fetchEnrollments`;
 
 export const GET_COURSE = `${BASE_URI}/courses/getCourse`;
 export const FETCH_ALL_COURSES = `${BASE_URI}/courses/getAllCourses`;
-
 
 // messaging
 
