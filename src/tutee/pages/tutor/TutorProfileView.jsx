@@ -63,7 +63,7 @@ const UserProfile = () => {
   const getRatings = async () => {
     const response = await axios.get(`${FETCH_RATES}/${tutor._id}`);
     setRatings(response.data);
-    console.log(ratings)
+    console.log(ratings);
   };
 
   // const getTutors = async () => {
@@ -106,7 +106,7 @@ const UserProfile = () => {
   };
 
   function RatingBar() {
-    let rating = ratings/ratings.length;
+    let rating = ratings / ratings.length;
     const stars = [];
 
     for (let i = 1; i <= 5; i++) {
@@ -120,14 +120,11 @@ const UserProfile = () => {
         stars.push(<FaRegStar key={i} size={16} className="text-gray-400" />);
       }
     }
-    console.log(rating)
+    console.log(rating);
     return <div className="flex">{stars}</div>;
   }
 
-
-  const handleRating = ()=> {
-    
-  }
+  const handleRating = () => {};
 
   return (
     <div className="relative">
@@ -234,7 +231,7 @@ const UserProfile = () => {
                   </div>
                   <div className="grid grid-cols-2">
                     <div className="px-4 py-2 font-semibold">{RatingBar()}</div>
-                    <button
+                    {/* <button
                       className={`${
                         tutor.enrolledTutee?.includes(tutee._id)
                           ? `bg-green-500`
@@ -242,6 +239,16 @@ const UserProfile = () => {
                       } px-2 py-2 flex justify-center items-center`}
                     >
                       <span>Rate Tutuor</span>
+                    </button> */}
+
+                    <button
+                      disabled={!tutor.enrolledTutee?.includes(tutee._id)}
+                      onClick={tutee ? sendRequest : navigate("/tutee/login")}
+                      className={`w-full px-4 py-2 font-medium text-indigo-600  bg-transparent border border-indigo-600 rounded-md ${
+                        tutor.enrolledTutee?.includes(tutee._id) && "hover:bg-indigo-600 hover:text-white"
+                      } hover:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2`}
+                    >
+                      Rate Tutor
                     </button>
                   </div>
                 </div>
