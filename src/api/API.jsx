@@ -32,9 +32,10 @@ export const FETCH_ENROLLMENTS = `${BASE_URI}/request/fetchEnrollments`;
 export const GET_COURSE = `${BASE_URI}/courses/getCourse`;
 export const FETCH_ALL_COURSES = `${BASE_URI}/courses/getAllCourses`;
 
-
 // messaging
 
 export const FETCH_MESSAGES = `${BASE_URI}/message/getMessages`;
+
+export const FETCH_ALLMESSAGES = `${BASE_URI}/message/getAllMessages`;
 export const SEND_MESSAGE = `${BASE_URI}/message/sendmessage`;
 export const FETCH_RATES = `${BASE_URI}/rate/getAllrates`;

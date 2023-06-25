@@ -6,10 +6,13 @@ import EnrollmentComponent from "./EnrollmentComponent";
 import Sidebar from "../../components/commonComponent/sidebar/Sidebar";
 import NotFound from "../../components/notFound/NotFound";
 import Header from "../../components/commonComponent/Header";
+import { useLocation } from "react-router-dom";
 
 export default function Enrollment() {
   const [enrollments, setEnrollments] = useState([]);
   const { tutor } = useSelector((state) => state.tutorAuth);
+  const location = useLocation();
+  const url = location.pathname + location.search + location.hash;
 
   const getEnrollments = async () => {
     const config = {
@@ -25,6 +28,7 @@ export default function Enrollment() {
 
   useEffect(() => {
     getEnrollments();
+    console.log(url);
   }, []);
 
   return (
