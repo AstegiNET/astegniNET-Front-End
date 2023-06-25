@@ -109,25 +109,28 @@ function Chat() {
           </div>
         </div>
         <div className="justify-between flex flex-col ml-8">
-          <ul className="max-h-screen overflow-y-auto overflow-x-hidden">
+        <ul className="max-h-screen overflow-y-auto overflow-x-hidden">
             {messages.map((message, index) => (
               <Link to={""}>
                 <li key={index} className="flex justify-between mt-2 py-2">
                   <div className="flex gap-x-4">
                     <img
                       className="h-12 w-12 flex-none rounded-full bg-gray-50"
-                      src={message.tutor_avatar}
+                      src={message.sender?.avatar}
                       alt=""
                     />
                     <div className="min-w-0 flex-auto">
                       <p className="text-sm font-semibold leading-6 text-gray-900">
-                        {message.tutee_name}
+                        {message.sender?.fname} {message.sender?.lname}
                       </p>
                       <p className="mt-1 truncate text-xs leading-5 text-gray-500">
                         {message.body}
                       </p>
                       <p className="mt-1 text-xs leading-5 text-gray-500">
-                        <span>{message.createdAt.slice(0,10)} {message.createdAt.slice(11,19)}</span>
+                        <span>
+                          {message.createdAt.slice(0, 10)}{" "}
+                          {message.createdAt.slice(11, 19)}
+                        </span>
                       </p>
                     </div>
                   </div>

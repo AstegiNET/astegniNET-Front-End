@@ -25,21 +25,17 @@ function Chat() {
 
   const tuteeId = useMemo(() => {
     const data = location.state;
-    console.log(data)
+    console.log(data);
     return data;
   }, [location.state]);
 
-
   const messageId = useMemo(() => {
-    const data = (`${tutor._id}${tuteeId}`)
-    console.log(data)
+    const data = `${tutor._id}${tuteeId}`;
+    console.log(data);
     return data;
-  }, [tuteeId,tutor._id]);
-
+  }, [tuteeId, tutor._id]);
 
   // setMessageId(`${tutorId}${tutee._id}`);
-
-
 
   const joinRoom = () => {
     if (username !== "" && room !== "") {
@@ -48,12 +44,10 @@ function Chat() {
     }
   };
   useEffect(() => {
-    // const user = tutee ? tutee.fname : tutor ? tutor.fname : "";
-    // console.log(user);
-    // setUsername(user);
-    // setRoom(user);
-  
+
     getMessages();
+
+    console.log(messages)
   }, [tuteeId]);
 
   const getMessages = async () => {
@@ -82,6 +76,7 @@ function Chat() {
     // console.log(response.data);
     getMessages();
     setMessage("");
+
     return response.data;
   };
 
@@ -103,37 +98,36 @@ function Chat() {
             <IoIosArrowBack />
             Go Back
           </Link>
-          <div>
-            {}
-          </div>
+          <div>{}</div>
         </div>
         <div className="justify-between flex flex-col ml-8">
-          <ul className="max-h-screen overflow-y-auto overflow-x-hidden">
-            {messages.map((message, index) => (
-              <Link to={""}>
-                <li key={index} className="flex justify-between mt-2 py-2">
-                  <div className="flex gap-x-4">
-                    <img
-                      className="h-12 w-12 flex-none rounded-full bg-gray-50"
-                      src={message.tutor_avatar}
-                      alt=""
-                    />
-                    <div className="min-w-0 flex-auto">
-                      <p className="text-sm font-semibold leading-6 text-gray-900">
-                        {message.tutor_name}
-                      </p>
-                      <p className="mt-1 truncate text-xs leading-5 text-gray-500">
-                        {message.body}
-                      </p>
-                      <p className="mt-1 text-xs leading-5 text-gray-500">
-                        <span>{message.createdAt.slice(0,10)} {message.createdAt.slice(11,19)}</span>
-                      </p>
-                    </div>
+          {/* <ul className="max-h-screen overflow-y-auto overflow-x-hidden">
+            {messages?.map((message, index) => (
+              <li key={index} className="flex justify-between mt-2 py-2">
+                <div className="flex gap-x-4">
+                  <img
+                    className="h-12 w-12 flex-none rounded-full bg-gray-50"
+                    src={message.sender?.avatar}
+                    alt=""
+                  />
+                  <div className="min-w-0 flex-auto">
+                    <p className="text-sm font-semibold leading-6 text-gray-900">
+                      {message.sender?.fname} {message.sender?.lname}
+                    </p>
+                    <p className="mt-1 truncate text-xs leading-5 text-gray-500">
+                      {message?.body}
+                    </p>
+                    <p className="mt-1 text-xs leading-5 text-gray-500">
+                      <span>
+                        {message?.createdAt.slice(0, 10)}{" "}
+                        {message?.createdAt.slice(11, 19)}
+                      </span>
+                    </p>
                   </div>
-                </li>
-              </Link>
+                </div>
+              </li>
             ))}
-          </ul>
+          </ul> */}
           <div className="flex">
             <textarea
               id="message"
