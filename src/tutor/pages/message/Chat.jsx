@@ -44,10 +44,9 @@ function Chat() {
     }
   };
   useEffect(() => {
-
     getMessages();
 
-    console.log(messages)
+    console.log(messages);
   }, [tuteeId]);
 
   const getMessages = async () => {
@@ -101,7 +100,7 @@ function Chat() {
           <div>{}</div>
         </div>
         <div className="justify-between flex flex-col ml-8">
-          {/* <ul className="max-h-screen overflow-y-auto overflow-x-hidden">
+          <ul className="max-h-screen overflow-y-auto overflow-x-hidden">
             {messages?.map((message, index) => (
               <li key={index} className="flex justify-between mt-2 py-2">
                 <div className="flex gap-x-4">
@@ -127,7 +126,7 @@ function Chat() {
                 </div>
               </li>
             ))}
-          </ul> */}
+          </ul>
           <div className="flex">
             <textarea
               id="message"
