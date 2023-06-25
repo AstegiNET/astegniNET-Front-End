@@ -51,9 +51,9 @@ const UpdateProfile = () => {
     <>
       <div className="flex">
         <Sidebar />
-        <div className="w-full text-left">
+        <div className="w-full">
           <div className="  min-h-screen rounded-lg ">
-            <div className="  bg-white shadow rounded-lg w-5/6 md:w-4/6  mx-auto">
+            <div className="  bg-white shadow rounded-lg xs:w-full sm:w-5/6 lg:w-1/2 mx-auto">
               <div className="mt-5 flex justify-center">
                 <Link to="/">
                   <img
