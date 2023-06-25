@@ -10,13 +10,16 @@ import {
   GET_REQUESTS,
   GET_COURSE,
   GET_TUTORS,
+  FETCH_RATES,
 } from "../../../api/API";
+import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 
 const UserProfile = () => {
   const id = useParams().id;
   const [tutor, setTutor] = useState([]);
   const [tutors, setTutors] = useState([]);
   const [course, setCourse] = useState({});
+  const [ratings, setRatings] = useState([]);
   const [requestSent, setRequestSent] = useState(false);
   const { tutee } = useSelector((state) => state.tuteeAuth);
   const navigate = useNavigate();
@@ -57,6 +60,12 @@ const UserProfile = () => {
     );
   };
 
+  const getRatings = async () => {
+    const response = await axios.get(`${FETCH_RATES}/${tutor._id}`);
+    setRatings(response.data);
+    console.log(ratings)
+  };
+
   // const getTutors = async () => {
   //   const API_URL =`${GET_TUTORS}?course=${course.name}`
   //   const response = await axios.get(API_URL);
@@ -76,25 +85,49 @@ const UserProfile = () => {
     const getCourse = async () => {
       const response = await axios.get(`${GET_COURSE}/${tutor.course}`);
       setCourse(response.data);
-      console.log(course);
+      // console.log(course);
     };
 
     const getTutors = async () => {
       const response = await axios.get(API_URL1);
-      // console.log(response.data)
       setTutors(response.data?.filter((tut) => tut.id !== tutor._id));
-      console.log(tutors);
+      // console.log(tutors);
     };
 
     getTutor();
     getRequest();
     getCourse();
     getTutors();
+    getRatings();
   }, [API_URL, API_URL1, tutor.course]);
 
   const handleGoBack = () => {
     window.history.back();
   };
+
+  function RatingBar() {
+    let rating = ratings/ratings.length;
+    const stars = [];
+
+    for (let i = 1; i <= 5; i++) {
+      if (i <= rating) {
+        stars.push(<FaStar key={i} size={16} className="text-yellow-400" />);
+      } else if (i - 0.5 === rating) {
+        stars.push(
+          <FaStarHalfAlt key={i} size={16} className="text-yellow-400" />
+        );
+      } else {
+        stars.push(<FaRegStar key={i} size={16} className="text-gray-400" />);
+      }
+    }
+    console.log(rating)
+    return <div className="flex">{stars}</div>;
+  }
+
+
+  const handleRating = ()=> {
+    
+  }
 
   return (
     <div className="relative">
@@ -198,6 +231,18 @@ const UserProfile = () => {
                     <div className="px-4 py-2">
                       {`${tutor.createdAt}`.slice(0, 10)}
                     </div>
+                  </div>
+                  <div className="grid grid-cols-2">
+                    <div className="px-4 py-2 font-semibold">{RatingBar()}</div>
+                    <button
+                      className={`${
+                        tutor.enrolledTutee?.includes(tutee._id)
+                          ? `bg-green-500`
+                          : `bg-red-500`
+                      } px-2 py-2 flex justify-center items-center`}
+                    >
+                      <span>Rate Tutuor</span>
+                    </button>
                   </div>
                 </div>
               </div>

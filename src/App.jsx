@@ -28,7 +28,11 @@ import CommonProtectedRoutes from "./landingPage/utils/CommonUtils";
 import VideoCall from "./video/VideoCall";
 import TutorHome from "./tutor/pages/TutorHome";
 import Tutors from "./tutee/pages/tutor/tutorList/TutorsList";
-import Message from "./message/Message";
+import Chat from "./tutee/pages/message/Chat";
+import Messages from "./tutee/pages/message/Messages";
+import TutorChat from "./tutor/pages/message/Chat";
+import TutorMessages from "./tutor/pages/message/Messages";
+
 
 export default function App() {
   return (
@@ -50,6 +54,9 @@ export default function App() {
           <Route path="/tutee/pay" element={<Pay />} />
           <Route path="/tutee/verifypay/:id" element={<VerifyPay />} />
           <Route path="/tutee/updateprofile" element={<UpdateProfile />} />
+          
+          <Route path="tutee/messages" element={<Messages />} />
+          <Route path="tutee/chat" element={<Chat />} />
         </Route>
 
         <Route path="/tutor/register" element={<TutorRegister />} />
@@ -59,11 +66,11 @@ export default function App() {
           <Route path="/tutor/UpdateProfile" element={<UpdateTutorProfile />} />
           <Route path="/tutor/requests" element={<Requests />} />
           <Route path="/tutor/enrollments" element={<TutorEnrollment />} />
+          <Route path="tutor/messages" element={<TutorMessages />} />
+          <Route path="tutor/chat" element={<TutorChat />} />
         </Route>
-
         <Route element={<CommonProtectedRoutes />}>
           <Route path="/videoCall/:tutorid" element={<VideoCall />} />
-          <Route path="/message" element={<Message />} />
         </Route>
       </Routes>
 

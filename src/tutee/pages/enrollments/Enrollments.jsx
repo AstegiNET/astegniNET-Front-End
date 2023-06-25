@@ -1,16 +1,17 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { FaCheck, FaSearch } from "react-icons/fa";
+import { FaComment} from "react-icons/fa";
 import { useSelector } from "react-redux";
 import Sidebar from "../../components/commonComponent/sidebar/Sidebar";
 import TuteeHeader from "../../components/commonComponent/TuteeHeader";
 import { FETCH_ENROLLMENTS } from "../../../api/API";
 import NotFound from "../../components/notFound/NotFound";
+import { useNavigate } from "react-router-dom";
 
 export default function Enrollment() {
   const [enrollments, setEnrollments] = useState([]);
   const { tutee } = useSelector((state) => state.tuteeAuth);
-
+const navigate = useNavigate();
   const getEnrollments = async () => {
     const config = {
       headers: {
@@ -27,17 +28,21 @@ export default function Enrollment() {
     getEnrollments();
   }, []);
 
+const contactTutor=(id)=>{
+  navigate("/tutee/chat",{state:id})
+}
+
   return (
     <>
-      <div className="text-left flex">
+      <div className="flex">
         <Sidebar />
         <div className="w-full">
           <TuteeHeader tutee={"Enrollments"} />
-          <div className="p-4   min-h-screen rounded-lg dark:border-gray-700">
+          <div className="p-4 h-3/4">
             {enrollments.length > 0 ? (
-              <div className="bg-white py-24 sm:py-32">
+              <div className="bg-white py-4 sm:py-32">
                 <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 ">
-                  <ul className="grid gap-x-4 gap-y-12 sm:grid-cols-3 sm:gap-y-16 xl:col-span-2">
+                  <ul className="grid gap-x-4 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 sm:gap-y-16 xl:col-span-2">
                     {enrollments.map((request, index) => (
                       <li key={index}>
                         <div className="flex items-center gap-x-6 shadow-lg rounded-xl p-5">
@@ -59,19 +64,16 @@ export default function Enrollment() {
                             <p>
                               status:{" "}
                               <span className="text-sm font-semibold leading-6 text-indigo-600">
-                                {request.ispaid && "payed"}
+                                {request.ispaid && "active"}
                               </span>
                             </p>
                             <p className="text-sm font-semibold leading-6 text-gray-80">
                               {request.description}
                             </p>
-
-                            {request.ispaid && (
-                              <button className="flex items-center mx-2 my-5 px-4 font-small rounded-xl bg-indigo-600 focus:outline-none text-white">
-                                <FaCheck className="mr-2" />{" "}
-                                <span>enrolled</span>
+                            <button onClick={()=>contactTutor(request.tutor_id)} className="flex items-center mx-2 my-5 py-1 px-4 font-small rounded-full bg-indigo-500 focus:outline-none text-white">
+                                <FaComment className="mr-2" />{" "}
+                                <span>Contact</span>
                               </button>
-                            )}
                           </div>
                         </div>
                       </li>
