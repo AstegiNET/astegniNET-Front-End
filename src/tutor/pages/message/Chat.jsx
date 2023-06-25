@@ -88,18 +88,18 @@ function Chat() {
     <div className="flex">
       <Sidebar />
 
-      <div className="h-[calc(100vh-80px)] md:w-1/2 lg:w-1/4 px-2 py-2">
+      <div className="h-[calc(100vh-80px)]   lg:w-1/2 justify-self-center px-2 py-2  mb-5 ">
         <div className="flex justify-between items-center">
           <Link
             to={"/tutor/messages"}
-            className="flex items-center py-2  mt-4 ml-4  px-4 leading-tight bg-gray-200 text-gray-600 hover:bg-indigo-500 hover:text-gray-100 rounded-full"
+            className="flex items-center py-2  mt-4 ml-4  px-4 leading-tight bg-gray-200 text-gray-600 hover:bg-indigo-500 hover:text-gray-100 rounded-lg"
           >
             <IoIosArrowBack />
             Go Back
           </Link>
-          <div>{}</div>
+          <div></div>
         </div>
-        <div className="justify-between flex flex-col ml-8">
+        <div className="justify-between flex flex-col my-5  ml-8">
           <ul className="max-h-screen overflow-y-auto overflow-x-hidden">
             {messages?.map((message, index) => (
               <li key={index} className="flex justify-between mt-2 py-2">
@@ -134,7 +134,7 @@ function Chat() {
               value={message}
               onChange={onChange}
               placeholder="Write here ..."
-              className="col-span-full flex-grow mt-2 block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-transparent placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              className="col-span-full flex-grow mt-2 block w-full rounded-md p-1.5 text-gray-900 shadow-sm placeholder:text-gray-400  sm:text-sm sm:leading-6"
             />
             {/* <div className="col-span-full ">
           

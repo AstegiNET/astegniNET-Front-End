@@ -26,21 +26,17 @@ function Chat() {
 
   const tutorId = useMemo(() => {
     const data = location.state;
-    console.log(data)
+    console.log(data);
     return data;
   }, [location.state]);
 
-
   const messageId = useMemo(() => {
-    const data = (`${tutorId}${tutee._id}`)
-    console.log(data)
+    const data = `${tutorId}${tutee._id}`;
+    console.log(data);
     return data;
-  }, [tutorId,tutee._id]);
-
+  }, [tutorId, tutee._id]);
 
   // setMessageId(`${tutorId}${tutee._id}`);
-
-
 
   const joinRoom = () => {
     if (username !== "" && room !== "") {
@@ -49,11 +45,6 @@ function Chat() {
     }
   };
   useEffect(() => {
-    // const user = tutee ? tutee.fname : tutor ? tutor.fname : "";
-    // console.log(user);
-    // setUsername(user);
-    // setRoom(user);
-  
     getMessages();
   }, [tutorId]);
 
@@ -104,12 +95,10 @@ function Chat() {
             <IoIosArrowBack />
             Go Back
           </Link>
-          <div>
-            {}
-          </div>
+          <div>{}</div>
         </div>
         <div className="justify-between flex flex-col ml-8">
-        <ul className="max-h-screen overflow-y-auto overflow-x-hidden">
+          <ul className="max-h-screen overflow-y-auto overflow-x-hidden">
             {messages.map((message, index) => (
               <Link to={""}>
                 <li key={index} className="flex justify-between mt-2 py-2">
