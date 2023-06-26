@@ -97,6 +97,7 @@ const TutorRegister = () => {
   }, [tutor, isError, isSuccess, message, navigate, dispatch]);
 
   const onChange = (e) => {
+    e.preventDefault();
     setFormData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
@@ -374,17 +375,11 @@ const TutorRegister = () => {
                 onChange={onChange}
                 className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               >
-                {courses?.length ? (
-                  <>
-                    {courses.map((course) => (
-                      <option value={course._id} key={course._id}>
-                        {course.name}
-                      </option>
-                    ))}
-                  </>
-                ) : (
-                  <h3> not set any courses</h3>
-                )}
+                {courses?.map((course) => (
+                  <option value={course._id} key={course._id}>
+                    {course.name}
+                  </option>
+                ))}
               </select>
             </div>
 
@@ -420,10 +415,9 @@ const TutorRegister = () => {
                   id="about"
                   value={about}
                   onChange={onChange}
-                  placeholder="write about yourself here, this will appear on your profile view"
+                  placeholder="write about yourself here, this will appear on your public profile"
                   rows={4}
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  defaultValue={""}
                 />
               </div>
             </div>

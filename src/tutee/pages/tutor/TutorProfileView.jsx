@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { IoIosArrowBack } from "react-icons/io";
+import Rating from "@mui/material/Rating";
 import {
   GET_TUTOR,
   SEND_REQUEST,
@@ -11,8 +12,16 @@ import {
   GET_COURSE,
   GET_TUTORS,
   FETCH_RATES,
+  ADD_RATE,
 } from "../../../api/API";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
+import { Box, Button, IconButton } from "@mui/material";
+import StarIcon from "@mui/icons-material/Star";
+import Popper from "@mui/material/Popper";
+import PopupState, { bindToggle, bindPopper } from "material-ui-popup-state";
+import Fade from "@mui/material/Fade";
+import AddIcon from "@mui/icons-material/Add";
+import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 
 const UserProfile = () => {
   const id = useParams().id;
@@ -20,6 +29,8 @@ const UserProfile = () => {
   const [tutors, setTutors] = useState([]);
   const [course, setCourse] = useState({});
   const [ratings, setRatings] = useState([]);
+  const [ratingValue, setRatingValue] = useState(0);
+  const [ratingHover, setRatingHover] = React.useState(-1);
   const [requestSent, setRequestSent] = useState(false);
   const { tutee } = useSelector((state) => state.tuteeAuth);
   const navigate = useNavigate();
@@ -66,32 +77,41 @@ const UserProfile = () => {
     console.log(ratings);
   };
 
-  // const getTutors = async () => {
-  //   const API_URL =`${GET_TUTORS}?course=${course.name}`
-  //   const response = await axios.get(API_URL);
-  //   // console.log(response.data)
-  //   setTutors(response.data?.filter((tut)=>tut.id !== tutor._id));
-  //   console.log(tutors);
-  // };
+  const rateTutor = async () => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${tutee.token}`,
+      },
+    };
+    const rating = {
+      rate: ratingValue,
+    };
+    const response = await axios.post(
+      `${ADD_RATE}/${tutor._id}`,
+      rating,
+      config
+    );
+    if (response.statusText === "OK") {
+      getRatings();
+    }
+    return response.data;
+  };
 
   const API_URL1 = `${GET_TUTORS}?course=${course.name}`;
   useEffect(() => {
     const getTutor = async () => {
       const response = await axios.get(API_URL);
       setTutor(response.data);
-      // console.log(response.data)
     };
 
     const getCourse = async () => {
       const response = await axios.get(`${GET_COURSE}/${tutor.course}`);
       setCourse(response.data);
-      // console.log(course);
     };
 
     const getTutors = async () => {
       const response = await axios.get(API_URL1);
       setTutors(response.data?.filter((tut) => tut.id !== tutor._id));
-      // console.log(tutors);
     };
 
     getTutor();
@@ -99,14 +119,20 @@ const UserProfile = () => {
     getCourse();
     getTutors();
     getRatings();
-  }, [API_URL, API_URL1, tutor.course]);
+  }, [API_URL, API_URL1, tutor._id, tutor.course]);
 
   const handleGoBack = () => {
     window.history.back();
   };
 
   function RatingBar() {
-    let rating = ratings / ratings.length;
+    var rating;
+    var sum = 0;
+    if (ratings?.length > 0) {
+      ratings.map((r) => (sum += r.rate));
+      rating = sum / ratings?.length;
+      console.log(rating);
+    }
     const stars = [];
 
     for (let i = 1; i <= 5; i++) {
@@ -120,18 +146,40 @@ const UserProfile = () => {
         stars.push(<FaRegStar key={i} size={16} className="text-gray-400" />);
       }
     }
-    console.log(rating);
-    return <div className="flex">{stars}</div>;
+    return (
+      <div className="flex justify-center items-center">
+        {stars} <span className="ml-2">{ratings?.length} votes</span>
+      </div>
+    );
   }
 
-  const handleRating = () => {};
+  const handleRating = () => {
+    rateTutor();
+  };
+
+  const labels = {
+    0.5: "Useless",
+    1: "Useless",
+    1.5: "Poor",
+    2: "Poor",
+    2.5: "Ok",
+    3: "Not Bad",
+    3.5: "Good",
+    4: "Very Good",
+    4.5: "Excellent",
+    5: "Amazing",
+  };
+
+  function getLabelText(value) {
+    return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`;
+  }
 
   return (
     <div className="relative">
       <div className="flex justify-between">
         <button
           onClick={() => handleGoBack()}
-          className="flex py-2  mt-4 ml-4  px-4 font-semibold leading-tight bg-gray-200 text-gray-600 hover:bg-indigo-500 hover:text-gray-100 rounded-md"
+          className="flex justify-center items-center py-2  mt-4 ml-4  px-4 font-semibold leading-tight bg-gray-200 text-gray-600 hover:bg-indigo-500 hover:text-gray-100 rounded-md"
         >
           <IoIosArrowBack />
           Go Back
@@ -231,25 +279,79 @@ const UserProfile = () => {
                   </div>
                   <div className="grid grid-cols-2">
                     <div className="px-4 py-2 font-semibold">{RatingBar()}</div>
-                    {/* <button
-                      className={`${
-                        tutor.enrolledTutee?.includes(tutee._id)
-                          ? `bg-green-500`
-                          : `bg-red-500`
-                      } px-2 py-2 flex justify-center items-center`}
-                    >
-                      <span>Rate Tutuor</span>
-                    </button> */}
-
-                    <button
-                      disabled={!tutor.enrolledTutee?.includes(tutee._id)}
-                      onClick={tutee ? sendRequest : navigate("/tutee/login")}
-                      className={`w-full px-4 py-2 font-medium text-indigo-600  bg-transparent border border-indigo-600 rounded-md ${
-                        tutor.enrolledTutee?.includes(tutee._id) && "hover:bg-indigo-600 hover:text-white"
-                      } hover:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2`}
-                    >
-                      Rate Tutor
-                    </button>
+                    <div>
+                      <PopupState variant="popper" popupId="demo-popup-popper">
+                        {(popupState) => (
+                          <div>
+                            <Popper {...bindPopper(popupState)} transition>
+                              {({ TransitionProps }) => (
+                                <Fade {...TransitionProps} timeout={350}>
+                                  <Box
+                                    sx={{
+                                      width: "200px",
+                                      marginTop: "8px",
+                                      alignItems: "center",
+                                    }}
+                                  >
+                                    <div className="flex justify-center items-center">
+                                      <Rating
+                                        name="hover-feedback"
+                                        value={ratingValue}
+                                        precision={0.5}
+                                        getLabelText={getLabelText}
+                                        onChange={(event, newValue) => {
+                                          setRatingValue(newValue);
+                                        }}
+                                        onChangeActive={(event, newHover) => {
+                                          setRatingHover(newHover);
+                                        }}
+                                        emptyIcon={
+                                          <StarIcon
+                                            style={{ opacity: 0.55 }}
+                                            fontSize="inherit"
+                                          />
+                                        }
+                                      />
+                                      <IconButton
+                                        aria-label="send"
+                                        size="large"
+                                        onClick={handleRating}
+                                      >
+                                        <SendOutlinedIcon
+                                          color="success"
+                                          fontSize="large"
+                                        />
+                                      </IconButton>
+                                    </div>
+                                    {ratingValue !== null && (
+                                      <Box sx={{ ml: 2 }}>
+                                        {
+                                          labels[
+                                            ratingHover !== -1
+                                              ? ratingHover
+                                              : ratingValue
+                                          ]
+                                        }
+                                      </Box>
+                                    )}
+                                  </Box>
+                                </Fade>
+                              )}
+                            </Popper>
+                            <Button
+                              disabled={
+                                !tutor.enrolledTutee?.includes(tutee._id)
+                              }
+                              variant="text"
+                              {...bindToggle(popupState)}
+                            >
+                              <AddIcon color="indigo" sx={{ mr: 1 }} />
+                              Rate Tutor
+                            </Button>
+                          </div>
+                        )}
+                      </PopupState>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -311,7 +413,7 @@ const UserProfile = () => {
               </div>
               <div className="grid grid-cols-3">
                 {tutors?.map((tut, index) => (
-                  <a href={`/tutors/${tut.id}`}>
+                  <a key={index} href={`/tutors/${tut.id}`}>
                     <div key={index} className="text-center my-2">
                       <img
                         className="h-16 w-16 rounded-full mx-auto"
