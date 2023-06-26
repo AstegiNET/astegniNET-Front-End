@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -12,14 +12,16 @@ import {
   GET_COURSE,
   GET_TUTORS,
   FETCH_RATES,
+  ADD_RATE,
 } from "../../../api/API";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
-import { Box,Fab } from "@mui/material";
+import { Box, Button, IconButton } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import Popper from "@mui/material/Popper";
 import PopupState, { bindToggle, bindPopper } from "material-ui-popup-state";
 import Fade from "@mui/material/Fade";
-import AddIcon from '@mui/icons-material/Add';
+import AddIcon from "@mui/icons-material/Add";
+import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 
 const UserProfile = () => {
   const id = useParams().id;
@@ -27,7 +29,6 @@ const UserProfile = () => {
   const [tutors, setTutors] = useState([]);
   const [course, setCourse] = useState({});
   const [ratings, setRatings] = useState([]);
-  const [ratingBarOpen, setRatingBarOpen] = useState(false);
   const [ratingValue, setRatingValue] = useState(0);
   const [ratingHover, setRatingHover] = React.useState(-1);
   const [requestSent, setRequestSent] = useState(false);
@@ -76,32 +77,41 @@ const UserProfile = () => {
     console.log(ratings);
   };
 
-  // const getTutors = async () => {
-  //   const API_URL =`${GET_TUTORS}?course=${course.name}`
-  //   const response = await axios.get(API_URL);
-  //   // console.log(response.data)
-  //   setTutors(response.data?.filter((tut)=>tut.id !== tutor._id));
-  //   console.log(tutors);
-  // };
+  const rateTutor = async () => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${tutee.token}`,
+      },
+    };
+    const rating = {
+      rate: ratingValue,
+    };
+    const response = await axios.post(
+      `${ADD_RATE}/${tutor._id}`,
+      rating,
+      config
+    );
+    if (response.statusText === "OK") {
+      getRatings();
+    }
+    return response.data;
+  };
 
   const API_URL1 = `${GET_TUTORS}?course=${course.name}`;
   useEffect(() => {
     const getTutor = async () => {
       const response = await axios.get(API_URL);
       setTutor(response.data);
-      // console.log(response.data)
     };
 
     const getCourse = async () => {
       const response = await axios.get(`${GET_COURSE}/${tutor.course}`);
       setCourse(response.data);
-      // console.log(course);
     };
 
     const getTutors = async () => {
       const response = await axios.get(API_URL1);
       setTutors(response.data?.filter((tut) => tut.id !== tutor._id));
-      // console.log(tutors);
     };
 
     getTutor();
@@ -109,7 +119,7 @@ const UserProfile = () => {
     getCourse();
     getTutors();
     getRatings();
-  }, [API_URL, API_URL1, getRatings, getRequest, tutor._id, tutor.course]);
+  }, [API_URL, API_URL1, tutor._id, tutor.course]);
 
   const handleGoBack = () => {
     window.history.back();
@@ -117,10 +127,11 @@ const UserProfile = () => {
 
   function RatingBar() {
     var rating;
+    var sum = 0;
     if (ratings?.length > 0) {
-      const sum = ratings?.reduce((partialSum, a) => partialSum + a, 0);
+      ratings.map((r) => (sum += r.rate));
       rating = sum / ratings?.length;
-      console.log(sum);
+      console.log(rating);
     }
     const stars = [];
 
@@ -136,13 +147,15 @@ const UserProfile = () => {
       }
     }
     return (
-      <div className="flex">
+      <div className="flex justify-center items-center">
         {stars} <span className="ml-2">{ratings?.length} votes</span>
       </div>
     );
   }
 
-  const handleRating = () => {};
+  const handleRating = () => {
+    rateTutor();
+  };
 
   const labels = {
     0.5: "Useless",
@@ -166,7 +179,7 @@ const UserProfile = () => {
       <div className="flex justify-between">
         <button
           onClick={() => handleGoBack()}
-          className="flex py-2  mt-4 ml-4  px-4 font-semibold leading-tight bg-gray-200 text-gray-600 hover:bg-indigo-500 hover:text-gray-100 rounded-md"
+          className="flex justify-center items-center py-2  mt-4 ml-4  px-4 font-semibold leading-tight bg-gray-200 text-gray-600 hover:bg-indigo-500 hover:text-gray-100 rounded-md"
         >
           <IoIosArrowBack />
           Go Back
@@ -267,7 +280,6 @@ const UserProfile = () => {
                   <div className="grid grid-cols-2">
                     <div className="px-4 py-2 font-semibold">{RatingBar()}</div>
                     <div>
-
                       <PopupState variant="popper" popupId="demo-popup-popper">
                         {(popupState) => (
                           <div>
@@ -276,29 +288,41 @@ const UserProfile = () => {
                                 <Fade {...TransitionProps} timeout={350}>
                                   <Box
                                     sx={{
-                                      marginTop:"8px",
-                                      display: "flex",
+                                      width: "200px",
+                                      marginTop: "8px",
                                       alignItems: "center",
                                     }}
                                   >
-                                    <Rating
-                                      name="hover-feedback"
-                                      value={ratingValue}
-                                      precision={0.5}
-                                      getLabelText={getLabelText}
-                                      onChange={(event, newValue) => {
-                                        setRatingValue(newValue);
-                                      }}
-                                      onChangeActive={(event, newHover) => {
-                                        setRatingHover(newHover);
-                                      }}
-                                      emptyIcon={
-                                        <StarIcon
-                                          style={{ opacity: 0.55 }}
-                                          fontSize="inherit"
+                                    <div className="flex justify-center items-center">
+                                      <Rating
+                                        name="hover-feedback"
+                                        value={ratingValue}
+                                        precision={0.5}
+                                        getLabelText={getLabelText}
+                                        onChange={(event, newValue) => {
+                                          setRatingValue(newValue);
+                                        }}
+                                        onChangeActive={(event, newHover) => {
+                                          setRatingHover(newHover);
+                                        }}
+                                        emptyIcon={
+                                          <StarIcon
+                                            style={{ opacity: 0.55 }}
+                                            fontSize="inherit"
+                                          />
+                                        }
+                                      />
+                                      <IconButton
+                                        aria-label="send"
+                                        size="large"
+                                        onClick={handleRating}
+                                      >
+                                        <SendOutlinedIcon
+                                          color="success"
+                                          fontSize="large"
                                         />
-                                      }
-                                    />
+                                      </IconButton>
+                                    </div>
                                     {ratingValue !== null && (
                                       <Box sx={{ ml: 2 }}>
                                         {
@@ -314,17 +338,16 @@ const UserProfile = () => {
                                 </Fade>
                               )}
                             </Popper>
-                            <Fab
+                            <Button
                               disabled={
-                                tutor.enrolledTutee?.includes(tutee._id)
+                                !tutor.enrolledTutee?.includes(tutee._id)
                               }
-                              variant="extended"
+                              variant="text"
                               {...bindToggle(popupState)}
-                              onClick={setRatingBarOpen(!ratingBarOpen)}
                             >
-                              <AddIcon color="indigo" sx={{mr:1}}/>
+                              <AddIcon color="indigo" sx={{ mr: 1 }} />
                               Rate Tutor
-                            </Fab>
+                            </Button>
                           </div>
                         )}
                       </PopupState>
@@ -390,7 +413,7 @@ const UserProfile = () => {
               </div>
               <div className="grid grid-cols-3">
                 {tutors?.map((tut, index) => (
-                  <a href={`/tutors/${tut.id}`}>
+                  <a key={index} href={`/tutors/${tut.id}`}>
                     <div key={index} className="text-center my-2">
                       <img
                         className="h-16 w-16 rounded-full mx-auto"

@@ -33,7 +33,7 @@ const Register = () => {
     }
 
     if (isSuccess || tutee) {
-      navigate("/");
+      navigate("/tutee/home");
     }
 
     dispatch(reset());

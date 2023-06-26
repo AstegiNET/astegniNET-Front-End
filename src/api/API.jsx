@@ -42,3 +42,4 @@ export const SEND_MESSAGE = `${BASE_URI}/message/sendmessage`;
 
 // ratings
 export const FETCH_RATES = `${BASE_URI}/rate/getAllrates`;
+export const ADD_RATE = `${BASE_URI}/rate//ratingTutor`;
