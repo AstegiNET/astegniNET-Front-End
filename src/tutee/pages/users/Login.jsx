@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -24,11 +24,11 @@ const Login = () => {
     (state) => state.tuteeAuth
   );
 
-  useEffect(() => {
-    if (isSuccess || tutee) {
-      navigate("/tutee/home");
-    }
-  }, [tutee, isSuccess, navigate]);
+  // useEffect(() => {     
+  // if (isSuccess || tutee) {
+  //   navigate("/tutee/home");
+  // }
+  // }, []);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -49,8 +49,11 @@ const Login = () => {
     if (isError) {
       console.log(message);
     }
-
     dispatch(reset());
+    
+    if (isSuccess || tutee) {
+      navigate("/tutee/home");
+    }
   };
 
   if (isLoading) {

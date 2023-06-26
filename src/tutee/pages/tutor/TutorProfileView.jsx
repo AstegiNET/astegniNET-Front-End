@@ -4,6 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { IoIosArrowBack } from "react-icons/io";
+import Rating from "@mui/material/Rating";
 import {
   GET_TUTOR,
   SEND_REQUEST,
@@ -13,6 +14,12 @@ import {
   FETCH_RATES,
 } from "../../../api/API";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
+import { Box,Fab } from "@mui/material";
+import StarIcon from "@mui/icons-material/Star";
+import Popper from "@mui/material/Popper";
+import PopupState, { bindToggle, bindPopper } from "material-ui-popup-state";
+import Fade from "@mui/material/Fade";
+import AddIcon from '@mui/icons-material/Add';
 
 const UserProfile = () => {
   const id = useParams().id;
@@ -20,6 +27,9 @@ const UserProfile = () => {
   const [tutors, setTutors] = useState([]);
   const [course, setCourse] = useState({});
   const [ratings, setRatings] = useState([]);
+  const [ratingBarOpen, setRatingBarOpen] = useState(false);
+  const [ratingValue, setRatingValue] = useState(0);
+  const [ratingHover, setRatingHover] = React.useState(-1);
   const [requestSent, setRequestSent] = useState(false);
   const { tutee } = useSelector((state) => state.tuteeAuth);
   const navigate = useNavigate();
@@ -99,14 +109,19 @@ const UserProfile = () => {
     getCourse();
     getTutors();
     getRatings();
-  }, [API_URL, API_URL1, tutor.course]);
+  }, [API_URL, API_URL1, getRatings, getRequest, tutor._id, tutor.course]);
 
   const handleGoBack = () => {
     window.history.back();
   };
 
   function RatingBar() {
-    let rating = ratings / ratings.length;
+    var rating;
+    if (ratings?.length > 0) {
+      const sum = ratings?.reduce((partialSum, a) => partialSum + a, 0);
+      rating = sum / ratings?.length;
+      console.log(sum);
+    }
     const stars = [];
 
     for (let i = 1; i <= 5; i++) {
@@ -120,11 +135,31 @@ const UserProfile = () => {
         stars.push(<FaRegStar key={i} size={16} className="text-gray-400" />);
       }
     }
-    console.log(rating);
-    return <div className="flex">{stars}</div>;
+    return (
+      <div className="flex">
+        {stars} <span className="ml-2">{ratings?.length} votes</span>
+      </div>
+    );
   }
 
   const handleRating = () => {};
+
+  const labels = {
+    0.5: "Useless",
+    1: "Useless",
+    1.5: "Poor",
+    2: "Poor",
+    2.5: "Ok",
+    3: "Not Bad",
+    3.5: "Good",
+    4: "Very Good",
+    4.5: "Excellent",
+    5: "Amazing",
+  };
+
+  function getLabelText(value) {
+    return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`;
+  }
 
   return (
     <div className="relative">
@@ -231,25 +266,69 @@ const UserProfile = () => {
                   </div>
                   <div className="grid grid-cols-2">
                     <div className="px-4 py-2 font-semibold">{RatingBar()}</div>
-                    {/* <button
-                      className={`${
-                        tutor.enrolledTutee?.includes(tutee._id)
-                          ? `bg-green-500`
-                          : `bg-red-500`
-                      } px-2 py-2 flex justify-center items-center`}
-                    >
-                      <span>Rate Tutuor</span>
-                    </button> */}
+                    <div>
 
-                    <button
-                      disabled={!tutor.enrolledTutee?.includes(tutee._id)}
-                      onClick={tutee ? sendRequest : navigate("/tutee/login")}
-                      className={`w-full px-4 py-2 font-medium text-indigo-600  bg-transparent border border-indigo-600 rounded-md ${
-                        tutor.enrolledTutee?.includes(tutee._id) && "hover:bg-indigo-600 hover:text-white"
-                      } hover:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2`}
-                    >
-                      Rate Tutor
-                    </button>
+                      <PopupState variant="popper" popupId="demo-popup-popper">
+                        {(popupState) => (
+                          <div>
+                            <Popper {...bindPopper(popupState)} transition>
+                              {({ TransitionProps }) => (
+                                <Fade {...TransitionProps} timeout={350}>
+                                  <Box
+                                    sx={{
+                                      marginTop:"8px",
+                                      display: "flex",
+                                      alignItems: "center",
+                                    }}
+                                  >
+                                    <Rating
+                                      name="hover-feedback"
+                                      value={ratingValue}
+                                      precision={0.5}
+                                      getLabelText={getLabelText}
+                                      onChange={(event, newValue) => {
+                                        setRatingValue(newValue);
+                                      }}
+                                      onChangeActive={(event, newHover) => {
+                                        setRatingHover(newHover);
+                                      }}
+                                      emptyIcon={
+                                        <StarIcon
+                                          style={{ opacity: 0.55 }}
+                                          fontSize="inherit"
+                                        />
+                                      }
+                                    />
+                                    {ratingValue !== null && (
+                                      <Box sx={{ ml: 2 }}>
+                                        {
+                                          labels[
+                                            ratingHover !== -1
+                                              ? ratingHover
+                                              : ratingValue
+                                          ]
+                                        }
+                                      </Box>
+                                    )}
+                                  </Box>
+                                </Fade>
+                              )}
+                            </Popper>
+                            <Fab
+                              disabled={
+                                tutor.enrolledTutee?.includes(tutee._id)
+                              }
+                              variant="extended"
+                              {...bindToggle(popupState)}
+                              onClick={setRatingBarOpen(!ratingBarOpen)}
+                            >
+                              <AddIcon color="indigo" sx={{mr:1}}/>
+                              Rate Tutor
+                            </Fab>
+                          </div>
+                        )}
+                      </PopupState>
+                    </div>
                   </div>
                 </div>
               </div>

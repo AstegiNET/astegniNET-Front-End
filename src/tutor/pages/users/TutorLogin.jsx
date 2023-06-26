@@ -24,11 +24,11 @@ const TutorLogin = () => {
     (state) => state.tutorAuth
   );
 
-  useEffect(() => {
-    if (isSuccess || tutor) {
-      navigate("/tutor/home");
-    }
-  }, [tutor, isSuccess, navigate]);
+  // useEffect(() => {
+  //   if (isSuccess || tutor) {
+  //     navigate("/tutor/home");
+  //   }
+  // }, [tutor, isSuccess, navigate]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -50,6 +50,9 @@ const TutorLogin = () => {
       console.log(message);
     }
     dispatch(tutorReset());
+    if (isSuccess || tutor) {
+      navigate("/tutor/home");
+    }
   };
 
   if (isLoading) {
