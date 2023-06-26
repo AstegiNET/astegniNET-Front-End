@@ -13,7 +13,8 @@ const Register = () => {
     lname: "",
     email: "",
     phone: "",
-    avatar: "",
+    avatar:
+      "https://media.licdn.com/dms/image/D4E03AQHAL_PcNagqPw/profile-displayphoto-shrink_800_800/0/1682821317833?e=1693440000&v=beta&t=a_M0x4orxatbEGOg1tF3DoclHxemWeIqDMS00NX9Fo0",
     password: "",
     password2: "",
   });
@@ -33,7 +34,7 @@ const Register = () => {
     }
 
     if (isSuccess || tutee) {
-      navigate("/");
+      navigate("/tutee/home");
     }
 
     dispatch(reset());
@@ -202,8 +203,8 @@ const Register = () => {
                   required
                   onChange={onChange}
                   placeholder="enter phone number"
-                  pattern="09[0-9]{8}" 
-                  title="Phone number must be 10 digits long and start with '09'" 
+                  pattern="09[0-9]{8}"
+                  title="Phone number must be 10 digits long and start with '09'"
                   autoComplete="tel"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -219,11 +220,9 @@ const Register = () => {
               </label>
               <div className="relative mt-2.5">
                 <input
-                  type="text"
+                  type="file"
                   name="avatar"
                   id="avatar"
-                  value={avatar}
-                  onChange={onChange}
                   placeholder="enter avatar url"
                   autoComplete="avatar"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -247,7 +246,7 @@ const Register = () => {
                   required
                   onChange={onChange}
                   placeholder="enter password"
-                  pattern=".{6,10}" 
+                  pattern=".{6,10}"
                   title="Password must be at least 6, not more than 10 characters long"
                   autoComplete="password"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -272,7 +271,7 @@ const Register = () => {
                   autoComplete="password2"
                   onChange={onChange}
                   placeholder="enter password"
-                  pattern=".{6,10}" 
+                  pattern=".{6,10}"
                   title="Password must be at least 6, not more than 10 characters long"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />

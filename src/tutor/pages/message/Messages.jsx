@@ -90,12 +90,18 @@ export default function Messages() {
                 <div className="flex gap-x-4">
                   <img
                     className="h-12 w-12 flex-none rounded-full bg-gray-50"
-                    src={message.sender.avatar}
+                    src={
+                      message.sender.role === "tutee"
+                        ? message.sender.avatar
+                        : message.receiver.avatar
+                    }
                     alt=""
                   />
                   <div className="min-w-0 flex-auto">
                     <p className="text-sm font-semibold leading-6 text-gray-500">
-                      {message.sender.fname} {message.sender.lname}
+                      {message.sender.role === "tutee"
+                        ? `${message.sender.fname} ${message.sender.lname}`
+                        : `${message.receiver.fname} ${message.receiver.lname}`}
                     </p>
                     <p className="mt-1 truncate  leading-5 text-gray-900 overflow-clip">
                       {message.body}

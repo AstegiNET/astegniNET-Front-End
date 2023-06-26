@@ -62,15 +62,13 @@ const Sidebar = () => {
             </li>
           </ul>
           <ul>
-            
-
-          <li className="relative px-6 py-3">
+            <li className="relative px-6 py-3">
               <Link
                 className="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 "
                 to="/tutorlist"
               >
                 <svg
-                className="w-6 h-6"
+                  className="w-6 h-6"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 640 512"
                   fill="currentColor"
@@ -152,7 +150,7 @@ const Sidebar = () => {
             <li className="relative px-6 py-3">
               <Link
                 className="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 "
-                to="/tutee/home"
+                to="/#contact"
               >
                 <svg
                   className="w-6 h-6"

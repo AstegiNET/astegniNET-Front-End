@@ -15,15 +15,42 @@ const TutorRegister = () => {
     lname: "",
     sex: "Male",
     email: "",
+    phone: "",
     salary: "",
     course: "",
     education: "",
     about: "",
-    avatar: "",
+    avatar:
+      "https://media.licdn.com/dms/image/D4E03AQHAL_PcNagqPw/profile-displayphoto-shrink_800_800/0/1682821317833?e=1693440000&v=beta&t=a_M0x4orxatbEGOg1tF3DoclHxemWeIqDMS00NX9Fo0",
     schedule: [],
     password: "",
     password2: "",
   });
+
+  const [image, setImage] = useState("");
+  const [url, setUrl] = useState("");
+
+  const uploadImage = async () => {
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "wjsh8fle");
+    data.append("cloud_name", "dypi9zo6o");
+    const value = fetch(
+      "  https://api.cloudinary.com/v1_1/dypi9zo6o/image/upload",
+      {
+        method: "post",
+        body: data,
+      }
+    )
+      .then((resp) => resp.json())
+      .then((data) => {
+        setUrl(data.url);
+      })
+      .catch((err) => console.log(err));
+  };
+  useEffect(() => {
+    console.log(url);
+  }, [url]);
 
   const {
     fname,
@@ -370,11 +397,10 @@ const TutorRegister = () => {
               </label>
               <div className="relative mt-2.5">
                 <input
-                  type="text"
+                  type="file"
                   name="avatar"
                   id="avatar"
-                  value={avatar}
-                  onChange={onChange}
+                  // onChange={onChange}
                   placeholder="enter avatar url"
                   autoComplete="avatar"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
