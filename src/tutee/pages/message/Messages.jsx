@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { IoIosAddCircle } from "react-icons/io";
-import { IoIosAdd, IoIosAddCircle } from "react-icons/io";
 import TuteeHeader from "../../components/commonComponent/TuteeHeader";
 
 export default function Messages() {

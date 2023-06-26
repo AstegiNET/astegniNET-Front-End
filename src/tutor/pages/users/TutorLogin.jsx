@@ -24,16 +24,11 @@ const TutorLogin = () => {
     (state) => state.tutorAuth
   );
 
-<<<<<<< HEAD
-  // useEffect(() => {
-
-=======
-  const [errorMessage,setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   // useEffect(() => {
   //   if (isSuccess || tutor) {
   //     navigate("/tutor/home");
   //   }
->>>>>>> 507a7989850f6c7087380255a97f7413988b849e
   // }, [tutor, isSuccess, navigate]);
 
   const onChange = (e) => {
@@ -119,7 +114,9 @@ const TutorLogin = () => {
           onSubmit={onSubmit}
         >
           <div className="grid grid-cols-1 gap-y-6 gap-x-8 sm:grid-cols-2">
-          {errorMessage.length >0 && <p className="col-span-2 text-red-600">{errorMessage}</p>}
+            {errorMessage.length > 0 && (
+              <p className="col-span-2 text-red-600">{errorMessage}</p>
+            )}
             <div className="sm:col-span-2">
               <label
                 htmlFor="email"
