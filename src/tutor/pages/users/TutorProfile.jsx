@@ -27,7 +27,7 @@ const TutorProfile = () => {
 
               <div className="mt-10">
                 <h1 className="font-bold text-center text-3xl text-gray-900">
-                  AstegniNET
+                አስጠኚNET
                 </h1>
                 <p className="text-center text-sm text-gray-400 font-medium">
                   cross platform online tutorial app
