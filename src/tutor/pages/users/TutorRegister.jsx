@@ -85,6 +85,7 @@ const TutorRegister = () => {
   );
 
   useEffect(() => {
+    dispatch(getAllCourses());
     if (isError) {
       toast.error(message);
     }
@@ -92,9 +93,13 @@ const TutorRegister = () => {
     if (isSuccess || tutor) {
       navigate("/tutor/home");
     }
-    dispatch(getAllCourses());
+
     dispatch(tutorReset());
   }, [tutor, isError, isSuccess, message, navigate, dispatch]);
+
+  // useEffect(() => {
+  //   dispatch(getAllCourses());
+  // }, [tutor, isError, isSuccess, message, navigate, dispatch]);
 
   const onChange = (e) => {
     e.preventDefault();

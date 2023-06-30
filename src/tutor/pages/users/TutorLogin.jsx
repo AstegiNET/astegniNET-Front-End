@@ -50,10 +50,6 @@ const TutorLogin = () => {
     if (isError) {
       setErrorMessage(message);
     }
-
-    if (isSuccess || tutor) {
-      navigate("/tutor/home");
-    }
     dispatch(tutorReset());
     if (isSuccess || tutor) {
       navigate("/tutor/home");
@@ -156,7 +152,7 @@ const TutorLogin = () => {
                   required
                   onChange={onChange}
                   placeholder="enter password"
-                  pattern="[A-Z0-9a-z]{6,16}"
+                  pattern="[A-Z0-9a-z]{3,16}"
                   title="password should be at least 6 characters long"
                   autoComplete="password"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
