@@ -1,10 +1,13 @@
-const BASE_URI = "http://192.168.115.127:5000/api";
-export const CLIENT_BASE_URL = "http://192.168.115.127:3000";
 // const BASE_URI = "http://localhost:5000/api";
 // export const CLIENT_BASE_URL = "http://localhost:3000";
 
 // const BASE_URI = "https://astegni-net-back-end.vercel.app/api";
 // export const CLIENT_BASE_URL = "https://astegni-net-front-end.vercel.app";
+// const BASE_URI = "https://astegni-net-back-end.vercel.app/api";
+// export const CLIENT_BASE_URL = "https://astegni-net-front-end.vercel.app";
+
+const BASE_URI = `${IP_ADDRESS}:5000/api`;
+export const CLIENT_BASE_URL = `${IP_ADDRESS}:3000`;
 
 export const REGISTER_TUTEE = `${BASE_URI}/tutees/register`;
 export const LOGIN_TUTEE = `${BASE_URI}/tutees/login`;
