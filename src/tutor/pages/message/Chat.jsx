@@ -15,8 +15,8 @@ function Chat() {
   const { tutor } = useSelector((state) => state.tutorAuth);
   const [message, setMessage] = useState("");
   // const [username, setUsername] = useState("");
-   // const [room, setRoom] = useState("");
-   // const [showChat, setShowChat] = useState(false);
+  // const [room, setRoom] = useState("");
+  // const [showChat, setShowChat] = useState(false);
 
   const [messages, setMessages] = useState([]);
   const location = useLocation();
@@ -113,9 +113,19 @@ function Chat() {
                     <p className="text-sm font-semibold leading-6 text-gray-900">
                       {message.sender?.fname} {message.sender?.lname}
                     </p>
-                    <p className="mt-1 truncate text-xs leading-5 text-gray-500">
-                      {message?.body}
-                    </p>
+                    {message?.body.slice(0, 4) === "http" ? (
+                      <a
+                        href={`${message?.body}`}
+                        className="mt-1 truncate text-xs leading-5 text-blue-700 hover:text-underline"
+                      >
+                        {message?.body}
+                      </a>
+                    ) : (
+                      <p className="mt-1 truncate text-xs leading-5 text-gray-500">
+                        {message?.body}
+                      </p>
+                    )}
+
                     <p className="mt-1 text-xs leading-5 text-gray-500">
                       <span>
                         {message?.createdAt.slice(0, 10)}{" "}

@@ -50,7 +50,7 @@ const UserProfile = () => {
     };
     const response = await axios.post(SEND_REQUEST, request, config);
     if (response.statusText === "OK") {
-      navigate("/tutors");
+      navigate("/tutorlist");
     }
     return response.data;
   };

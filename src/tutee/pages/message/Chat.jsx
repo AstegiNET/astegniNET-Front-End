@@ -102,7 +102,7 @@ function Chat() {
           <div className="h-full flex justify-between  flex-col ml-8">
             <ul className="max-h-screen overflow-y-auto overflow-x-hidden">
               {messages.map((message, index) => (
-                <p >
+                <p>
                   <li key={index} className="flex justify-between mt-2 py-2">
                     <div className="flex gap-x-4">
                       <img
@@ -114,9 +114,18 @@ function Chat() {
                         <p className="text-sm font-semibold leading-6 text-gray-900">
                           {message.sender?.fname} {message.sender?.lname}
                         </p>
-                        <p className="mt-1 truncate text-xs leading-5 text-gray-500">
-                          {message.body}
-                        </p>
+                        {message?.body.slice(0, 4) === "http" ? (
+                          <a
+                            href={`${message?.body}`}
+                            className="mt-1 truncate text-xs leading-5 text-blue-700 hover:underline"
+                          >
+                            {message?.body}
+                          </a>
+                        ) : (
+                          <p className="mt-1 truncate text-xs leading-5 text-gray-500">
+                            {message?.body}
+                          </p>
+                        )}
                         <p className="mt-1 text-xs leading-5 text-gray-500">
                           <span>
                             {message.createdAt.slice(0, 10)}{" "}
