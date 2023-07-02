@@ -340,7 +340,7 @@ const UserProfile = () => {
                             </Popper>
                             <Button
                               disabled={
-                                !tutor.enrolledTutee?.includes(tutee._id)
+                                !tutor.enrolledTutee?.includes(tutee?._id)
                               }
                               variant="text"
                               {...bindToggle(popupState)}
