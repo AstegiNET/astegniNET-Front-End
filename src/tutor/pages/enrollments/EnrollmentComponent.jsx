@@ -39,8 +39,8 @@ const EnrollmentComponent = ({ enrollments }) => {
                       <th className="px-4 py-3">tutor</th>
                       <th className="px-4 py-3">tuttee</th>
                       <th className="px-4 py-3">course</th>
-                      <th className="px-4 py-3">Status</th>
                       <th className="px-4 py-3">Date</th>
+                      <th className="px-4 py-3">Actions</th>
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y ">
@@ -105,7 +105,7 @@ const EnrollmentComponent = ({ enrollments }) => {
                         </td>
 
                         <td className="px-4 py-3 text-sm">
-                          {enrollment.updatedAt}
+                          {enrollment.updatedAt.slice(0,10)}, {enrollment.updatedAt.slice(11,19)}
                         </td>
 
                         <td className="px-4 py-3 text-xs">
