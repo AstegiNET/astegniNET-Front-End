@@ -7,6 +7,7 @@ import { GET_TUTOR } from "../api/API";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import NotAuthorized from "../tutor/components/notFound/NotAuthorized";
 const VideoCall = ({ role }) => {
   const [videocall, setVideocall] = useState(true);
   const [isPinned, setPinned] = useState(false);
@@ -60,7 +61,7 @@ const VideoCall = ({ role }) => {
                   {videocall && (
                     <>
                       <button
-                        className="absolute top-2 right-4 z-20 text-white rounded pinter px-1 py-2"
+                        className="absolute bottom-2 right-4 z-20 border-2 px-2 text-white rounded-full pinter px-1 py-2"
                         onClick={() => setPinned(!isPinned)}
                       >
                         {isPinned ? (
@@ -70,7 +71,7 @@ const VideoCall = ({ role }) => {
                         )}
                       </button>
 
-                      <div className="px-6 mb-2 absolute top-4 z-20 flex items-center transition duration-200 transform hover:scale-110">
+                      <div className="px-6 mb-2 absolute bottom-0 z-20 flex items-center transition duration-200 transform hover:scale-110">
                         {/* <img
                       src={logo}
                       alt="logo"
@@ -128,7 +129,7 @@ const VideoCall = ({ role }) => {
                   )}
                 </div>
               ) : (
-                <h1>you are not allowed </h1>
+                <NotAuthorized disc = "You aren't authorized to give this session" />
               )}
             </>
           )}
@@ -140,7 +141,7 @@ const VideoCall = ({ role }) => {
                   {videocall && (
                     <>
                       <button
-                        className="absolute top-2 right-4 z-20 text-white rounded pinter px-1 py-2"
+                        className="absolute bottom-2 right-4 z-20 border-2 px-2 text-white rounded-full pinter px-1 py-2"
                         onClick={() => setPinned(!isPinned)}
                       >
                         {isPinned ? (
@@ -150,7 +151,7 @@ const VideoCall = ({ role }) => {
                         )}
                       </button>
 
-                      <div className="px-6 mb-2 absolute top-4 z-20 flex items-center transition duration-200 transform hover:scale-110">
+                      <div className="px-6 mb-2 absolute bottom-0 z-20 flex items-center transition duration-200 transform hover:scale-110">
                         {/* <img
                       src={logo}
                       alt="logo"
@@ -208,7 +209,7 @@ const VideoCall = ({ role }) => {
                   )}
                 </div>
               ) : (
-                <h1>you are not allowed </h1>
+                <NotAuthorized disc = "You aren't authorized to join this session" />
               )}
             </>
           )}
