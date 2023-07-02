@@ -20,7 +20,8 @@ const TutorRegister = () => {
     course: "",
     education: "",
     about: "",
-    avatar:"https://media.licdn.com/dms/image/D4E03AQGHHTB0C5jgxw/profile-displayphoto-shrink_800_800/0/1681932236425?e=1693440000&v=beta&t=QLwA9hYIDVLnmWXyZOKilUbJTgoNcbEI22CGsg7NURQ",
+    avatar:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx9tjaExsY-srL4VsHNE_OKGVCJ-eIFNBktw&usqp=CAU",
     schedule: [],
     password: "",
     password2: "",
@@ -131,13 +132,13 @@ const TutorRegister = () => {
       };
 
       dispatch(tutorRegister(tutorData));
-        if (isError) {
-      toast.error(message);
-    }
+      if (isError) {
+        toast.error(message);
+      }
 
-    if (isSuccess || tutor) {
-      navigate("/tutor/home");
-    }
+      if (isSuccess || tutor) {
+        navigate("/tutor/home");
+      }
     }
   };
 

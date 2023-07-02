@@ -28,7 +28,7 @@ const VideoCall = ({ role }) => {
       console.log(response.data);
     };
     getTutor();
-    console.log(tutor.enrolledTutee.includes(loggedInTutee));
+    console.log(tutor?.enrolledTutee.includes(loggedInTutee));
   }, [API_URL]);
 
   return (
