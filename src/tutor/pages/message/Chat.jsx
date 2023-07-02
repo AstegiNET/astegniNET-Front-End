@@ -1,22 +1,22 @@
-import io from "socket.io-client";
+// import io from "socket.io-client";
 
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect, useMemo } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 import Sidebar from "../../components/commonComponent/sidebar/Sidebar";
 import { IoIosArrowBack } from "react-icons/io";
 import axios from "axios";
 import { FETCH_MESSAGES, SEND_MESSAGE } from "../../../api/API";
 
-const socket = io.connect("http://localhost:3001");
+// const socket = io.connect("http://localhost:3001");
 
 function Chat() {
   const { tutor } = useSelector((state) => state.tutorAuth);
   const [message, setMessage] = useState("");
-  const [username, setUsername] = useState("");
-  const [room, setRoom] = useState("");
-  const [showChat, setShowChat] = useState(false);
+  // const [username, setUsername] = useState("");
+   // const [room, setRoom] = useState("");
+   // const [showChat, setShowChat] = useState(false);
 
   const [messages, setMessages] = useState([]);
   const location = useLocation();
@@ -37,12 +37,12 @@ function Chat() {
 
   // setMessageId(`${tutorId}${tutee._id}`);
 
-  const joinRoom = () => {
-    if (username !== "" && room !== "") {
-      socket.emit("join_room", room);
-      setShowChat(true);
-    }
-  };
+  // const joinRoom = () => {
+  //   if (username !== "" && room !== "") {
+  //     socket.emit("join_room", room);
+  //     setShowChat(true);
+  //   }
+  // };
   useEffect(() => {
     getMessages();
 

@@ -13,8 +13,7 @@ const Register = () => {
     lname: "",
     email: "",
     phone: "",
-    avatar:
-      "https://media.licdn.com/dms/image/D4E03AQHAL_PcNagqPw/profile-displayphoto-shrink_800_800/0/1682821317833?e=1693440000&v=beta&t=a_M0x4orxatbEGOg1tF3DoclHxemWeIqDMS00NX9Fo0",
+    avatar:"https://media.licdn.com/dms/image/D4E03AQGmO2aePohQUg/profile-displayphoto-shrink_800_800/0/1674686532008?e=1693440000&v=beta&t=XjMf3suV4tzM7H-gmmdsiiHZhELwyvCeujTm4iZKLbk",
     password: "",
     password2: "",
   });

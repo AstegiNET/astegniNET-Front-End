@@ -10,15 +10,15 @@ import axios from "axios";
 import { FETCH_MESSAGES, SEND_MESSAGE } from "../../../api/API";
 import TuteeHeader from "../../components/commonComponent/TuteeHeader";
 
-const socket = io.connect("http://localhost:3001");
+// const socket = io.connect("http://localhost:3001");
 
 function Chat() {
   const { tutee } = useSelector((state) => state.tuteeAuth);
   // const [messageId, setMessageId] = useState("");
   const [message, setMessage] = useState("");
-  const [username, setUsername] = useState("");
-  const [room, setRoom] = useState("");
-  const [showChat, setShowChat] = useState(false);
+  // const [username, setUsername] = useState("");
+  // const [room, setRoom] = useState("");
+  // const [showChat, setShowChat] = useState(false);
 
   const [messages, setMessages] = useState([]);
   const location = useLocation();
@@ -39,12 +39,12 @@ function Chat() {
 
   // setMessageId(`${tutorId}${tutee._id}`);
 
-  const joinRoom = () => {
-    if (username !== "" && room !== "") {
-      socket.emit("join_room", room);
-      setShowChat(true);
-    }
-  };
+  // const joinRoom = () => {
+  //   if (username !== "" && room !== "") {
+  //     socket.emit("join_room", room);
+  //     setShowChat(true);
+  //   }
+  // };
   useEffect(() => {
     getMessages();
   }, [tutorId]);
@@ -102,7 +102,7 @@ function Chat() {
           <div className="h-full flex justify-between  flex-col ml-8">
             <ul className="max-h-screen overflow-y-auto overflow-x-hidden">
               {messages.map((message, index) => (
-                <Link to={""}>
+                <p >
                   <li key={index} className="flex justify-between mt-2 py-2">
                     <div className="flex gap-x-4">
                       <img
@@ -126,7 +126,7 @@ function Chat() {
                       </div>
                     </div>
                   </li>
-                </Link>
+                </p>
               ))}
             </ul>
 
