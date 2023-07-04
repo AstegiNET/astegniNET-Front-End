@@ -33,7 +33,6 @@ import Messages from "./tutee/pages/message/Messages";
 import TutorChat from "./tutor/pages/message/Chat";
 import TutorMessages from "./tutor/pages/message/Messages";
 
-
 export default function App() {
   return (
     <Router>
@@ -54,7 +53,7 @@ export default function App() {
           <Route path="/tutee/pay" element={<Pay />} />
           <Route path="/tutee/verifypay/:id" element={<VerifyPay />} />
           <Route path="/tutee/updateprofile" element={<UpdateProfile />} />
-          
+
           <Route path="tutee/messages" element={<Messages />} />
           <Route path="tutee/chat" element={<Chat />} />
         </Route>

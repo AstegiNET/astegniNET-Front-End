@@ -15,15 +15,42 @@ const TutorRegister = () => {
     lname: "",
     sex: "Male",
     email: "",
+    phone: "",
     salary: "",
     course: "",
     education: "",
     about: "",
-    avatar: "",
+    avatar:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx9tjaExsY-srL4VsHNE_OKGVCJ-eIFNBktw&usqp=CAU",
     schedule: [],
     password: "",
     password2: "",
   });
+
+  const [image, setImage] = useState("");
+  const [url, setUrl] = useState("");
+
+  const uploadImage = async () => {
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "wjsh8fle");
+    data.append("cloud_name", "dypi9zo6o");
+    const value = fetch(
+      "  https://api.cloudinary.com/v1_1/dypi9zo6o/image/upload",
+      {
+        method: "post",
+        body: data,
+      }
+    )
+      .then((resp) => resp.json())
+      .then((data) => {
+        setUrl(data.url);
+      })
+      .catch((err) => console.log(err));
+  };
+  useEffect(() => {
+    console.log(url);
+  }, [url]);
 
   const {
     fname,
@@ -58,6 +85,7 @@ const TutorRegister = () => {
   );
 
   useEffect(() => {
+    dispatch(getAllCourses());
     if (isError) {
       toast.error(message);
     }
@@ -65,11 +93,16 @@ const TutorRegister = () => {
     if (isSuccess || tutor) {
       navigate("/tutor/home");
     }
-    dispatch(getAllCourses());
+
     dispatch(tutorReset());
-  }, [tutor, isError, isSuccess, message, navigate, dispatch]);
+  }, [tutor, navigate, dispatch]);
+
+  // useEffect(() => {
+  //   dispatch(getAllCourses());
+  // }, [tutor, isError, isSuccess, message, navigate, dispatch]);
 
   const onChange = (e) => {
+    e.preventDefault();
     setFormData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
@@ -99,6 +132,13 @@ const TutorRegister = () => {
       };
 
       dispatch(tutorRegister(tutorData));
+      if (isError) {
+        toast.error(message);
+      }
+
+      if (isSuccess || tutor) {
+        navigate("/tutor/home");
+      }
     }
   };
 
@@ -347,17 +387,12 @@ const TutorRegister = () => {
                 onChange={onChange}
                 className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               >
-                {courses?.length ? (
-                  <>
-                    {courses.map((course) => (
-                      <option value={course._id} key={course._id}>
-                        {course.name}
-                      </option>
-                    ))}
-                  </>
-                ) : (
-                  <h3> not set any courses</h3>
-                )}
+                <option value="select course">select course</option>
+                {courses?.map((course) => (
+                  <option value={course._id} key={course._id}>
+                    {course.name}
+                  </option>
+                ))}
               </select>
             </div>
 
@@ -370,11 +405,10 @@ const TutorRegister = () => {
               </label>
               <div className="relative mt-2.5">
                 <input
-                  type="text"
+                  type="file"
                   name="avatar"
                   id="avatar"
-                  value={avatar}
-                  onChange={onChange}
+                  // onChange={onChange}
                   placeholder="enter avatar url"
                   autoComplete="avatar"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -394,10 +428,9 @@ const TutorRegister = () => {
                   id="about"
                   value={about}
                   onChange={onChange}
-                  placeholder="write about yourself here, this will appear on your profile view"
+                  placeholder="write about yourself here, this will appear on your public profile"
                   rows={4}
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  defaultValue={""}
                 />
               </div>
             </div>

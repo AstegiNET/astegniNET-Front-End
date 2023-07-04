@@ -49,7 +49,8 @@ const Pay = ({ payData }) => {
       console.log(addPay.data);
       window.location.replace(response.data.checkout_url);
     } else {
-      Navigate("/");
+      Navigate("/tutee/home");
+      console.log(response.data);
     }
   };
 

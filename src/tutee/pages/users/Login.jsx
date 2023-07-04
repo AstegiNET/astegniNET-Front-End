@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -23,12 +23,13 @@ const Login = () => {
   const { tutee, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.tuteeAuth
   );
+  const [errorMessage, setErrorMessage] = useState("");
 
-  useEffect(() => {
-    if (isSuccess || tutee) {
-      navigate("/tutee/home");
-    }
-  }, [tutee, isSuccess, navigate]);
+  // useEffect(() => {
+  // if (isSuccess || tutee) {
+  //   navigate("/tutee/home");
+  // }
+  // }, []);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -47,10 +48,13 @@ const Login = () => {
 
     dispatch(login(tuteeData));
     if (isError) {
-      console.log(message);
+      setErrorMessage(message);
     }
-
     dispatch(reset());
+
+    if (isSuccess || tutee) {
+      navigate("/tutee/home");
+    }
   };
 
   if (isLoading) {
@@ -107,6 +111,9 @@ const Login = () => {
           onSubmit={onSubmit}
         >
           <div className="grid grid-cols-1 gap-y-6 gap-x-8 sm:grid-cols-2">
+            {errorMessage.length > 0 && (
+              <p className="col-span-2 text-red-600">{errorMessage}</p>
+            )}
             <div className="sm:col-span-2">
               <label
                 htmlFor="email"
@@ -146,8 +153,8 @@ const Login = () => {
                   required
                   onChange={onChange}
                   placeholder="enter password"
-                  pattern="[A-Z0-9a-z]{3,10}"
-                  title="name should be in alphabets and at least 3 characters long"
+                  pattern="[A-Z0-9a-z]{3,16}"
+                  title="password should be at least 6 characters long"
                   autoComplete="password"
                   className="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />

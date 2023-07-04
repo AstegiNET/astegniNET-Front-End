@@ -30,7 +30,7 @@ const TuteeProfile = () => {
 
               <div className="mt-10">
                 <h1 className="font-bold text-center text-3xl text-gray-900">
-                  AstegniNET
+                አስጠኚNET
                 </h1>
                 <p className="text-center text-sm text-gray-400 font-medium">
                   cross platform online tutorial app
@@ -38,7 +38,7 @@ const TuteeProfile = () => {
 
                 <div className="my-5 px-6">
                   <Link
-                    to="/tutee/profile/viewprofile"
+                    to="/tutee/home"
                     className="text-gray-200 block rounded-lg text-center font-medium leading-6 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 hover:text-white"
                   >
                     welcome {tutee.fname} {tutee.lname}
