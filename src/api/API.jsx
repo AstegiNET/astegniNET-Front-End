@@ -2,7 +2,7 @@
 // export const CLIENT_BASE_URL = "http://localhost:3000";
 
 const BASE_URI = "https://astegni-net-back-end.vercel.app/api";
-export const CLIENT_BASE_URL = "https://astegni-net-front-end.vercel.app";
+export const CLIENT_BASE_URL = "https://astegninet.vercel.app";
 
 // const IP_ADDRESS = "http://192.168.137.118";
 
